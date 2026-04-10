@@ -98,7 +98,7 @@ export default function UploadPage() {
       <select
         value={(columnMap[field] as string) || ''}
         onChange={(e) => setColumnMap({ ...columnMap, [field]: e.target.value })}
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#4A7C6F] font-mono"
+        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#6366F1] font-mono"
       >
         <option value="">Select column...</option>
         {columns.map((col) => (
@@ -165,7 +165,7 @@ export default function UploadPage() {
                 </tbody>
               </table>
             </div>
-            <button className="mt-4 flex items-center gap-2 text-[#4A7C6F] hover:text-[#3d6b5f] font-mono text-sm">
+            <button className="mt-4 flex items-center gap-2 text-[#6366F1] hover:text-[#4338CA] font-mono text-sm">
               <Download size={16} />
               Download Sample CSV
             </button>
@@ -188,7 +188,7 @@ export default function UploadPage() {
                   value={institutionName}
                   onChange={(e) => setInstitutionName(e.target.value)}
                   placeholder="Your Institution Name"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#4A7C6F] font-mono"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#6366F1] font-mono"
                 />
               </div>
 
@@ -216,7 +216,7 @@ export default function UploadPage() {
               <button
                 onClick={handleAnalyze}
                 disabled={analyzing}
-                className="flex-1 px-6 py-3 bg-[#4A7C6F] text-white font-mono rounded-lg hover:bg-[#3d6b5f] transition-colors disabled:opacity-50"
+                className="flex-1 px-6 py-3 bg-[#6366F1] text-white font-mono rounded-lg hover:bg-[#4338CA] transition-colors disabled:opacity-50"
               >
                 {analyzing ? 'Running Analysis...' : 'Run Audit'}
               </button>

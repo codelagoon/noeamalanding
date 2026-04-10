@@ -50,14 +50,14 @@ export default function MetricCard({ label, value, subtext, status, icon, animat
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay, ease: 'easeOut' }}
       whileHover={{ y: -2, boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
-      className="relative overflow-hidden rounded-2xl border border-[#1E2530] bg-[#0D1117] p-5 flex flex-col gap-3"
+      className="relative overflow-hidden rounded-2xl border border-[#1F2E48] bg-[#0C1220] p-5 flex flex-col gap-3"
     >
       {/* subtle gradient bleed */}
       {status === 'critical' && (
         <div className="pointer-events-none absolute inset-0 rounded-2xl" style={{ background: 'radial-gradient(ellipse at top left, rgba(239,68,68,0.06) 0%, transparent 60%)' }} />
       )}
       {status === 'pass' && (
-        <div className="pointer-events-none absolute inset-0 rounded-2xl" style={{ background: 'radial-gradient(ellipse at top left, rgba(74,124,111,0.06) 0%, transparent 60%)' }} />
+        <div className="pointer-events-none absolute inset-0 rounded-2xl" style={{ background: 'radial-gradient(ellipse at top left, rgba(16,185,129,0.07) 0%, transparent 60%)' }} />
       )}
 
       <div className="flex items-center justify-between">

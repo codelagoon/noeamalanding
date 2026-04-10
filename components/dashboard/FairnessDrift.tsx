@@ -25,9 +25,9 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
   const v = payload[0].value as number;
   const breached = v < 0.8;
   return (
-    <div className="bg-[#0D1117] border border-[#2A3540] rounded-xl px-4 py-3 shadow-xl shadow-black/40">
+    <div className="bg-[#0C1220] border border-[#2A3540] rounded-xl px-4 py-3 shadow-xl shadow-black/40">
       <p className="font-mono text-[10px] text-[#4A5A6A] mb-1">{label}</p>
-      <p className={`font-mono text-sm font-bold ${breached ? 'text-red-400' : 'text-[#4A7C6F]'}`}>
+      <p className={`font-mono text-sm font-bold ${breached ? 'text-red-400' : 'text-[#6366F1]'}`}>
         DIR {v.toFixed(2)}
       </p>
       <p className={`font-mono text-[9px] mt-0.5 ${breached ? 'text-red-400/70' : 'text-[#3A4A5A]'}`}>
@@ -80,8 +80,8 @@ export default function FairnessDrift({
         >
           <defs>
             <linearGradient id="driftFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"   stopColor="#4A7C6F" stopOpacity={0.25} />
-              <stop offset="100%" stopColor="#4A7C6F" stopOpacity={0.01} />
+              <stop offset="0%"   stopColor="#6366F1" stopOpacity={0.20} />
+              <stop offset="100%" stopColor="#6366F1" stopOpacity={0.01} />
             </linearGradient>
             <linearGradient id="driftFillBreach" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#ef4444" stopOpacity={0.15} />
@@ -89,7 +89,7 @@ export default function FairnessDrift({
             </linearGradient>
           </defs>
 
-          <CartesianGrid strokeDasharray="3 3" stroke="#1A2030" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#1F2E48" vertical={false} />
 
           <XAxis
             dataKey="quarter"
@@ -118,7 +118,7 @@ export default function FairnessDrift({
           <Area
             type="monotone"
             dataKey="dir"
-            stroke="#4A7C6F"
+            stroke="#6366F1"
             strokeWidth={2.5}
             fill="url(#driftFill)"
             dot={(props) => {
@@ -133,14 +133,14 @@ export default function FairnessDrift({
                   <circle
                     cx={cx} cy={cy}
                     r={isActive ? 5 : breached ? 5 : 3.5}
-                    fill={breached ? '#ef4444' : '#4A7C6F'}
-                    stroke={breached ? '#fca5a5' : '#0D1117'}
+                    fill={breached ? '#ef4444' : '#6366F1'}
+                    stroke={breached ? '#fca5a5' : '#0C1220'}
                     strokeWidth={1.5}
                   />
                 </g>
               );
             }}
-            activeDot={{ r: 6, fill: '#E8D5A3', stroke: '#0D1117', strokeWidth: 2 }}
+            activeDot={{ r: 6, fill: '#F59E0B', stroke: '#0C1220', strokeWidth: 2 }}
             isAnimationActive
             animationDuration={1600}
             animationEasing="ease-out"
@@ -151,7 +151,7 @@ export default function FairnessDrift({
       {/* legend */}
       <div className="flex items-center gap-5 mt-3">
         <div className="flex items-center gap-1.5">
-          <div className="h-0.5 w-5 bg-[#4A7C6F] rounded-full" />
+          <div className="h-0.5 w-5 bg-[#6366F1] rounded-full" />
           <span className="font-mono text-[9px] text-[#3A4A5A]">DIR trajectory</span>
         </div>
         <div className="flex items-center gap-1.5">

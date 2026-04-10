@@ -65,7 +65,7 @@ export default function NarrativePanel({ report }: NarrativePanelProps) {
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6">
       <div className="flex items-center gap-3 mb-6">
-        <FileText size={20} className="text-[#4A7C6F]" />
+        <FileText size={20} className="text-[#6366F1]" />
         <div>
           <h2 className="text-xl font-bold text-gray-900">Narrative Interface</h2>
           <p className="font-mono text-xs text-gray-500">

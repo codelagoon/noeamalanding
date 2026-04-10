@@ -12,7 +12,7 @@ const config = {
   pass:     { bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', text: 'text-emerald-400', dot: 'bg-emerald-400', default: 'Pass' },
   warning:  { bg: 'bg-amber-500/10',   border: 'border-amber-500/20',   text: 'text-amber-400',   dot: 'bg-amber-400',   default: 'Review' },
   critical: { bg: 'bg-red-500/10',     border: 'border-red-500/20',     text: 'text-red-400',     dot: 'bg-red-500',     default: 'Critical' },
-  info:     { bg: 'bg-[#4A7C6F]/10',   border: 'border-[#4A7C6F]/20',   text: 'text-[#4A7C6F]',  dot: 'bg-[#4A7C6F]',  default: 'Info' },
+  info:     { bg: 'bg-[#6366F1]/10',   border: 'border-[#6366F1]/20',   text: 'text-[#6366F1]',  dot: 'bg-[#6366F1]',  default: 'Info' },
 };
 
 export default function StatusBadge({ status, label, pulse = false }: StatusBadgeProps) {

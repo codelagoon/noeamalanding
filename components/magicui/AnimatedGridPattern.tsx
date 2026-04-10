@@ -69,7 +69,7 @@ export default function AnimatedGridPattern({
     <svg
       ref={containerRef}
       aria-hidden="true"
-      className={cn('pointer-events-none absolute inset-0 h-full w-full fill-none stroke-[#2A2A2A]', className)}
+      className={cn('pointer-events-none absolute inset-0 h-full w-full fill-none stroke-[#1F2E48]', className)}
     >
       <defs>
         <pattern id={id} width={width} height={height} patternUnits="userSpaceOnUse" x={x} y={y}>
@@ -85,7 +85,7 @@ export default function AnimatedGridPattern({
             height={height - 1}
             x={cx * width + 1}
             y={cy * height + 1}
-            fill="#4A7C6F"
+            fill="#6366F1"
             strokeWidth={0}
             style={{
               animation: `pulse2 ${duration + Math.random() * 2}s ease-in-out infinite`,

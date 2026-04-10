@@ -27,22 +27,22 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="px-8 py-24 border-t border-[#2A2A2A]">
+    <section id="how-it-works" className="px-8 py-24 border-t border-[#1F2E48]">
       <div className="max-w-5xl mx-auto">
-        <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#A0A0A0] mb-4">
+        <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#7A90A8] mb-4">
           How It Works
         </p>
-        <h2 className="font-serif text-[clamp(32px,4vw,48px)] leading-[1.15] text-[#F5F5F5] mb-16 max-w-2xl">
+        <h2 className="font-serif text-[clamp(32px,4vw,48px)] leading-[1.15] text-[#E8EDF5] mb-16 max-w-2xl">
           From CSV to audit report in minutes
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {steps.map(({ number, title, description }) => (
             <div key={number} className="flex gap-5">
-              <span className="font-mono text-[#E8D5A3] text-lg font-semibold shrink-0 w-8">{number}</span>
+              <span className="font-mono text-indigo-400 text-lg font-semibold shrink-0 w-8">{number}</span>
               <div>
-                <h3 className="font-mono text-base font-semibold text-[#F5F5F5] mb-2">{title}</h3>
-                <p className="font-mono text-sm text-[#A0A0A0] leading-relaxed">{description}</p>
+                <h3 className="font-mono text-base font-semibold text-[#E8EDF5] mb-2">{title}</h3>
+                <p className="font-mono text-sm text-[#7A90A8] leading-relaxed">{description}</p>
               </div>
             </div>
           ))}

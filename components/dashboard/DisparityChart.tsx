@@ -48,7 +48,7 @@ export default function DisparityChart({ groupRates, disparityMetrics = [] }: Di
                     {approvedCount}/{totalCount}
                   </span>
                   {isReference && (
-                    <span className="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-[#4A7C6F]/10 text-[#4A7C6F] rounded">
+                    <span className="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-[#6366F1]/10 text-[#6366F1] rounded">
                       reference
                     </span>
                   )}
@@ -75,10 +75,10 @@ export default function DisparityChart({ groupRates, disparityMetrics = [] }: Di
                 <div
                   className={`h-3 rounded-full transition-all ${
                     isReference
-                      ? 'bg-[#4A7C6F]'
+                      ? 'bg-indigo-500'
                       : failsRule
-                      ? 'bg-red-400'
-                      : 'bg-amber-400'
+                      ? 'bg-crimson-500'
+                      : 'bg-amber-500'
                   }`}
                   style={{ width: `${approvalRate * 100}%` }}
                 />
@@ -88,7 +88,7 @@ export default function DisparityChart({ groupRates, disparityMetrics = [] }: Di
         })}
       <div className="flex flex-wrap items-center gap-x-6 gap-y-1 mt-2">
         <p className="font-mono text-xs text-gray-400">
-          <span className="inline-block w-3 h-3 rounded-sm bg-[#4A7C6F] mr-1.5 align-middle" />
+          <span className="inline-block w-3 h-3 rounded-sm bg-[#6366F1] mr-1.5 align-middle" />
           Reference group
         </p>
         <p className="font-mono text-xs text-gray-400">

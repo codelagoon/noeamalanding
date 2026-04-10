@@ -76,18 +76,18 @@ const riskConfig = {
 
 export default function RegulatoryMatrix() {
   return (
-    <section className="px-8 py-24 border-t border-[#2A2A2A]">
+    <section className="px-8 py-24 border-t border-[#1F2E48]">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-3 mb-4">
-          <Globe size={16} className="text-[#4A7C6F]" />
-          <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#A0A0A0]">
+          <Globe size={16} className="text-indigo-400" />
+          <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#7A90A8]">
             Regulatory Safe Harbor
           </p>
         </div>
-        <h2 className="font-serif text-[clamp(28px,4vw,44px)] leading-[1.15] text-[#F5F5F5] mb-4 max-w-2xl">
+        <h2 className="font-serif text-[clamp(28px,4vw,44px)] leading-[1.15] text-[#E8EDF5] mb-4 max-w-2xl">
           Global Regulatory Requirements Matrix
         </h2>
-        <p className="font-mono text-sm text-[#A0A0A0] mb-10 max-w-xl leading-relaxed">
+        <p className="font-mono text-sm text-[#7A90A8] mb-10 max-w-xl leading-relaxed">
           Three major jurisdictions now mandate algorithmic fairness documentation. Noema covers all of them from a single audit run.
         </p>
 
@@ -105,20 +105,20 @@ export default function RegulatoryMatrix() {
                     <div className="flex items-center gap-3 mb-3">
                       <span className="text-2xl">{j.flag}</span>
                       <div>
-                        <p className="font-mono text-sm font-bold text-[#F5F5F5]">{j.region}</p>
-                        <p className="font-mono text-[10px] text-[#A0A0A0]">{j.authority}</p>
+                        <p className="font-mono text-sm font-bold text-[#E8EDF5]">{j.region}</p>
+                        <p className="font-mono text-[10px] text-[#7A90A8]">{j.authority}</p>
                       </div>
                     </div>
                     <div className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full border ${risk.border} mb-3`}>
                       <Calendar size={10} className={risk.text} />
                       <span className={`font-mono text-[10px] font-semibold ${risk.text}`}>{j.deadline}</span>
                     </div>
-                    <p className="font-mono text-xs text-[#A0A0A0] leading-relaxed">{j.requirement}</p>
+                    <p className="font-mono text-xs text-[#7A90A8] leading-relaxed">{j.requirement}</p>
                   </div>
 
                   {/* Middle: required checks */}
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-wider text-[#A0A0A0] mb-3 flex items-center gap-1.5">
+                    <p className="font-mono text-[10px] uppercase tracking-wider text-[#7A90A8] mb-3 flex items-center gap-1.5">
                       <AlertTriangle size={10} className={risk.text} />
                       Required evidence
                     </p>
@@ -126,22 +126,22 @@ export default function RegulatoryMatrix() {
                       {j.checks.map((c) => (
                         <li key={c} className="flex items-start gap-2">
                           <span className={`font-mono text-xs mt-0.5 shrink-0 ${risk.text}`}>→</span>
-                          <span className="font-mono text-xs text-[#A0A0A0] leading-relaxed">{c}</span>
+                          <span className="font-mono text-xs text-[#7A90A8] leading-relaxed">{c}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
                   {/* Right: Noema coverage */}
-                  <div className="lg:border-l lg:border-[#2A2A2A] lg:pl-6">
-                    <p className="font-mono text-[10px] uppercase tracking-wider text-[#4A7C6F] mb-3 flex items-center gap-1.5">
-                      <CheckCircle size={10} className="text-[#4A7C6F]" />
+                  <div className="lg:border-l lg:border-[#1F2E48] lg:pl-6">
+                    <p className="font-mono text-[10px] uppercase tracking-wider text-indigo-400 mb-3 flex items-center gap-1.5">
+                      <CheckCircle size={10} className="text-indigo-400" />
                       Noema coverage
                     </p>
-                    <p className="font-mono text-xs text-[#A0A0A0] leading-relaxed">{j.noemaSupport}</p>
-                    <div className="mt-4 inline-flex items-center gap-1.5 px-2 py-1 rounded-full border border-[#4A7C6F]/30 bg-[#4A7C6F]/10">
-                      <Shield size={10} className="text-[#4A7C6F]" />
-                      <span className="font-mono text-[10px] font-semibold text-[#4A7C6F]">Automated audit trail</span>
+                    <p className="font-mono text-xs text-[#7A90A8] leading-relaxed">{j.noemaSupport}</p>
+                    <div className="mt-4 inline-flex items-center gap-1.5 px-2 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10">
+                      <Shield size={10} className="text-indigo-400" />
+                      <span className="font-mono text-[10px] font-semibold text-indigo-400">Automated audit trail</span>
                     </div>
                   </div>
                 </div>
@@ -150,7 +150,7 @@ export default function RegulatoryMatrix() {
           })}
         </div>
 
-        <p className="mt-6 font-mono text-[10px] text-[#A0A0A0] leading-relaxed max-w-3xl">
+        <p className="mt-6 font-mono text-[10px] text-[#7A90A8] leading-relaxed max-w-3xl">
           Statistical analysis only. Noema does not provide legal advice or certify regulatory compliance. Outputs should be reviewed with qualified fair-lending counsel before use in examination submissions.
         </p>
       </div>

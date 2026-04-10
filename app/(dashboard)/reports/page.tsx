@@ -52,7 +52,7 @@ export default function ReportsPage() {
           </p>
           <Link
             href="/upload"
-            className="inline-block px-6 py-3 bg-[#4A7C6F] text-white font-mono rounded-lg hover:bg-[#3d6b5f] transition-colors"
+            className="inline-block px-6 py-3 bg-[#6366F1] text-white font-mono rounded-lg hover:bg-[#4338CA] transition-colors"
           >
             Run First Audit
           </Link>
@@ -66,7 +66,7 @@ export default function ReportsPage() {
                 onClick={() => setFilter(f)}
                 className={`px-4 py-2 rounded-lg font-mono text-sm transition-colors ${
                   filter === f
-                    ? 'bg-[#4A7C6F] text-white'
+                    ? 'bg-[#6366F1] text-white'
                     : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
                 }`}
               >
@@ -99,10 +99,10 @@ export default function ReportsPage() {
                     <td className="px-6 py-4 text-sm font-mono font-bold text-gray-900">{audit.disparityScore || '--'}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-end gap-2">
-                        <Link href={`/audit/${audit.id}`} className="p-2 text-gray-600 hover:text-[#4A7C6F] transition-colors" title="View Report">
+                        <Link href={`/audit/${audit.id}`} className="p-2 text-gray-600 hover:text-[#6366F1] transition-colors" title="View Report">
                           <Eye size={18} />
                         </Link>
-                        <button className="p-2 text-gray-600 hover:text-[#4A7C6F] transition-colors" title="Download PDF">
+                        <button className="p-2 text-gray-600 hover:text-[#6366F1] transition-colors" title="Download PDF">
                           <Download size={18} />
                         </button>
                       </div>

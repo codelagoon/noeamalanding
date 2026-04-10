@@ -52,23 +52,23 @@ export default function Hero() {
       <AnimatedGridPattern numSquares={60} maxOpacity={0.06} duration={3} className="inset-0" />
 
       {/* gradient vignette */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,#0A0A0A_70%,transparent_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,#080D1A_70%,transparent_100%)]" />
 
       <div className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto">
-        <div className="mb-5 flex items-center gap-2 px-3 py-1 rounded-full border border-[#2A2A2A] bg-[#141414]">
-          <span className="h-2 w-2 rounded-full bg-[#4A7C6F] animate-pulse2" />
-          <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#A0A0A0]">
+        <div className="mb-5 flex items-center gap-2 px-3 py-1 rounded-full border border-[#1F2E48] bg-[#0C1220]">
+          <span className="h-2 w-2 rounded-full bg-indigo-500 animate-pulse2" />
+          <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#7A90A8]">
             $2.01T AI lending market · sub-500ms audits
           </p>
         </div>
 
-        <h1 className="font-serif text-[clamp(38px,6.5vw,76px)] leading-[1.08] text-[#F5F5F5] mb-5">
+        <h1 className="font-serif text-[clamp(38px,6.5vw,76px)] leading-[1.08] text-[#E8EDF5] mb-5">
           End institutional lag.<br />
-          <span className="text-[#E8D5A3]">Know your model&apos;s bias</span>{' '}
+          <span className="text-[#F59E0B]">Know your model&apos;s bias</span>{' '}
           before examiners do.
         </h1>
 
-        <p className="font-mono text-[15px] text-[#A0A0A0] max-w-[600px] mb-10 leading-relaxed">
+        <p className="font-mono text-[15px] text-[#7A90A8] max-w-[600px] mb-10 leading-relaxed">
           Statistical analysis of AI underwriting outputs for Disparate Impact Ratio,
           proxy variable reconstruction risk, and CFPB Circular 2022-03 adverse action specificity.
           Structured evidence your compliance team can act on today.
@@ -82,14 +82,14 @@ export default function Hero() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@institution.com"
               required
-              className="flex-1 px-4 py-3 bg-[#141414] border border-[#2A2A2A] rounded-[4px] text-[#F5F5F5] font-mono text-sm placeholder:text-[#A0A0A0] focus:outline-none focus:border-[#4A7C6F]"
+              className="flex-1 px-4 py-3 bg-[#0C1220] border border-[#1F2E48] rounded-[4px] text-[#E8EDF5] font-mono text-sm placeholder:text-[#7A90A8] focus:outline-none focus:border-indigo-500"
             />
-            <ShimmerButton type="submit" disabled={loading} shimmerColor="#E8D5A3" background="#0A0A0A">
+            <ShimmerButton type="submit" disabled={loading} shimmerColor="#818CF8" background="#080D1A">
               {loading ? 'Joining…' : 'Join Waitlist'}
             </ShimmerButton>
           </form>
         ) : (
-          <div className="px-6 py-3 mb-4 bg-[#141414] border border-[#4A7C6F] rounded-[4px] font-mono text-sm text-[#4A7C6F]">
+          <div className="px-6 py-3 mb-4 bg-[#0C1220] border border-[#6366F1] rounded-[4px] font-mono text-sm text-[#6366F1]">
             You&apos;re on the list. We&apos;ll be in touch.
           </div>
         )}
@@ -103,10 +103,10 @@ export default function Hero() {
             { value: 21.3, suffix: '%', prefix: '', label: 'scorability gain from alt data', decimals: 1 },
           ].map(({ value, suffix, prefix, label, decimals }) => (
             <div key={label} className="text-center">
-              <p className="font-mono font-bold text-[#E8D5A3] text-3xl mb-1">
+              <p className="font-mono font-bold text-[#F59E0B] text-3xl mb-1">
                 <NumberTicker value={value} prefix={prefix} suffix={suffix} decimalPlaces={decimals} delay={0.3} />
               </p>
-              <p className="font-mono text-[10px] text-[#A0A0A0] uppercase tracking-wider leading-tight max-w-[120px] mx-auto">{label}</p>
+              <p className="font-mono text-[10px] text-[#7A90A8] uppercase tracking-wider leading-tight max-w-[120px] mx-auto">{label}</p>
             </div>
           ))}
         </div>
@@ -118,10 +118,10 @@ export default function Hero() {
           {marqueeItems.map((item) => (
             <div
               key={item}
-              className="mx-4 flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2A2A2A] bg-[#141414]"
+              className="mx-4 flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#1F2E48] bg-[#0C1220]"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#4A7C6F]" />
-              <span className="font-mono text-xs text-[#A0A0A0] whitespace-nowrap">{item}</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
+              <span className="font-mono text-xs text-[#7A90A8] whitespace-nowrap">{item}</span>
             </div>
           ))}
         </Marquee>

@@ -73,7 +73,7 @@ export default function AuditReportPage() {
             Detailed fairness analysis and recommendations
           </p>
         </div>
-        <button className="flex items-center gap-2 px-6 py-3 bg-[#4A7C6F] text-white font-mono rounded-lg hover:bg-[#3d6b5f] transition-colors">
+        <button className="flex items-center gap-2 px-6 py-3 bg-[#6366F1] text-white font-mono rounded-lg hover:bg-[#4338CA] transition-colors">
           <Download size={20} />
           Download PDF
         </button>

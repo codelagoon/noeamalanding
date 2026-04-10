@@ -23,25 +23,25 @@ export default function WhoItsFor() {
   ];
 
   return (
-    <section id="who-its-for" className="px-8 py-24 border-t border-[#2A2A2A]">
+    <section id="who-its-for" className="px-8 py-24 border-t border-[#1F2E48]">
       <div className="max-w-5xl mx-auto">
-        <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#A0A0A0] mb-4">
+        <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#7A90A8] mb-4">
           Who It&apos;s For
         </p>
-        <h2 className="font-serif text-[clamp(32px,4vw,48px)] leading-[1.15] text-[#F5F5F5] mb-16 max-w-2xl">
+        <h2 className="font-serif text-[clamp(32px,4vw,48px)] leading-[1.15] text-[#E8EDF5] mb-16 max-w-2xl">
           Built for the teams responsible for lending fairness
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {personas.map(({ role, need, value }) => (
-            <div key={role} className="p-6 border border-[#2A2A2A] rounded-lg bg-[#141414] hover:border-[#4A7C6F] transition-colors">
-              <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#4A7C6F] mb-3">{role}</p>
-              <p className="font-mono text-sm text-[#A0A0A0] mb-3">
-                <span className="text-[#F5F5F5] font-semibold">Need: </span>
+            <div key={role} className="p-6 border border-[#1F2E48] rounded-lg bg-[#0C1220] hover:border-[#6366F1] transition-colors">
+              <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-indigo-400 mb-3">{role}</p>
+              <p className="font-mono text-sm text-[#7A90A8] mb-3">
+                <span className="text-[#E8EDF5] font-semibold">Need: </span>
                 {need}
               </p>
-              <p className="font-mono text-sm text-[#A0A0A0]">
-                <span className="text-[#F5F5F5] font-semibold">Noema gives you: </span>
+              <p className="font-mono text-sm text-[#7A90A8]">
+                <span className="text-[#E8EDF5] font-semibold">Noema gives you: </span>
                 {value}
               </p>
             </div>

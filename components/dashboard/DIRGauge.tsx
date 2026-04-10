@@ -52,7 +52,7 @@ export default function DIRGauge({ value, label }: DIRGaugeProps) {
   const ny = CY + R * Math.sin(needleRad);
 
   const passes = clamp >= 0.8;
-  const arcColor = clamp < 0.8 ? '#ef4444' : clamp < 0.9 ? '#f59e0b' : '#4A7C6F';
+  const arcColor = clamp < 0.8 ? '#ef4444' : clamp < 0.9 ? '#f59e0b' : '#6366F1';
 
   // 0.8 tick position
   const tickRad = (thresholdDeg * Math.PI) / 180;
@@ -84,7 +84,7 @@ export default function DIRGauge({ value, label }: DIRGaugeProps) {
         </defs>
 
         {/* track */}
-        <path d={arcPath(CX, CY, R, START_DEG, START_DEG + SWEEP)} fill="none" stroke="#1E2530" strokeWidth="10" strokeLinecap="round" />
+        <path d={arcPath(CX, CY, R, START_DEG, START_DEG + SWEEP)} fill="none" stroke="#1F2E48" strokeWidth="10" strokeLinecap="round" />
 
         {/* danger zone 0→0.8 */}
         <path d={arcPath(CX, CY, R, START_DEG, thresholdDeg)} fill="none" stroke="#ef4444" strokeWidth="10" strokeLinecap="round" strokeOpacity="0.15" />
@@ -108,7 +108,7 @@ export default function DIRGauge({ value, label }: DIRGaugeProps) {
         {/* needle */}
         <line x1={CX} y1={CY} x2={nx} y2={ny} stroke={arcColor} strokeWidth="2.5" strokeLinecap="round" filter="url(#glow-needle)" />
         <circle cx={CX} cy={CY} r="5" fill={arcColor} filter="url(#glow-needle)" />
-        <circle cx={CX} cy={CY} r="3" fill="#0D1117" />
+        <circle cx={CX} cy={CY} r="3" fill="#0C1220" />
 
         {/* centre readout */}
         <text x={CX} y={CY + 26} textAnchor="middle" fill={arcColor} fontSize="24" fontFamily="monospace" fontWeight="700">

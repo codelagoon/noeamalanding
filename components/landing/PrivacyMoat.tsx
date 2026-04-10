@@ -12,16 +12,16 @@ interface PillarProps {
 
 function Pillar({ icon, title, badge, description, detail }: PillarProps) {
   return (
-    <div className="group relative overflow-hidden rounded-xl border border-[#2A2A2A] bg-[#141414] p-6 hover:border-[#4A7C6F]/60 transition-colors duration-300">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_100%,#4A7C6F08,transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <div className="group relative overflow-hidden rounded-xl border border-[#1F2E48] bg-[#0C1220] p-6 hover:border-indigo-500/60 transition-colors duration-300">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_100%,#6366F108,transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-4">
-          <div className="p-2 rounded-lg bg-[#0A0A0A] border border-[#2A2A2A] text-[#4A7C6F]">{icon}</div>
-          <span className="font-mono text-[9px] tracking-widest uppercase text-[#4A7C6F] border border-[#4A7C6F]/30 bg-[#4A7C6F]/10 px-2 py-0.5 rounded-full">{badge}</span>
+          <div className="p-2 rounded-lg bg-[#080D1A] border border-[#1F2E48] text-indigo-400">{icon}</div>
+          <span className="font-mono text-[9px] tracking-widest uppercase text-indigo-400 border border-indigo-500/30 bg-indigo-500/10 px-2 py-0.5 rounded-full">{badge}</span>
         </div>
-        <h3 className="font-mono text-sm font-semibold text-[#F5F5F5] mb-1">{title}</h3>
-        <p className="font-mono text-xs text-[#A0A0A0] mb-3 leading-relaxed">{description}</p>
-        <p className="font-mono text-[10px] text-[#A0A0A0]/70 leading-relaxed border-t border-[#2A2A2A] pt-3">{detail}</p>
+        <h3 className="font-mono text-sm font-semibold text-[#E8EDF5] mb-1">{title}</h3>
+        <p className="font-mono text-xs text-[#7A90A8] mb-3 leading-relaxed">{description}</p>
+        <p className="font-mono text-[10px] text-[#7A90A8]/70 leading-relaxed border-t border-[#1F2E48] pt-3">{detail}</p>
       </div>
     </div>
   );
@@ -74,19 +74,19 @@ export default function PrivacyMoat() {
   ];
 
   return (
-    <section className="px-8 py-24 border-t border-[#2A2A2A]">
+    <section className="px-8 py-24 border-t border-[#1F2E48]">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-3 mb-4">
-          <div className="h-px flex-1 bg-[#2A2A2A]" />
-          <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#4A7C6F]">Privacy Architecture</p>
-          <div className="h-px flex-1 bg-[#2A2A2A]" />
+          <div className="h-px flex-1 bg-[#1F2E48]" />
+          <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-indigo-400">Privacy Architecture</p>
+          <div className="h-px flex-1 bg-[#1F2E48]" />
         </div>
 
         <div className="text-center mb-12">
-          <h2 className="font-serif text-[clamp(28px,4vw,44px)] leading-[1.15] text-[#F5F5F5] mb-4">
+          <h2 className="font-serif text-[clamp(28px,4vw,44px)] leading-[1.15] text-[#E8EDF5] mb-4">
             The Privacy Moat
           </h2>
-          <p className="font-mono text-sm text-[#A0A0A0] max-w-xl mx-auto leading-relaxed">
+          <p className="font-mono text-sm text-[#7A90A8] max-w-xl mx-auto leading-relaxed">
             Structural data isolation at every layer — from the database constraint to the cryptographic primitive. Not a compliance checkbox. An architectural commitment.
           </p>
         </div>
@@ -95,14 +95,14 @@ export default function PrivacyMoat() {
           {pillars.map((p) => <Pillar key={p.title} {...p} />)}
         </div>
 
-        <div className="mt-8 p-5 rounded-xl border border-[#2A2A2A] bg-[#141414] flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-mono text-sm text-[#A0A0A0] leading-relaxed max-w-xl">
-            <span className="text-[#F5F5F5] font-semibold">Statistical analysis only.</span>{' '}
+        <div className="mt-8 p-5 rounded-xl border border-[#1F2E48] bg-[#0C1220] flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-mono text-sm text-[#7A90A8] leading-relaxed max-w-xl">
+            <span className="text-[#E8EDF5] font-semibold">Statistical analysis only.</span>{' '}
             Noema does not provide legal advice, certify regulatory compliance, or guarantee outcomes in regulatory examinations. Results should be reviewed with qualified fair lending counsel.
           </p>
           <div className="flex gap-3 shrink-0">
             {['SOC 2 ready', 'ECOA-aligned', 'RLS-enforced'].map((tag) => (
-              <span key={tag} className="px-3 py-1.5 font-mono text-[10px] text-[#4A7C6F] border border-[#4A7C6F]/30 bg-[#4A7C6F]/10 rounded-full whitespace-nowrap">{tag}</span>
+              <span key={tag} className="px-3 py-1.5 font-mono text-[10px] text-indigo-400 border border-indigo-500/30 bg-indigo-500/10 rounded-full whitespace-nowrap">{tag}</span>
             ))}
           </div>
         </div>
