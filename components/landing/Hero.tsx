@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 
 export default function Hero() {
   const [email, setEmail] = useState('');
@@ -79,13 +78,6 @@ export default function Hero() {
       {error && (
         <p className="mt-3 font-mono text-sm text-red-400">{error}</p>
       )}
-
-      <Link
-        href="/dashboard"
-        className="mt-6 font-mono text-sm text-[#A0A0A0] hover:text-[#F5F5F5] transition-colors underline underline-offset-4"
-      >
-        Or open the dashboard →
-      </Link>
 
       <div className="mt-20 flex items-center gap-6 text-[#A0A0A0]">
         {[

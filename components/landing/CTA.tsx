@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 
 export default function CTA() {
   const [email, setEmail] = useState('');
@@ -49,7 +48,7 @@ export default function CTA() {
         </p>
 
         {!submitted ? (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
               value={email}
@@ -67,20 +66,12 @@ export default function CTA() {
             </button>
           </form>
         ) : (
-          <div className="px-6 py-3 bg-[#141414] border border-[#4A7C6F] rounded-[4px] font-mono text-sm text-[#4A7C6F] mb-4 inline-block">
+          <div className="px-6 py-3 bg-[#141414] border border-[#4A7C6F] rounded-[4px] font-mono text-sm text-[#4A7C6F] inline-block">
             You&apos;re on the list. We&apos;ll be in touch.
           </div>
         )}
 
-        {error && <p className="font-mono text-sm text-red-400 mb-4">{error}</p>}
-
-        <p className="font-mono text-xs text-[#A0A0A0]">
-          Or{' '}
-          <Link href="/dashboard" className="text-[#4A7C6F] hover:text-[#5A9C8A] underline underline-offset-4 transition-colors">
-            open the dashboard directly
-          </Link>
-          {' '}— no account required for local analysis.
-        </p>
+        {error && <p className="font-mono text-sm text-red-400 mt-4">{error}</p>}
       </div>
     </section>
   );

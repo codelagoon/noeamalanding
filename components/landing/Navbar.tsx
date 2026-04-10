@@ -13,12 +13,6 @@ export default function Navbar() {
         <Link href="#who-its-for" className="font-mono text-sm text-[#A0A0A0] hover:text-[#F5F5F5] transition-colors">
           Who it&apos;s for
         </Link>
-        <Link
-          href="/dashboard"
-          className="font-mono text-sm px-4 py-2 bg-[#E8D5A3] text-[#0A0A0A] rounded-[4px] hover:bg-[#d4c08f] transition-colors font-semibold"
-        >
-          Open Dashboard
-        </Link>
       </div>
     </nav>
   );
