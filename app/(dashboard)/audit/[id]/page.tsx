@@ -8,6 +8,7 @@ import MetricCard from '@/components/dashboard/MetricCard';
 import DisparityChart from '@/components/dashboard/DisparityChart';
 import VariableTable from '@/components/dashboard/VariableTable';
 import { Download, AlertCircle } from 'lucide-react';
+import NarrativePanel from '@/components/dashboard/NarrativePanel';
 
 export default function AuditReportPage() {
   const params = useParams();
@@ -274,6 +275,8 @@ export default function AuditReportPage() {
             ))}
           </div>
         </div>
+
+        <NarrativePanel report={report} />
 
         <div className="bg-white border border-gray-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-gray-900 mb-6">Section 5: Remediation Checklist</h2>
