@@ -1,48 +1,57 @@
 export default function Problem() {
   return (
-    <section className="px-8 py-24 border-t border-[#2A2A2A]">
+    <section className="px-8 py-20 border-t border-[#1E2635] bg-[#0A0D12]">
       <div className="max-w-5xl mx-auto">
-        <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#A0A0A0] mb-4">
-          The Problem
-        </p>
-        <h2 className="font-serif text-[clamp(32px,4vw,48px)] leading-[1.15] text-[#F5F5F5] mb-12 max-w-3xl">
-          AI lenders ship faster than their fairness audits
-        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              stat: '61%',
-              label: 'of AI systems in production are not regularly tested for fairness',
-              detail:
-                'Only 39% of production AI systems are regularly tested for demographic fairness, per the World Economic Forum\'s 2023 Global AI Governance Survey.',
-            },
-            {
-              stat: '$765M',
-              label: 'in additional annual costs to minority borrowers from algorithmic rate disparities',
-              detail:
-                'A landmark analysis of 3.6 million loans found that algorithmic lenders charge minority borrowers 7.9 basis points higher rates for identical credit profiles. (Bartlett et al., 2022)',
-            },
-            {
-              stat: 'DIR < 0.8',
-              label: 'is the four-fifths rule threshold that triggers mandatory investigation',
-              detail:
-                'When a group\'s approval rate is less than 80% of the highest group\'s rate, the Disparate Impact Ratio (DIR) signals potential adverse impact under EEOC Uniform Guidelines and fair lending doctrine.',
-            },
-          ].map(({ stat, label, detail }) => (
-            <div key={stat} className="p-6 border border-[#2A2A2A] rounded-lg bg-[#141414]">
-              <p className="font-mono text-[40px] leading-none text-[#E8D5A3] mb-3">{stat}</p>
-              <p className="font-mono text-sm text-[#F5F5F5] font-semibold mb-3">{label}</p>
-              <p className="font-mono text-sm text-[#A0A0A0] leading-relaxed">{detail}</p>
-            </div>
-          ))}
-        </div>
+          {/* Left: thesis statement */}
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E788A] mb-4">The Problem</p>
+            <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] leading-[1.15] text-[#F5F7FA] mb-5">
+              AI lenders scale faster than their compliance infrastructure.
+            </h2>
+            <p className="font-sans text-base text-[#A7B0C0] leading-relaxed mb-6">
+              Algorithmic credit decisions create disparate outcomes across demographic groups. Without systematic measurement, these patterns go undetected until a regulatory examination — or a consent order.
+            </p>
+            <p className="font-sans text-base text-[#A7B0C0] leading-relaxed">
+              Noema gives compliance teams the same statistical rigor that regulators apply, before an examiner sees the data.
+            </p>
+          </div>
 
-        <div className="mt-10 p-5 border border-[#2A2A2A] rounded-lg bg-[#141414]">
-          <p className="font-mono text-sm text-[#A0A0A0] leading-relaxed">
-            <span className="text-[#E8D5A3] font-semibold">Fairness drift is a compounding risk. </span>
-            Equitable performance at model launch decays as the economic environment shifts — without ongoing monitoring, a model that initially passes a disparity audit can fail one silently months later.
-          </p>
+          {/* Right: three data points, vertical stack */}
+          <div className="space-y-0 divide-y divide-[#1E2635]">
+            {[
+              {
+                stat: '$765M',
+                label: 'Annual additional cost to minority borrowers',
+                detail: 'From algorithmic rate disparities on equivalent credit profiles.',
+                source: 'Bartlett et al., 2022 · 3.6M FinTech loans',
+                color: '#FF5C6C',
+              },
+              {
+                stat: '61%',
+                label: 'Of AI systems not regularly tested for demographic fairness',
+                detail: 'Production models drift. Without quarterly monitoring, a model that launches equitably can fail silently.',
+                source: 'WEF Global AI Governance Survey, 2023',
+                color: '#F2C14E',
+              },
+              {
+                stat: 'DIR&thinsp;<&thinsp;0.80',
+                label: 'Four-fifths rule threshold for mandatory investigation',
+                detail: 'A Disparate Impact Ratio below 0.80 triggers EEOC Uniform Guidelines review requirements — and CFPB examination scrutiny.',
+                source: 'EEOC Uniform Guidelines on Employee Selection Procedures',
+                color: '#6EA8FE',
+              },
+            ].map(({ stat, label, detail, source, color }) => (
+              <div key={stat} className="py-6">
+                <p className="font-mono font-bold text-2xl mb-1" style={{ color }}
+                   dangerouslySetInnerHTML={{ __html: stat }} />
+                <p className="font-sans text-sm font-semibold text-[#F5F7FA] mb-1">{label}</p>
+                <p className="font-sans text-sm text-[#A7B0C0] leading-relaxed mb-1">{detail}</p>
+                <p className="font-mono text-[10px] text-[#6E788A]">{source}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

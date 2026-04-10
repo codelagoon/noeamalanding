@@ -8,6 +8,7 @@ import MetricCard from '@/components/dashboard/MetricCard';
 import DisparityChart from '@/components/dashboard/DisparityChart';
 import VariableTable from '@/components/dashboard/VariableTable';
 import { Download, AlertCircle } from 'lucide-react';
+import NarrativePanel from '@/components/dashboard/NarrativePanel';
 
 export default function AuditReportPage() {
   const params = useParams();
@@ -40,7 +41,7 @@ export default function AuditReportPage() {
   if (loading) {
     return (
       <div className="p-8">
-        <div className="animate-pulse space-y-6">
+        <div className="space-y-6">
           <div className="h-8 bg-gray-200 rounded w-1/3"></div>
           <div className="h-40 bg-gray-200 rounded"></div>
           <div className="grid grid-cols-3 gap-6">
@@ -72,7 +73,7 @@ export default function AuditReportPage() {
             Detailed fairness analysis and recommendations
           </p>
         </div>
-        <button className="flex items-center gap-2 px-6 py-3 bg-[#4A7C6F] text-white font-mono rounded-lg hover:bg-[#3d6b5f] transition-colors">
+        <button className="flex items-center gap-2 px-6 py-3 bg-[#6EA8FE] text-white font-mono rounded-lg hover:bg-[#2B58D8] transition-colors">
           <Download size={20} />
           Download PDF
         </button>
@@ -274,6 +275,8 @@ export default function AuditReportPage() {
             ))}
           </div>
         </div>
+
+        <NarrativePanel report={report} />
 
         <div className="bg-white border border-gray-200 rounded-lg p-6">
           <h2 className="text-xl font-bold text-gray-900 mb-6">Section 5: Remediation Checklist</h2>

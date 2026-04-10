@@ -24,7 +24,7 @@ export default function ReportsPage() {
   if (loading) {
     return (
       <div className="p-8">
-        <div className="animate-pulse space-y-4">
+        <div className="space-y-4">
           <div className="h-8 bg-gray-200 rounded w-1/4"></div>
           <div className="h-64 bg-gray-200 rounded"></div>
         </div>
@@ -52,7 +52,7 @@ export default function ReportsPage() {
           </p>
           <Link
             href="/upload"
-            className="inline-block px-6 py-3 bg-[#4A7C6F] text-white font-mono rounded-lg hover:bg-[#3d6b5f] transition-colors"
+            className="inline-block px-6 py-3 bg-[#6EA8FE] text-white font-mono rounded-lg hover:bg-[#2B58D8] transition-colors"
           >
             Run First Audit
           </Link>
@@ -66,7 +66,7 @@ export default function ReportsPage() {
                 onClick={() => setFilter(f)}
                 className={`px-4 py-2 rounded-lg font-mono text-sm transition-colors ${
                   filter === f
-                    ? 'bg-[#4A7C6F] text-white'
+                    ? 'bg-[#6EA8FE] text-white'
                     : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
                 }`}
               >
@@ -99,10 +99,10 @@ export default function ReportsPage() {
                     <td className="px-6 py-4 text-sm font-mono font-bold text-gray-900">{audit.disparityScore || '--'}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-end gap-2">
-                        <Link href={`/audit/${audit.id}`} className="p-2 text-gray-600 hover:text-[#4A7C6F] transition-colors" title="View Report">
+                        <Link href={`/audit/${audit.id}`} className="p-2 text-gray-600 hover:text-[#6EA8FE] transition-colors" title="View Report">
                           <Eye size={18} />
                         </Link>
-                        <button className="p-2 text-gray-600 hover:text-[#4A7C6F] transition-colors" title="Download PDF">
+                        <button className="p-2 text-gray-600 hover:text-[#6EA8FE] transition-colors" title="Download PDF">
                           <Download size={18} />
                         </button>
                       </div>
