@@ -1,122 +1,168 @@
 'use client';
 
+import { useState } from 'react';
+import {
+  AreaChart, Area, XAxis, YAxis, ReferenceLine,
+  Tooltip, ResponsiveContainer, CartesianGrid,
+} from 'recharts';
+import { motion } from 'framer-motion';
+
 interface DataPoint { quarter: string; dir: number; }
 
-interface FairnessDriftProps {
-  data?: DataPoint[];
-  threshold?: number;
-}
-
 const defaultData: DataPoint[] = [
-  { quarter: 'Q1', dir: 0.91 },
-  { quarter: 'Q2', dir: 0.89 },
-  { quarter: 'Q3', dir: 0.87 },
-  { quarter: 'Q4', dir: 0.85 },
-  { quarter: 'Q5', dir: 0.83 },
-  { quarter: 'Q6', dir: 0.81 },
-  { quarter: 'Q7', dir: 0.80 },
-  { quarter: 'Q8', dir: 0.77 },
+  { quarter: 'Q1 \'24', dir: 0.91 },
+  { quarter: 'Q2 \'24', dir: 0.89 },
+  { quarter: 'Q3 \'24', dir: 0.87 },
+  { quarter: 'Q4 \'24', dir: 0.85 },
+  { quarter: 'Q1 \'25', dir: 0.83 },
+  { quarter: 'Q2 \'25', dir: 0.81 },
+  { quarter: 'Q3 \'25', dir: 0.80 },
+  { quarter: 'Q4 \'25', dir: 0.77 },
 ];
 
-export default function FairnessDrift({ data = defaultData, threshold = 0.8 }: FairnessDriftProps) {
-  const W = 560; const H = 180;
-  const padL = 36; const padR = 20; const padT = 16; const padB = 28;
-  const chartW = W - padL - padR;
-  const chartH = H - padT - padB;
+function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: { value: number }[]; label?: string }) {
+  if (!active || !payload?.length) return null;
+  const v = payload[0].value as number;
+  const breached = v < 0.8;
+  return (
+    <div className="bg-[#0D1117] border border-[#2A3540] rounded-xl px-4 py-3 shadow-xl shadow-black/40">
+      <p className="font-mono text-[10px] text-[#4A5A6A] mb-1">{label}</p>
+      <p className={`font-mono text-sm font-bold ${breached ? 'text-red-400' : 'text-[#4A7C6F]'}`}>
+        DIR {v.toFixed(2)}
+      </p>
+      <p className={`font-mono text-[9px] mt-0.5 ${breached ? 'text-red-400/70' : 'text-[#3A4A5A]'}`}>
+        {breached ? '⚠ Below four-fifths rule (0.80)' : '✓ Above four-fifths threshold'}
+      </p>
+    </div>
+  );
+}
 
-  const minY = Math.min(...data.map((d) => d.dir)) - 0.03;
-  const maxY = Math.max(...data.map((d) => d.dir)) + 0.03;
-
-  const toX = (i: number) => padL + (i / (data.length - 1)) * chartW;
-  const toY = (v: number) => padT + ((maxY - v) / (maxY - minY)) * chartH;
-
-  const linePoints = data.map((d, i) => `${toX(i)},${toY(d.dir)}`).join(' ');
-  const thresholdY = toY(threshold);
+export default function FairnessDrift({
+  data = defaultData,
+  threshold = 0.8,
+}: {
+  data?: DataPoint[];
+  threshold?: number;
+}) {
+  const [hovered, setHovered] = useState<string | null>(null);
   const breachIdx = data.findIndex((d) => d.dir < threshold);
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between mb-3">
-        <p className="font-mono text-xs font-semibold text-gray-500 uppercase tracking-wider">
-          Fairness Drift — DIR over Time
+      <div className="flex items-center justify-between mb-4">
+        <p className="font-mono text-[10px] text-[#4A5A6A] uppercase tracking-widest font-semibold">
+          DIR Over Time — Fairness Drift
         </p>
         {breachIdx >= 0 && (
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-red-50 border border-red-200 rounded">
-            <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
-            <span className="font-mono text-[10px] text-red-600 font-semibold">
-              Four-fifths rule breach at {data[breachIdx].quarter}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex items-center gap-1.5 px-2.5 py-1 bg-red-500/10 border border-red-500/25 rounded-full"
+          >
+            <motion.span
+              animate={{ opacity: [1, 0.2, 1] }}
+              transition={{ duration: 1.4, repeat: Infinity }}
+              className="h-1.5 w-1.5 rounded-full bg-red-500"
+            />
+            <span className="font-mono text-[9px] text-red-400 font-semibold">
+              Breach — {data[breachIdx].quarter}
             </span>
-          </div>
+          </motion.div>
         )}
       </div>
 
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
-        {/* grid lines */}
-        {[0.78, 0.82, 0.86, 0.90].map((v) => (
-          <g key={v}>
-            <line x1={padL} y1={toY(v)} x2={W - padR} y2={toY(v)} stroke="#e5e7eb" strokeWidth="1" />
-            <text x={padL - 4} y={toY(v) + 3} fill="#9ca3af" fontSize="8" fontFamily="monospace" textAnchor="end">{v.toFixed(2)}</text>
-          </g>
-        ))}
+      <ResponsiveContainer width="100%" height={170}>
+        <AreaChart
+          data={data}
+          margin={{ top: 8, right: 8, left: -12, bottom: 0 }}
+          onMouseMove={(e) => setHovered(typeof e?.activeLabel === 'string' ? e.activeLabel : null)}
+          onMouseLeave={() => setHovered(null)}
+        >
+          <defs>
+            <linearGradient id="driftFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stopColor="#4A7C6F" stopOpacity={0.25} />
+              <stop offset="100%" stopColor="#4A7C6F" stopOpacity={0.01} />
+            </linearGradient>
+            <linearGradient id="driftFillBreach" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#ef4444" stopOpacity={0.15} />
+              <stop offset="100%" stopColor="#ef4444" stopOpacity={0.01} />
+            </linearGradient>
+          </defs>
 
-        {/* threshold line */}
-        <line x1={padL} y1={thresholdY} x2={W - padR} y2={thresholdY} stroke="#ef4444" strokeWidth="1.5" strokeDasharray="6,4" />
-        <text x={W - padR + 2} y={thresholdY + 4} fill="#ef4444" fontSize="8" fontFamily="monospace">0.80</text>
+          <CartesianGrid strokeDasharray="3 3" stroke="#1A2030" vertical={false} />
 
-        {/* breach zone fill */}
-        {breachIdx >= 0 && (
-          <rect
-            x={toX(breachIdx - 0.5)}
-            y={thresholdY}
-            width={W - padR - toX(breachIdx - 0.5)}
-            height={H - padB - thresholdY}
-            fill="#ef4444"
-            fillOpacity="0.06"
+          <XAxis
+            dataKey="quarter"
+            tick={{ fontFamily: 'monospace', fontSize: 9, fill: '#3A4A5A' }}
+            axisLine={false} tickLine={false}
           />
-        )}
+          <YAxis
+            domain={[0.72, 0.94]}
+            ticks={[0.75, 0.80, 0.85, 0.90]}
+            tick={{ fontFamily: 'monospace', fontSize: 9, fill: '#3A4A5A' }}
+            axisLine={false} tickLine={false}
+            tickFormatter={(v: number) => v.toFixed(2)}
+          />
 
-        {/* area fill under line */}
-        <defs>
-          <linearGradient id="drift-grad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#4A7C6F" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="#4A7C6F" stopOpacity="0.01" />
-          </linearGradient>
-        </defs>
-        <polygon
-          points={`${padL},${H - padB} ${linePoints} ${W - padR},${H - padB}`}
-          fill="url(#drift-grad)"
-        />
+          <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#2A3540', strokeWidth: 1 }} />
 
-        {/* main line */}
-        <polyline
-          points={linePoints}
-          fill="none"
-          stroke="#4A7C6F"
-          strokeWidth="2.5"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
+          <ReferenceLine
+            y={threshold}
+            stroke="#ef4444"
+            strokeDasharray="5 4"
+            strokeWidth={1.5}
+            strokeOpacity={0.6}
+            label={{ value: '0.80', position: 'right', fontFamily: 'monospace', fontSize: 9, fill: '#ef4444', opacity: 0.7 }}
+          />
 
-        {/* dots */}
-        {data.map((d, i) => {
-          const breached = d.dir < threshold;
-          return (
-            <g key={d.quarter}>
-              <circle
-                cx={toX(i)} cy={toY(d.dir)} r={breached ? 5 : 4}
-                fill={breached ? '#ef4444' : '#4A7C6F'}
-                stroke={breached ? '#fca5a5' : '#ffffff'}
-                strokeWidth="1.5"
-              />
-              <text x={toX(i)} y={H - padB + 14} fill="#9ca3af" fontSize="8" fontFamily="monospace" textAnchor="middle">{d.quarter}</text>
-            </g>
-          );
-        })}
-      </svg>
+          <Area
+            type="monotone"
+            dataKey="dir"
+            stroke="#4A7C6F"
+            strokeWidth={2.5}
+            fill="url(#driftFill)"
+            dot={(props) => {
+              const { cx = 0, cy = 0, index = 0 } = props as { cx?: number; cy?: number; index?: number };
+              const breached = (data[index]?.dir ?? 1) < threshold;
+              const isActive = data[index]?.quarter === hovered;
+              return (
+                <g key={index}>
+                  {breached && (
+                    <circle cx={cx} cy={cy} r={8} fill="#ef4444" fillOpacity={0.15} />
+                  )}
+                  <circle
+                    cx={cx} cy={cy}
+                    r={isActive ? 5 : breached ? 5 : 3.5}
+                    fill={breached ? '#ef4444' : '#4A7C6F'}
+                    stroke={breached ? '#fca5a5' : '#0D1117'}
+                    strokeWidth={1.5}
+                  />
+                </g>
+              );
+            }}
+            activeDot={{ r: 6, fill: '#E8D5A3', stroke: '#0D1117', strokeWidth: 2 }}
+            isAnimationActive
+            animationDuration={1600}
+            animationEasing="ease-out"
+          />
+        </AreaChart>
+      </ResponsiveContainer>
 
-      <p className="mt-1 font-mono text-[10px] text-gray-400">
-        Fairness drift: equitable performance at model launch decays as the economic environment evolves. Quarterly monitoring surfaces decline before it reaches the four-fifths threshold.
-      </p>
+      {/* legend */}
+      <div className="flex items-center gap-5 mt-3">
+        <div className="flex items-center gap-1.5">
+          <div className="h-0.5 w-5 bg-[#4A7C6F] rounded-full" />
+          <span className="font-mono text-[9px] text-[#3A4A5A]">DIR trajectory</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <div className="h-0.5 w-5 border-t border-dashed border-red-500/60" />
+          <span className="font-mono text-[9px] text-[#3A4A5A]">0.80 threshold</span>
+        </div>
+        <div className="flex items-center gap-1.5 ml-auto">
+          <div className="h-2 w-2 rounded-full bg-red-500" />
+          <span className="font-mono text-[9px] text-[#4A5A6A]">Breach point</span>
+        </div>
+      </div>
     </div>
   );
 }

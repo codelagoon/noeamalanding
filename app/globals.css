@@ -71,3 +71,18 @@ a {
   pointer-events: none;
   z-index: 0;
 }
+
+/* ─── Dashboard dark design tokens ─────────────────────────────────── */
+.dash-surface   { @apply bg-[#0D1117] border border-[#1E2530] rounded-2xl; }
+.dash-surface-2 { @apply bg-[#111820] border border-[#1E2530] rounded-2xl; }
+.dash-glow-teal { box-shadow: 0 0 0 1px rgba(74,124,111,0.3), 0 0 20px rgba(74,124,111,0.08); }
+.dash-glow-red  { box-shadow: 0 0 0 1px rgba(239,68,68,0.35), 0 0 20px rgba(239,68,68,0.12); }
+.dash-glow-gold { box-shadow: 0 0 0 1px rgba(232,213,163,0.3), 0 0 20px rgba(232,213,163,0.08); }
+
+/* Reduced-motion: strip all transitions and animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
