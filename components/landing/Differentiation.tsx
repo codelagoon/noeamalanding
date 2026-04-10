@@ -6,28 +6,28 @@ export default function Differentiation() {
       alternative: 'Weeks of consultant engagement',
     },
     {
-      dimension: 'Output',
-      noema: 'Actionable structured report',
-      alternative: 'Dense PDF written for the analyst, not the team',
+      dimension: 'Disparity measurement',
+      noema: 'Disparate Impact Ratio (DIR) + four-fifths rule',
+      alternative: 'Informal pp gap review, inconsistently applied',
     },
     {
       dimension: 'Proxy detection',
-      noema: 'Automated statistical correlation',
+      noema: 'Correlation scores + reconstruction risk flag',
       alternative: 'Manual variable review by committee',
     },
     {
-      dimension: 'Cost',
-      noema: 'Per-audit pricing',
-      alternative: '$50K–$200K consulting retainer',
+      dimension: 'Adverse action',
+      noema: 'Checked against CFPB Circular 2022-03 specificity standard',
+      alternative: 'Generic reason codes assumed sufficient',
     },
     {
       dimension: 'Iteration speed',
-      noema: 'Re-run after every model change',
+      noema: 'Re-run after every model change to track fairness drift',
       alternative: 'Annual or pre-exam only',
     },
     {
       dimension: 'Data privacy',
-      noema: 'Aggregate results only, no PII stored',
+      noema: 'Aggregate results only — no PII stored',
       alternative: 'Raw data shared with third party',
     },
   ];

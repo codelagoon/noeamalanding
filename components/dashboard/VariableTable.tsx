@@ -1,4 +1,5 @@
 import { ProxyVariable } from '@/lib/types';
+import { AlertTriangle } from 'lucide-react';
 
 interface VariableTableProps {
   variables: ProxyVariable[];
@@ -35,6 +36,7 @@ export default function VariableTable({ variables }: VariableTableProps) {
               Demographic Correlation
             </th>
             <th className="text-left px-4 py-3 font-mono text-xs font-semibold text-gray-600 uppercase tracking-wider">Score</th>
+            <th className="text-left px-4 py-3 font-mono text-xs font-semibold text-gray-600 uppercase tracking-wider">Reconstruction Risk</th>
             <th className="text-left px-4 py-3 font-mono text-xs font-semibold text-gray-600 uppercase tracking-wider">Notes</th>
           </tr>
         </thead>
@@ -51,11 +53,25 @@ export default function VariableTable({ variables }: VariableTableProps) {
                   </span>
                 </td>
                 <td className="px-4 py-3 font-mono text-gray-700">{v.correlationScore.toFixed(2)}</td>
+                <td className="px-4 py-3">
+                  {v.reconstructionRisk ? (
+                    <div className="flex items-center gap-1.5">
+                      <AlertTriangle size={14} className="text-amber-500 shrink-0" />
+                      <span className="font-mono text-xs text-amber-700 font-semibold">Present</span>
+                    </div>
+                  ) : (
+                    <span className="font-mono text-xs text-gray-400">Low</span>
+                  )}
+                </td>
                 <td className="px-4 py-3 font-mono text-xs text-gray-600 max-w-xs">{v.description}</td>
               </tr>
             ))}
         </tbody>
       </table>
+      <p className="mt-3 font-mono text-xs text-gray-400 px-1">
+        Reconstruction Risk: models frequently recover equivalent disparity from remaining correlated features after
+        a proxy variable is removed (Gillis &amp; Spiess, 2019). High-risk variables require post-removal disparity retesting.
+      </p>
     </div>
   );
 }

@@ -4,25 +4,25 @@ export default function HowItWorks() {
       number: '01',
       title: 'Upload decision data',
       description:
-        'Export your model\'s decision log as a CSV. Map columns to required fields: applicant ID, outcome, and protected-class indicator.',
+        "Export your model's decision log as a CSV. Map columns to required fields: applicant ID, outcome, and protected-class indicator. Optional columns (income, credit score, DTI) enable proxy variable detection.",
     },
     {
       number: '02',
       title: 'Statistical analysis runs',
       description:
-        'Noema computes approval rate disparities across demographic groups, detects proxy variables, and flags adverse action patterns.',
+        'Noema computes the Disparate Impact Ratio (DIR) across demographic groups, flags violations of the four-fifths rule (DIR < 0.8), detects proxy variables and their reconstruction risk, and checks adverse action notice specificity.',
     },
     {
       number: '03',
       title: 'Structured report delivered',
       description:
-        'A section-by-section audit report is generated with a disparity score, flagged variables, and a prioritized remediation checklist.',
+        'A five-section audit report is generated: approval rate analysis with DIR values, proxy variable detection with correlation scores, adverse action review against CFPB Circular 2022-03, less discriminatory alternatives, and a prioritized remediation checklist.',
     },
     {
       number: '04',
-      title: 'Act on findings',
+      title: 'Track improvement over time',
       description:
-        'Share the report with your compliance and data science teams. Re-run after model changes to track improvement over time.',
+        'Re-run after every model change to monitor fairness drift — the decay of equitable performance as the economic environment evolves. Compare DIR across audit runs to demonstrate improvement to regulators.',
     },
   ];
 

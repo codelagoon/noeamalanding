@@ -32,6 +32,11 @@ export interface DisparityMetric {
   comparisonRate: number;
   difference: number;
   absoluteDifference: number;
+  /** Disparate Impact Ratio (DIR): comparison group rate ÷ reference group rate.
+   *  Values below 0.8 (the four-fifths rule) indicate potential adverse impact. */
+  disparateImpactRatio: number;
+  /** Whether DIR falls below the 0.8 four-fifths-rule threshold. */
+  failsFourFifthsRule: boolean;
   sampleSize: {
     reference: number;
     comparison: number;
@@ -41,6 +46,7 @@ export interface DisparityMetric {
 export interface ApprovalRateAnalysis {
   groupRates: GroupApprovalRate[];
   disparityMetrics: DisparityMetric[];
+  /** Groups whose DIR < 0.8 (four-fifths rule) or approval rate gap > 10pp. */
   flaggedGroups: string[];
 }
 
@@ -49,6 +55,9 @@ export interface ProxyVariable {
   correlationLevel: 'Low' | 'Medium' | 'High';
   correlationScore: number;
   description: string;
+  /** Research basis: models can reconstruct dropped proxy attributes from remaining
+   *  features, so removal alone may not eliminate disparate impact. */
+  reconstructionRisk: boolean;
 }
 
 export interface AdverseActionIssue {

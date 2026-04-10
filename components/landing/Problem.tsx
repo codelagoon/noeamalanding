@@ -12,22 +12,22 @@ export default function Problem() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
-              stat: '73%',
-              label: 'of AI-native lenders have no documented disparity analysis',
+              stat: '61%',
+              label: 'of AI systems in production are not regularly tested for fairness',
               detail:
-                'Regulators are catching up. CFPB examination procedures now explicitly cover algorithmic lending models.',
+                'Only 39% of production AI systems are regularly tested for demographic fairness, per the World Economic Forum\'s 2023 Global AI Governance Survey.',
             },
             {
-              stat: '4–6mo',
-              label: 'average time to identify a proxy variable after deployment',
+              stat: '$765M',
+              label: 'in additional annual costs to minority borrowers from algorithmic rate disparities',
               detail:
-                'By then, thousands of applications have been processed through a potentially biased model.',
+                'A landmark analysis of 3.6 million loans found that algorithmic lenders charge minority borrowers 7.9 basis points higher rates for identical credit profiles. (Bartlett et al., 2022)',
             },
             {
-              stat: '$2.4M',
-              label: 'average fair lending settlement for algorithmic lenders',
+              stat: 'DIR < 0.8',
+              label: 'is the four-fifths rule threshold that triggers mandatory investigation',
               detail:
-                'Consent orders now routinely include remediation for AI-driven decisions, not just human ones.',
+                'When a group\'s approval rate is less than 80% of the highest group\'s rate, the Disparate Impact Ratio (DIR) signals potential adverse impact under EEOC Uniform Guidelines and fair lending doctrine.',
             },
           ].map(({ stat, label, detail }) => (
             <div key={stat} className="p-6 border border-[#2A2A2A] rounded-lg bg-[#141414]">
@@ -36,6 +36,13 @@ export default function Problem() {
               <p className="font-mono text-sm text-[#A0A0A0] leading-relaxed">{detail}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-10 p-5 border border-[#2A2A2A] rounded-lg bg-[#141414]">
+          <p className="font-mono text-sm text-[#A0A0A0] leading-relaxed">
+            <span className="text-[#E8D5A3] font-semibold">Fairness drift is a compounding risk. </span>
+            Equitable performance at model launch decays as the economic environment shifts — without ongoing monitoring, a model that initially passes a disparity audit can fail one silently months later.
+          </p>
         </div>
       </div>
     </section>
