@@ -81,23 +81,39 @@ export default function AuditReportPage() {
       <div className="space-y-8">
         <AuditSummary report={report} />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <MetricCard
             label="Disparity Score"
             value={report.disparityScore}
-            subtext="0-100 scale, higher = more disparity"
+            subtext="0–100 scale, higher = more disparity"
             status={report.disparityScore > 50 ? 'critical' : report.disparityScore > 30 ? 'warning' : 'pass'}
           />
           <MetricCard
-            label="Approval Rate Disparity"
+            label="Lowest DIR"
+            value={
+              report.approvalRateAnalysis.disparityMetrics.length > 0
+                ? Math.min(...report.approvalRateAnalysis.disparityMetrics.map((m) => m.disparateImpactRatio)).toFixed(2)
+                : 'N/A'
+            }
+            subtext="Disparate Impact Ratio — four-fifths rule flags DIR < 0.80"
+            status={
+              report.approvalRateAnalysis.disparityMetrics.some((m) => m.failsFourFifthsRule)
+                ? 'critical'
+                : report.approvalRateAnalysis.disparityMetrics.some((m) => m.disparateImpactRatio < 0.9)
+                ? 'warning'
+                : 'pass'
+            }
+          />
+          <MetricCard
+            label="Approval Rate Gap"
             value={`${(report.executiveSummary.approvalRateDisparity * 100).toFixed(1)}pp`}
-            subtext="Maximum disparity between groups"
+            subtext="Max gap between highest and lowest group"
             status={report.executiveSummary.approvalRateDisparity > 0.2 ? 'critical' : report.executiveSummary.approvalRateDisparity > 0.1 ? 'warning' : 'pass'}
           />
           <MetricCard
             label="Proxy Variables"
             value={report.executiveSummary.proxyVariableCount}
-            subtext="Medium/high correlation with protected class"
+            subtext="Medium/high demographic correlation"
             status={report.executiveSummary.proxyVariableCount > 2 ? 'warning' : 'pass'}
           />
         </div>
@@ -111,28 +127,52 @@ export default function AuditReportPage() {
                 <AlertCircle size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm font-mono font-semibold text-red-700 mb-1">Material Disparity Detected</p>
-                  <p className="text-sm font-mono text-red-600">
-                    The following groups show approval rates that differ by more than 10 percentage points
-                    from the reference group: {report.approvalRateAnalysis.flaggedGroups.join(', ')}
+                  <p className="text-sm font-mono text-red-600 mb-2">
+                    {report.approvalRateAnalysis.disparityMetrics.some((m) => m.failsFourFifthsRule)
+                      ? 'The following groups fail the four-fifths rule (Disparate Impact Ratio < 0.80), the standard screening threshold under EEOC Uniform Guidelines and fair lending doctrine: '
+                      : 'The following groups show approval rate gaps exceeding 10 percentage points from the reference group: '}
+                    {report.approvalRateAnalysis.flaggedGroups.join(', ')}
+                  </p>
+                  <p className="text-xs font-mono text-red-500">
+                    A DIR below 0.80 indicates the comparison group&apos;s approval rate is less than 80% of the reference group&apos;s rate and warrants investigation and potential mitigation.
                   </p>
                 </div>
               </div>
             </div>
           )}
 
-          <DisparityChart groupRates={report.approvalRateAnalysis.groupRates} />
+          <DisparityChart groupRates={report.approvalRateAnalysis.groupRates} disparityMetrics={report.approvalRateAnalysis.disparityMetrics} />
 
           <div className="mt-6 space-y-4">
             {report.approvalRateAnalysis.disparityMetrics.map((metric, index) => (
-              <div key={index} className="border-l-4 border-gray-300 pl-4">
-                <p className="text-sm font-mono text-gray-900">
-                  <span className="font-bold">{metric.comparisonName}</span> applicants have{' '}
+              <div
+                key={index}
+                className={`border-l-4 pl-4 ${metric.failsFourFifthsRule ? 'border-red-400' : 'border-gray-300'}`}
+              >
+                <div className="flex items-center gap-3 mb-1">
+                  <p className="text-sm font-mono text-gray-900">
+                    <span className="font-bold">{metric.comparisonName}</span> vs{' '}
+                    <span className="font-bold">{metric.referenceName}</span>
+                  </p>
+                  <span
+                    className={`px-2 py-0.5 text-xs font-mono font-semibold rounded ${
+                      metric.failsFourFifthsRule
+                        ? 'bg-red-100 text-red-700'
+                        : metric.disparateImpactRatio < 0.9
+                        ? 'bg-amber-100 text-amber-700'
+                        : 'bg-green-100 text-green-700'
+                    }`}
+                  >
+                    DIR {metric.disparateImpactRatio.toFixed(2)}{metric.failsFourFifthsRule ? ' — fails four-fifths rule' : ''}
+                  </span>
+                </div>
+                <p className="text-sm font-mono text-gray-700">
+                  Approval rate gap:{' '}
                   <span className="font-bold">{(metric.absoluteDifference * 100).toFixed(1)}pp</span>{' '}
-                  {metric.difference > 0 ? 'lower' : 'higher'} approval rate than{' '}
-                  <span className="font-bold">{metric.referenceName}</span> applicants
+                  ({(metric.comparisonRate * 100).toFixed(1)}% vs {(metric.referenceRate * 100).toFixed(1)}%)
                 </p>
-                <p className="text-xs font-mono text-gray-600 mt-1">
-                  Sample sizes: {metric.sampleSize.comparison} vs {metric.sampleSize.reference}
+                <p className="text-xs font-mono text-gray-500 mt-1">
+                  Sample sizes: {metric.sampleSize.comparison.toLocaleString()} comparison / {metric.sampleSize.reference.toLocaleString()} reference
                 </p>
               </div>
             ))}
@@ -147,9 +187,15 @@ export default function AuditReportPage() {
             <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
               <div className="flex items-start gap-3">
                 <AlertCircle size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm font-mono text-red-600">
-                  High-correlation variables should be removed from the model to reduce proxy discrimination risk.
-                </p>
+                <div>
+                  <p className="text-sm font-mono font-semibold text-red-700 mb-1">Reconstruction Risk</p>
+                  <p className="text-sm font-mono text-red-600">
+                    High-correlation variables should be removed, but removal alone is frequently insufficient.
+                    Research shows models often reconstruct equivalent disparity from remaining correlated features
+                    (Gillis &amp; Spiess, 2019). The model must be retested for disparate impact after retraining
+                    with the variable removed.
+                  </p>
+                </div>
               </div>
             </div>
           )}
