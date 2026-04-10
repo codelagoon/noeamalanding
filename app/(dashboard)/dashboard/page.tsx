@@ -213,12 +213,14 @@ export default function DashboardPage() {
                 <FairnessDrift />
               </SectionCard>
 
-              {/* 4 metric cards in 2×2 */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {/* 6 metric cards in 2×3 — CRO F-pattern primary signals */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <MetricCard label="Disparity Score" value={62} subtext="0–100 · higher = more disparity" status="critical" icon={<Shield size={16} />} animate delay={0.16} />
-                <MetricCard label="Lowest DIR" value="0.77" subtext="Four-fifths rule: < 0.80" status="critical" animate={false} delay={0.2} />
-                <MetricCard label="Approval Gap" value="15.7pp" subtext="Max gap across all groups" status="critical" animate={false} delay={0.24} />
-                <MetricCard label="Proxy Variables" value={2} subtext="High correlation · recon. risk" status="warning" icon={<FileText size={16} />} animate delay={0.28} />
+                <MetricCard label="Lowest DIR" value="0.77" subtext="Four-fifths rule threshold: 0.80" status="critical" animate={false} delay={0.2} />
+                <MetricCard label="Approval Gap" value="15.7pp" subtext="Max gap across groups" status="critical" animate={false} delay={0.24} />
+                <MetricCard label="Model Accuracy" value="78%" subtext="Precision on held-out set" status="warning" animate={false} delay={0.28} />
+                <MetricCard label="Binary Medium Gap" value="40%" subtext="Closed vs. Bayesian optimal · PoC" status="pass" animate delay={0.3} />
+                <MetricCard label="Proxy Variables" value={2} subtext="High correlation · reconstruction risk" status="warning" icon={<FileText size={16} />} animate delay={0.32} />
               </div>
             </div>
           </div>

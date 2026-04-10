@@ -7,6 +7,7 @@ import RegulatoryMatrix from '@/components/landing/RegulatoryMatrix';
 import InvisiblePrime from '@/components/landing/InvisiblePrime';
 import EfficiencyGauge from '@/components/landing/EfficiencyGauge';
 import ThresholdSlider from '@/components/landing/ThresholdSlider';
+import DecisioningGap from '@/components/landing/DecisioningGap';
 import HowItWorks from '@/components/landing/HowItWorks';
 import WhoItsFor from '@/components/landing/WhoItsFor';
 import PrivacyMoat from '@/components/landing/PrivacyMoat';
@@ -19,6 +20,7 @@ export default function LandingPage() {
       <Hero />
       <BentoFeatures />
       <Problem />
+      <DecisioningGap />
       <InvisiblePrime />
       <ThresholdSlider />
       <DeploymentBlueprint />
