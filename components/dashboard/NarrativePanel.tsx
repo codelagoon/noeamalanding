@@ -70,7 +70,7 @@ export default function NarrativePanel({ report }: NarrativePanelProps) {
   if (attributions.length === 0) {
     return (
       <div className="rounded-2xl border border-navy-700 bg-navy-900 p-6">
-        <p className="font-mono text-sm text-[#7A90A8]">No numeric variables available for narrative generation.</p>
+        <p className="font-mono text-sm text-[#A7B0C0]">No numeric variables available for narrative generation.</p>
       </div>
     );
   }
@@ -80,35 +80,35 @@ export default function NarrativePanel({ report }: NarrativePanelProps) {
 
       {/* Header */}
       <div className="flex items-center gap-3 mb-2">
-        <div className="p-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20">
-          <Sparkles size={16} className="text-indigo-400" />
+        <div className="p-2 rounded-xl bg-accent/10 border border-accent/20">
+          <Sparkles size={16} className="text-accent" />
         </div>
         <div>
           <h2 className="font-sans text-base font-bold text-white">Narrative Interface</h2>
-          <p className="font-mono text-[10px] text-[#3A5068]">
+          <p className="font-mono text-[10px] text-[#6E788A]">
             LLM as translator — SHAP values → CFPB Circular 2022-03 behaviorally specific reason codes
           </p>
         </div>
       </div>
 
       {/* Role clarification */}
-      <div className="mb-5 p-3 rounded-xl border border-indigo-500/12 bg-indigo-500/5">
-        <p className="font-mono text-[10px] text-indigo-300/80 leading-relaxed">
-          <span className="font-semibold text-indigo-300">The LLM acts as a translator, not an autonomous explainer.</span>{' '}
+      <div className="mb-5 p-3 rounded-xl border border-accent/12 bg-accent/5">
+        <p className="font-mono text-[10px] text-accent/80 leading-relaxed">
+          <span className="font-semibold text-accent">The LLM acts as a translator, not an autonomous explainer.</span>{' '}
           It converts statistical SHAP feature attributions into the &quot;behavioral specificity&quot; standard — concrete thresholds, specific timeframes, and counterfactual paths — required under CFPB Circular 2022-03 and Regulation B.
         </p>
       </div>
 
       {/* Compliance standard callout */}
       <div className="mb-5 grid grid-cols-2 gap-3">
-        <div className="p-3 rounded-xl bg-[#DC2626]/8 border border-[#DC2626]/15">
-          <p className="font-mono text-[9px] text-[#DC2626]/70 uppercase tracking-widest mb-1.5">Non-compliant (generic) ✗</p>
-          <p className="font-mono text-xs text-[#E8EDF5] leading-relaxed">&ldquo;Credit history insufficient&rdquo;</p>
-          <p className="font-mono text-[9px] text-[#DC2626]/60 mt-1">Prohibited under CFPB Circular 2022-03</p>
+        <div className="p-3 rounded-xl bg-[#FF5C6C]/8 border border-[#FF5C6C]/15">
+          <p className="font-mono text-[9px] text-[#FF5C6C]/70 uppercase tracking-widest mb-1.5">Non-compliant (generic) ✗</p>
+          <p className="font-mono text-xs text-[#F5F7FA] leading-relaxed">&ldquo;Credit history insufficient&rdquo;</p>
+          <p className="font-mono text-[9px] text-[#FF5C6C]/60 mt-1">Prohibited under CFPB Circular 2022-03</p>
         </div>
         <div className="p-3 rounded-xl bg-emerald-500/8 border border-emerald-500/15">
           <p className="font-mono text-[9px] text-emerald-400/70 uppercase tracking-widest mb-1.5">Compliant (specific) ✓</p>
-          <p className="font-mono text-xs text-[#E8EDF5] leading-relaxed">&ldquo;Multiple cash advances exceeding 30% of income in past 60 days&rdquo;</p>
+          <p className="font-mono text-xs text-[#F5F7FA] leading-relaxed">&ldquo;Multiple cash advances exceeding 30% of income in past 60 days&rdquo;</p>
           <p className="font-mono text-[9px] text-emerald-400/60 mt-1">Meets behavioral specificity standard</p>
         </div>
       </div>
@@ -136,7 +136,7 @@ export default function NarrativePanel({ report }: NarrativePanelProps) {
                   <code className="font-mono text-sm font-bold text-white">{shap.variable}</code>
                   <span className={`px-2 py-0.5 rounded text-[9px] font-mono font-semibold border ${
                     isHighRisk
-                      ? 'bg-[#DC2626]/10 border-[#DC2626]/20 text-[#DC2626]'
+                      ? 'bg-[#FF5C6C]/10 border-[#FF5C6C]/20 text-[#FF5C6C]'
                       : 'bg-amber-500/10 border-amber-500/20 text-amber-400'
                   }`}>
                     {proxy.correlationLevel} demographic correlation
@@ -148,50 +148,50 @@ export default function NarrativePanel({ report }: NarrativePanelProps) {
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-1.5 font-mono text-xs text-[#DC2626]">
+                <div className="flex items-center gap-1.5 font-mono text-xs text-[#FF5C6C]">
                   <ChevronRight size={12} className="rotate-180" />
                   <span className="font-bold">−{impactPct.toFixed(1)}pp</span>
-                  <span className="text-[#3A5068] text-[9px]">approval impact</span>
+                  <span className="text-[#6E788A] text-[9px]">approval impact</span>
                 </div>
               </div>
 
               <div className="p-4 space-y-4">
                 {/* SHAP bar */}
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[9px] text-[#3A5068] w-28 shrink-0 uppercase tracking-wider">SHAP attribution</span>
+                  <span className="font-mono text-[9px] text-[#6E788A] w-28 shrink-0 uppercase tracking-wider">SHAP attribution</span>
                   <div className="flex-1 h-1.5 bg-navy-750 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${Math.min(impactPct * 4, 100)}%` }}
                       transition={{ delay: i * 0.1 + 0.3, duration: 0.6, ease: 'easeOut' }}
-                      className="h-full bg-[#DC2626] rounded-full"
+                      className="h-full bg-[#FF5C6C] rounded-full"
                     />
                   </div>
-                  <span className="font-mono text-[10px] text-[#DC2626] font-bold w-14 text-right">
+                  <span className="font-mono text-[10px] text-[#FF5C6C] font-bold w-14 text-right">
                     {shap.shapValue.toFixed(3)}
                   </span>
                 </div>
 
                 {/* Generic → Compliant translation */}
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-lg bg-[#DC2626]/5 border border-[#DC2626]/10 p-3">
-                    <p className="font-mono text-[9px] text-[#DC2626]/60 uppercase tracking-widest mb-1.5">Generic (non-compliant)</p>
-                    <p className="font-mono text-xs text-[#7A90A8] italic">&ldquo;{narratives.generic}&rdquo;</p>
+                  <div className="rounded-lg bg-[#FF5C6C]/5 border border-[#FF5C6C]/10 p-3">
+                    <p className="font-mono text-[9px] text-[#FF5C6C]/60 uppercase tracking-widest mb-1.5">Generic (non-compliant)</p>
+                    <p className="font-mono text-xs text-[#A7B0C0] italic">&ldquo;{narratives.generic}&rdquo;</p>
                   </div>
                   <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/10 p-3">
                     <p className="font-mono text-[9px] text-emerald-400/60 uppercase tracking-widest mb-1.5">Behaviorally specific (compliant)</p>
-                    <p className="font-mono text-xs text-[#E8EDF5] leading-relaxed">&ldquo;{narratives.compliant}&rdquo;</p>
+                    <p className="font-mono text-xs text-[#F5F7FA] leading-relaxed">&ldquo;{narratives.compliant}&rdquo;</p>
                   </div>
                 </div>
 
                 {/* Counterfactual — Reg B */}
-                <div className="flex items-start gap-3 rounded-lg bg-indigo-500/5 border border-indigo-500/10 p-3">
-                  <LifeBuoy size={14} className="text-indigo-400 mt-0.5 shrink-0" />
+                <div className="flex items-start gap-3 rounded-lg bg-accent/5 border border-accent/10 p-3">
+                  <LifeBuoy size={14} className="text-accent mt-0.5 shrink-0" />
                   <div>
-                    <p className="font-mono text-[9px] text-indigo-400/70 uppercase tracking-widest mb-1">
+                    <p className="font-mono text-[9px] text-accent/70 uppercase tracking-widest mb-1">
                       Reg B Counterfactual — &ldquo;What would change the outcome?&rdquo;
                     </p>
-                    <p className="font-mono text-xs text-[#E8EDF5] leading-relaxed">{narratives.counterfactual}</p>
+                    <p className="font-mono text-xs text-[#F5F7FA] leading-relaxed">{narratives.counterfactual}</p>
                   </div>
                 </div>
               </div>
@@ -200,7 +200,7 @@ export default function NarrativePanel({ report }: NarrativePanelProps) {
         })}
       </div>
 
-      <p className="mt-4 font-mono text-[9px] text-[#2A3A4A] leading-relaxed">
+      <p className="mt-4 font-mono text-[9px] text-[#6E788A] leading-relaxed">
         SHAP values generated from model inference; narratives produced by SLM translation layer (~$0.001/denial). All reason codes reviewed for accuracy before delivery. Statistical analysis only — not legal advice.
       </p>
     </div>

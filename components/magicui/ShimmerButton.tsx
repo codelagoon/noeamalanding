@@ -13,11 +13,11 @@ interface ShimmerButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 export default function ShimmerButton({
-  shimmerColor = '#818CF8',
+  shimmerColor = '#6EA8FE',
   shimmerSize = '0.08em',
   shimmerDuration = '3s',
   borderRadius = '4px',
-  background = '#080D1A',
+  background = '#06070A',
   className,
   children,
   ...props
@@ -51,7 +51,7 @@ export default function ShimmerButton({
       </div>
       {/* inner background mask */}
       <div className="absolute inset-[var(--cut)] rounded-[calc(var(--radius)-var(--cut))] [background:var(--bg)]" />
-      <span className="relative z-10 font-mono text-sm font-semibold text-[#E8EDF5]">
+      <span className="relative z-10 font-mono text-sm font-semibold text-[#F5F7FA]">
         {children}
       </span>
     </button>

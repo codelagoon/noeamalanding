@@ -46,10 +46,10 @@ export default function UploadZone({ onUpload, uploading }: UploadZoneProps) {
       onDrop={handleDrop}
       className={`relative border-2 border-dashed rounded-lg p-12 text-center transition-colors ${
         dragOver
-          ? 'border-[#6366F1] bg-[#6366F1]/5'
+          ? 'border-[#6EA8FE] bg-[#6EA8FE]/5'
           : selectedFile
           ? 'border-green-400 bg-green-50'
-          : 'border-gray-300 bg-white hover:border-[#6366F1] hover:bg-gray-50'
+          : 'border-gray-300 bg-white hover:border-[#6EA8FE] hover:bg-gray-50'
       }`}
     >
       <input
@@ -62,7 +62,7 @@ export default function UploadZone({ onUpload, uploading }: UploadZoneProps) {
 
       {uploading ? (
         <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-2 border-[#6366F1] border-t-transparent rounded-full animate-spin" />
+          <div className="w-10 h-10 border-2 border-[#6EA8FE] border-t-transparent rounded-full animate-spin" />
           <p className="font-mono text-sm text-gray-700">Uploading...</p>
         </div>
       ) : selectedFile ? (

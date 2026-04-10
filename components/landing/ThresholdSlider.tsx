@@ -58,15 +58,15 @@ export default function ThresholdSlider() {
   const currentPoint = [{ x: current.accuracy, y: current.dir }];
 
   return (
-    <section className="px-8 py-24 border-t border-[#1F2E48]">
+    <section className="px-8 py-24 border-t border-[#1E2635]">
       <div className="max-w-6xl mx-auto">
-        <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#7A90A8] mb-4">
+        <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#A7B0C0] mb-4">
           Scenario Modelling
         </p>
-        <h2 className="font-serif text-[clamp(28px,4vw,44px)] leading-[1.15] text-[#E8EDF5] mb-4 max-w-2xl">
+        <h2 className="font-serif text-[clamp(28px,4vw,44px)] leading-[1.15] text-[#F5F7FA] mb-4 max-w-2xl">
           Interactive Fairness–Accuracy Pareto Frontier
         </h2>
-        <p className="font-mono text-sm text-[#7A90A8] mb-10 max-w-xl leading-relaxed">
+        <p className="font-mono text-sm text-[#A7B0C0] mb-10 max-w-xl leading-relaxed">
           Slide the approval threshold to watch DIR and model accuracy trade off in real time.
           LDA alternatives (Rashomon Set) shift the entire frontier outward — more equitable
           and more accurate simultaneously.
@@ -75,14 +75,14 @@ export default function ThresholdSlider() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* Slider + live metrics */}
-          <div className="rounded-xl border border-[#1F2E48] bg-[#0C1220] p-6 flex flex-col gap-5">
+          <div className="rounded-xl border border-[#1E2635] bg-[#0A0D12] p-6 flex flex-col gap-5">
             <div>
-              <label className="font-mono text-xs font-semibold text-[#7A90A8] uppercase tracking-wider block mb-3">
+              <label className="font-mono text-xs font-semibold text-[#A7B0C0] uppercase tracking-wider block mb-3">
                 Approval threshold
               </label>
               <div className="flex items-center justify-between mb-2">
-                <span className="font-mono text-[10px] text-[#7A90A8]">Permissive 0.30</span>
-                <span className="font-mono text-[10px] text-[#7A90A8]">Strict 0.80</span>
+                <span className="font-mono text-[10px] text-[#A7B0C0]">Permissive 0.30</span>
+                <span className="font-mono text-[10px] text-[#A7B0C0]">Strict 0.80</span>
               </div>
               <input
                 type="range"
@@ -91,10 +91,10 @@ export default function ThresholdSlider() {
                 step={0.01}
                 value={threshold}
                 onChange={(e) => setThreshold(parseFloat(e.target.value))}
-                className="w-full accent-[#6366F1] cursor-pointer"
-                style={{ accentColor: passes ? '#6366F1' : '#DC2626' }}
+                className="w-full accent-[#6EA8FE] cursor-pointer"
+                style={{ accentColor: passes ? '#6EA8FE' : '#FF5C6C' }}
               />
-              <p className="font-mono text-center text-lg font-bold mt-2" style={{ color: passes ? '#6366F1' : '#DC2626' }}>
+              <p className="font-mono text-center text-lg font-bold mt-2" style={{ color: passes ? '#6EA8FE' : '#FF5C6C' }}>
                 {threshold.toFixed(2)}
               </p>
             </div>
@@ -105,34 +105,34 @@ export default function ThresholdSlider() {
                   label: 'Disparate Impact Ratio',
                   value: current.dir.toFixed(2),
                   sub: current.dir < 0.8 ? '⚠ Below four-fifths rule' : '✓ Passes four-fifths rule',
-                  valueColor: current.dir < 0.8 ? 'text-red-400' : 'text-[#6366F1]',
+                  valueColor: current.dir < 0.8 ? 'text-red-400' : 'text-[#6EA8FE]',
                 },
                 {
                   label: 'Model Accuracy',
                   value: `${current.accuracy.toFixed(0)}%`,
                   sub: 'Precision on held-out set',
-                  valueColor: 'text-[#E8EDF5]',
+                  valueColor: 'text-[#F5F7FA]',
                 },
                 {
                   label: 'Approval Rate',
                   value: `${current.approvals.toFixed(0)}%`,
                   sub: 'All applicants',
-                  valueColor: 'text-[#F59E0B]',
+                  valueColor: 'text-[#F2C14E]',
                 },
               ].map(({ label, value, sub, valueColor }) => (
-                <div key={label} className="p-3 rounded-lg bg-[#080D1A] border border-[#1F2E48]">
+                <div key={label} className="p-3 rounded-lg bg-[#06070A] border border-[#1E2635]">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] text-[#7A90A8]">{label}</span>
+                    <span className="font-mono text-[10px] text-[#A7B0C0]">{label}</span>
                     <span className={`font-mono text-sm font-bold ${valueColor}`}>{value}</span>
                   </div>
-                  <p className="font-mono text-[9px] text-[#7A90A8] mt-0.5">{sub}</p>
+                  <p className="font-mono text-[9px] text-[#A7B0C0] mt-0.5">{sub}</p>
                 </div>
               ))}
             </div>
 
             <div className={`p-3 rounded-lg border font-mono text-xs leading-relaxed ${
               passes
-                ? 'bg-[#6366F1]/10 border-[#6366F1]/30 text-[#6366F1]'
+                ? 'bg-[#6EA8FE]/10 border-[#6EA8FE]/30 text-[#6EA8FE]'
                 : 'bg-red-900/20 border-red-800/40 text-red-400'
             }`}>
               {passes
@@ -140,9 +140,9 @@ export default function ThresholdSlider() {
                 : 'DIR < 0.80 · Four-fifths rule failure · Requires business necessity documentation or LDA adoption'}
             </div>
 
-            <div className="p-3 rounded-lg bg-[#080D1A] border border-[#1F2E48]">
-              <p className="font-mono text-[10px] text-[#7A90A8] mb-1 font-semibold">Rashomon Set</p>
-              <p className="font-mono text-[10px] text-[#7A90A8] leading-relaxed">
+            <div className="p-3 rounded-lg bg-[#06070A] border border-[#1E2635]">
+              <p className="font-mono text-[10px] text-[#A7B0C0] mb-1 font-semibold">Rashomon Set</p>
+              <p className="font-mono text-[10px] text-[#A7B0C0] leading-relaxed">
                 Multiple models achieve similar accuracy. Noema searches this set to surface the
                 least discriminatory alternative at your current threshold.
               </p>
@@ -150,11 +150,11 @@ export default function ThresholdSlider() {
           </div>
 
           {/* Pareto frontier chart */}
-          <div className="lg:col-span-2 rounded-xl border border-[#1F2E48] bg-[#0C1220] p-6">
-            <p className="font-mono text-xs font-semibold text-[#7A90A8] uppercase tracking-wider mb-1">
+          <div className="lg:col-span-2 rounded-xl border border-[#1E2635] bg-[#0A0D12] p-6">
+            <p className="font-mono text-xs font-semibold text-[#A7B0C0] uppercase tracking-wider mb-1">
               Fairness–Accuracy Pareto Frontier
             </p>
-            <p className="font-mono text-sm text-[#E8EDF5] font-semibold mb-4">
+            <p className="font-mono text-sm text-[#F5F7FA] font-semibold mb-4">
               LDA alternatives shift the frontier outward — better accuracy and better DIR
             </p>
 
@@ -166,20 +166,20 @@ export default function ThresholdSlider() {
                   type="number"
                   domain={[59, 85]}
                   name="Accuracy"
-                  tick={{ fontFamily: 'monospace', fontSize: 9, fill: '#7A90A8' }}
+                  tick={{ fontFamily: 'monospace', fontSize: 9, fill: '#A7B0C0' }}
                   axisLine={false} tickLine={false}
                   tickFormatter={(v: number) => `${v}%`}
-                  label={{ value: 'Model Accuracy (%)', position: 'insideBottom', offset: -12, fontFamily: 'monospace', fontSize: 9, fill: '#7A90A8' }}
+                  label={{ value: 'Model Accuracy (%)', position: 'insideBottom', offset: -12, fontFamily: 'monospace', fontSize: 9, fill: '#A7B0C0' }}
                 />
                 <YAxis
                   dataKey="y"
                   type="number"
                   domain={[0.68, 0.97]}
                   name="DIR"
-                  tick={{ fontFamily: 'monospace', fontSize: 9, fill: '#7A90A8' }}
+                  tick={{ fontFamily: 'monospace', fontSize: 9, fill: '#A7B0C0' }}
                   axisLine={false} tickLine={false}
                   tickFormatter={(v: number) => v.toFixed(2)}
-                  label={{ value: 'DIR', angle: -90, position: 'insideLeft', offset: 16, fontFamily: 'monospace', fontSize: 9, fill: '#7A90A8' }}
+                  label={{ value: 'DIR', angle: -90, position: 'insideLeft', offset: 16, fontFamily: 'monospace', fontSize: 9, fill: '#A7B0C0' }}
                   width={40}
                 />
                 <Tooltip
@@ -187,14 +187,14 @@ export default function ThresholdSlider() {
                     if (!active || !payload?.length) return null;
                     const d = payload[0].payload as { x: number; y: number; threshold?: number; lda?: string };
                     return (
-                      <div className="bg-[#080D1A] border border-[#1F2E48] rounded-lg px-3 py-2">
-                        {d.lda && <p className="font-mono text-[10px] text-[#F59E0B] font-semibold mb-1">{d.lda}</p>}
-                        <p className="font-mono text-xs text-[#E8EDF5]">Accuracy: {d.x.toFixed(0)}%</p>
-                        <p className="font-mono text-xs" style={{ color: d.y >= 0.8 ? '#6366F1' : '#DC2626' }}>
+                      <div className="bg-[#06070A] border border-[#1E2635] rounded-lg px-3 py-2">
+                        {d.lda && <p className="font-mono text-[10px] text-[#F2C14E] font-semibold mb-1">{d.lda}</p>}
+                        <p className="font-mono text-xs text-[#F5F7FA]">Accuracy: {d.x.toFixed(0)}%</p>
+                        <p className="font-mono text-xs" style={{ color: d.y >= 0.8 ? '#6EA8FE' : '#FF5C6C' }}>
                           DIR: {d.y.toFixed(2)} {d.y >= 0.8 ? '✓' : '⚠'}
                         </p>
                         {d.threshold !== undefined && (
-                          <p className="font-mono text-[10px] text-[#7A90A8]">Threshold: {d.threshold.toFixed(2)}</p>
+                          <p className="font-mono text-[10px] text-[#A7B0C0]">Threshold: {d.threshold.toFixed(2)}</p>
                         )}
                       </div>
                     );
@@ -202,21 +202,21 @@ export default function ThresholdSlider() {
                 />
 
                 {/* four-fifths rule horizontal line */}
-                <ReferenceLine y={0.8} stroke="#ef4444" strokeDasharray="5 4" strokeWidth={1.5}>
-                  <Label value="0.80 four-fifths rule" position="right" fontFamily="monospace" fontSize={8} fill="#ef4444" />
+                <ReferenceLine y={0.8} stroke="#FF5C6C" strokeDasharray="5 4" strokeWidth={1.5}>
+                  <Label value="0.80 four-fifths rule" position="right" fontFamily="monospace" fontSize={8} fill="#FF5C6C" />
                 </ReferenceLine>
 
                 {/* Baseline frontier */}
                 <Scatter name="Baseline model" data={scatterData} fill="#253858" shape="circle" r={5} opacity={0.7} />
 
                 {/* LDA frontier */}
-                <Scatter name="LDA alternatives (Rashomon Set)" data={ldaScatter} fill="#F59E0B" shape="diamond" r={5} opacity={0.85} />
+                <Scatter name="LDA alternatives (Rashomon Set)" data={ldaScatter} fill="#F2C14E" shape="diamond" r={5} opacity={0.85} />
 
                 {/* Current selection */}
                 <Scatter
                   name="Your current threshold"
                   data={currentPoint}
-                  fill={passes ? '#6366F1' : '#DC2626'}
+                  fill={passes ? '#6EA8FE' : '#FF5C6C'}
                   shape="circle"
                   r={9}
                 />
@@ -226,17 +226,17 @@ export default function ThresholdSlider() {
             <div className="flex flex-wrap gap-5 mt-2">
               {[
                 { color: '#253858', shape: '●', label: 'Baseline model (current data)' },
-                { color: '#F59E0B', shape: '◆', label: 'LDA alternatives (Rashomon Set)' },
-                { color: passes ? '#6366F1' : '#DC2626', shape: '●', label: 'Your selected threshold' },
+                { color: '#F2C14E', shape: '◆', label: 'LDA alternatives (Rashomon Set)' },
+                { color: passes ? '#6EA8FE' : '#FF5C6C', shape: '●', label: 'Your selected threshold' },
               ].map(({ color, shape, label }) => (
                 <div key={label} className="flex items-center gap-1.5">
                   <span style={{ color, fontSize: 14 }}>{shape}</span>
-                  <span className="font-mono text-[10px] text-[#7A90A8]">{label}</span>
+                  <span className="font-mono text-[10px] text-[#A7B0C0]">{label}</span>
                 </div>
               ))}
             </div>
 
-            <p className="mt-3 font-mono text-[10px] text-[#7A90A8] leading-relaxed">
+            <p className="mt-3 font-mono text-[10px] text-[#A7B0C0] leading-relaxed">
               The Impossibility Theorem (Chouldechova, 2017) constrains how much accuracy and fairness can simultaneously improve
               on a fixed feature set. LDA alternatives from the Rashomon Set circumvent this by changing the feature set itself.
             </p>

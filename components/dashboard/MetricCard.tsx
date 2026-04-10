@@ -50,7 +50,7 @@ export default function MetricCard({ label, value, subtext, status, icon, animat
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay, ease: 'easeOut' }}
       whileHover={{ y: -2, boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
-      className="relative overflow-hidden rounded-2xl border border-[#1F2E48] bg-[#0C1220] p-5 flex flex-col gap-3"
+      className="relative overflow-hidden rounded-2xl border border-[#1E2635] bg-[#0A0D12] p-5 flex flex-col gap-3"
     >
       {/* subtle gradient bleed */}
       {status === 'critical' && (
@@ -61,8 +61,8 @@ export default function MetricCard({ label, value, subtext, status, icon, animat
       )}
 
       <div className="flex items-center justify-between">
-        <p className="font-mono text-[10px] font-semibold text-[#4A5A6A] uppercase tracking-widest">{label}</p>
-        {icon && <span className="text-[#2A3A4A]">{icon}</span>}
+        <p className="font-mono text-[10px] font-semibold text-[#6E788A] uppercase tracking-widest">{label}</p>
+        {icon && <span className="text-[#6E788A]">{icon}</span>}
       </div>
 
       <p className="font-mono text-3xl font-bold text-white leading-none tabular-nums">
@@ -70,7 +70,7 @@ export default function MetricCard({ label, value, subtext, status, icon, animat
       </p>
 
       <div className="flex items-center justify-between gap-2">
-        {subtext && <p className="font-mono text-[10px] text-[#3A4A5A] leading-tight">{subtext}</p>}
+        {subtext && <p className="font-mono text-[10px] text-[#6E788A] leading-tight">{subtext}</p>}
         {cfg && (
           <div className={`ml-auto flex items-center gap-1.5 px-2 py-1 rounded-full border text-[10px] font-mono font-semibold shrink-0 ${cfg.pill}`}>
             <motion.span

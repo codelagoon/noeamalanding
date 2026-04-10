@@ -19,7 +19,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div
-      className={`${dmSans.variable} font-sans bg-[#080D1A] min-h-screen flex`}
+      className={`${dmSans.variable} font-sans bg-[#06070A] min-h-screen flex`}
       style={{ zoom: '0.8' }}
     >
       <Sidebar />

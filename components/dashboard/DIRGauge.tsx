@@ -52,7 +52,7 @@ export default function DIRGauge({ value, label }: DIRGaugeProps) {
   const ny = CY + R * Math.sin(needleRad);
 
   const passes = clamp >= 0.8;
-  const arcColor = clamp < 0.8 ? '#ef4444' : clamp < 0.9 ? '#f59e0b' : '#6366F1';
+  const arcColor = clamp < 0.8 ? '#FF5C6C' : clamp < 0.9 ? '#f59e0b' : '#6EA8FE';
 
   // 0.8 tick position
   const tickRad = (thresholdDeg * Math.PI) / 180;
@@ -84,10 +84,10 @@ export default function DIRGauge({ value, label }: DIRGaugeProps) {
         </defs>
 
         {/* track */}
-        <path d={arcPath(CX, CY, R, START_DEG, START_DEG + SWEEP)} fill="none" stroke="#1F2E48" strokeWidth="10" strokeLinecap="round" />
+        <path d={arcPath(CX, CY, R, START_DEG, START_DEG + SWEEP)} fill="none" stroke="#1E2635" strokeWidth="10" strokeLinecap="round" />
 
         {/* danger zone 0→0.8 */}
-        <path d={arcPath(CX, CY, R, START_DEG, thresholdDeg)} fill="none" stroke="#ef4444" strokeWidth="10" strokeLinecap="round" strokeOpacity="0.15" />
+        <path d={arcPath(CX, CY, R, START_DEG, thresholdDeg)} fill="none" stroke="#FF5C6C" strokeWidth="10" strokeLinecap="round" strokeOpacity="0.15" />
 
         {/* filled arc */}
         {displayVal > 0.005 && (
@@ -102,25 +102,25 @@ export default function DIRGauge({ value, label }: DIRGaugeProps) {
         )}
 
         {/* threshold tick */}
-        <line x1={t1x} y1={t1y} x2={t2x} y2={t2y} stroke="#ef4444" strokeWidth="2" strokeOpacity="0.7" />
-        <text x={tlx} y={tly + 3} fill="#ef4444" fontSize="7.5" fontFamily="monospace" textAnchor="middle" fontWeight="600" opacity="0.8">0.80</text>
+        <line x1={t1x} y1={t1y} x2={t2x} y2={t2y} stroke="#FF5C6C" strokeWidth="2" strokeOpacity="0.7" />
+        <text x={tlx} y={tly + 3} fill="#FF5C6C" fontSize="7.5" fontFamily="monospace" textAnchor="middle" fontWeight="600" opacity="0.8">0.80</text>
 
         {/* needle */}
         <line x1={CX} y1={CY} x2={nx} y2={ny} stroke={arcColor} strokeWidth="2.5" strokeLinecap="round" filter="url(#glow-needle)" />
         <circle cx={CX} cy={CY} r="5" fill={arcColor} filter="url(#glow-needle)" />
-        <circle cx={CX} cy={CY} r="3" fill="#0C1220" />
+        <circle cx={CX} cy={CY} r="3" fill="#0A0D12" />
 
         {/* centre readout */}
         <text x={CX} y={CY + 26} textAnchor="middle" fill={arcColor} fontSize="24" fontFamily="monospace" fontWeight="700">
           {displayVal.toFixed(2)}
         </text>
-        <text x={CX} y={CY + 40} textAnchor="middle" fill="#3A4A5A" fontSize="8" fontFamily="monospace" letterSpacing="2">
+        <text x={CX} y={CY + 40} textAnchor="middle" fill="#6E788A" fontSize="8" fontFamily="monospace" letterSpacing="2">
           DISP. IMPACT RATIO
         </text>
 
         {/* scale ends */}
-        <text x="16" y="148" fill="#2A3A4A" fontSize="8" fontFamily="monospace">0.0</text>
-        <text x="166" y="148" fill="#2A3A4A" fontSize="8" fontFamily="monospace">1.0</text>
+        <text x="16" y="148" fill="#6E788A" fontSize="8" fontFamily="monospace">0.0</text>
+        <text x="166" y="148" fill="#6E788A" fontSize="8" fontFamily="monospace">1.0</text>
       </svg>
 
       {/* status pill */}
@@ -147,7 +147,7 @@ export default function DIRGauge({ value, label }: DIRGaugeProps) {
           : `DIR ${clamp.toFixed(2)} — four-fifths rule failure`}
       </motion.div>
 
-      {label && <p className="mt-1.5 font-mono text-[10px] text-[#3A4A5A] text-center">{label}</p>}
+      {label && <p className="mt-1.5 font-mono text-[10px] text-[#6E788A] text-center">{label}</p>}
     </motion.div>
   );
 }

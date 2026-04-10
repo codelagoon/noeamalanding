@@ -11,7 +11,7 @@ import AlertBanner from '@/components/dashboard/AlertBanner';
 import { FileText, Shield, Zap, ExternalLink, RefreshCw, Filter, ChevronDown } from 'lucide-react';
 
 // ─── Design tokens ──────────────────────────────────────────────────────────
-const CARD = 'rounded-2xl border border-[#1F2E48] bg-[#0C1220]';
+const CARD = 'rounded-2xl border border-[#1E2635] bg-[#0A0D12]';
 const CARD_PAD = 'p-6';
 
 // ─── Animation variants ─────────────────────────────────────────────────────
@@ -25,7 +25,7 @@ function FilterChip({ label, options, value, onChange }: { label: string; option
     <div className="relative">
       <button
         onClick={() => setOpen((p) => !p)}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#1F2E48] bg-[#0C1220] font-mono text-[10px] text-[#4A5A6A] hover:text-[#A0B0BF] hover:border-[#2A3540] transition-colors"
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#1E2635] bg-[#0A0D12] font-mono text-[10px] text-[#6E788A] hover:text-[#A7B0C0] hover:border-[#6E788A] transition-colors"
       >
         <Filter size={10} />
         <span className="text-[#7A8A9A]">{label}:</span>
@@ -36,13 +36,13 @@ function FilterChip({ label, options, value, onChange }: { label: string; option
         <motion.div
           initial={{ opacity: 0, y: -4 }}
           animate={{ opacity: 1, y: 0 }}
-          className="absolute top-full mt-1 left-0 z-20 rounded-xl border border-[#1F2E48] bg-[#0C1220] shadow-xl shadow-black/50 py-1 min-w-[120px]"
+          className="absolute top-full mt-1 left-0 z-20 rounded-xl border border-[#1E2635] bg-[#0A0D12] shadow-xl shadow-black/50 py-1 min-w-[120px]"
         >
           {options.map((o) => (
             <button
               key={o}
               onClick={() => { onChange(o); setOpen(false); }}
-              className={`w-full text-left px-3 py-1.5 font-mono text-[10px] transition-colors ${o === value ? 'text-[#6366F1]' : 'text-[#4A5A6A] hover:text-[#A0B0BF] hover:bg-[#101828]'}`}
+              className={`w-full text-left px-3 py-1.5 font-mono text-[10px] transition-colors ${o === value ? 'text-[#6EA8FE]' : 'text-[#6E788A] hover:text-[#A7B0C0] hover:bg-[#0A0D12]'}`}
             >
               {o}
             </button>
@@ -68,17 +68,17 @@ function SectionCard({ children, className = '', delay = 0 }: { children: React.
 }
 
 function CardLabel({ children }: { children: React.ReactNode }) {
-  return <p className="font-mono text-[10px] font-semibold text-[#4A5A6A] uppercase tracking-widest mb-1">{children}</p>;
+  return <p className="font-mono text-[10px] font-semibold text-[#6E788A] uppercase tracking-widest mb-1">{children}</p>;
 }
 
 function ComplianceRow({ label, covered, citation }: { label: string; covered: boolean; citation: string }) {
   return (
-    <div className="flex items-center gap-3 py-2 border-b border-[#101828] last:border-0">
-      <span className={`font-mono text-xs font-bold shrink-0 w-4 ${covered ? 'text-[#6366F1]' : 'text-[#2A3540]'}`}>
+    <div className="flex items-center gap-3 py-2 border-b border-[#0A0D12] last:border-0">
+      <span className={`font-mono text-xs font-bold shrink-0 w-4 ${covered ? 'text-[#6EA8FE]' : 'text-[#6E788A]'}`}>
         {covered ? '✓' : '○'}
       </span>
-      <span className={`font-mono text-xs flex-1 ${covered ? 'text-[#8A9AAA]' : 'text-[#2A3540]'}`}>{label}</span>
-      <span className="font-mono text-[9px] text-[#2A3540] shrink-0">{citation}</span>
+      <span className={`font-mono text-xs flex-1 ${covered ? 'text-[#A7B0C0]' : 'text-[#6E788A]'}`}>{label}</span>
+      <span className="font-mono text-[9px] text-[#6E788A] shrink-0">{citation}</span>
     </div>
   );
 }
@@ -99,7 +99,7 @@ export default function DashboardPage() {
   const [model, setModel] = useState('v2.3.1');
 
   return (
-    <div className="min-h-full bg-[#080D1A] text-white px-6 py-6 space-y-5">
+    <div className="min-h-full bg-[#06070A] text-white px-6 py-6 space-y-5">
 
       {/* ── Top header row ── */}
       <motion.div
@@ -113,7 +113,7 @@ export default function DashboardPage() {
             <h1 className="font-sans text-xl font-bold text-white tracking-tight">Fairness Command Center</h1>
             <StatusBadge status="critical" label="DIR 0.77 — Breach" pulse />
           </div>
-          <div className="flex items-center gap-4 font-mono text-[10px] text-[#3A4A5A]">
+          <div className="flex items-center gap-4 font-mono text-[10px] text-[#6E788A]">
             <span>Last audit: <span className="text-[#5A6A7A]">Apr 10, 2026 · 14:32 UTC</span></span>
             <span>Model: <span className="text-[#5A6A7A]">v2.3.1</span></span>
             <span>Dataset: <span className="text-[#5A6A7A]">Q4 ′25 · 48,231 records</span></span>
@@ -121,7 +121,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
-          <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#1F2E48] bg-[#0C1220] font-mono text-[10px] text-[#4A5A6A] hover:text-[#A0B0BF] hover:border-[#2A3540] transition-colors">
+          <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#1E2635] bg-[#0A0D12] font-mono text-[10px] text-[#6E788A] hover:text-[#A7B0C0] hover:border-[#6E788A] transition-colors">
             <RefreshCw size={10} />
             Refresh
           </button>
@@ -132,8 +132,8 @@ export default function DashboardPage() {
               onClick={() => setActiveTab(tab)}
               className={`relative px-4 py-1.5 font-mono text-[10px] rounded-xl transition-colors ${
                 activeTab === tab
-                  ? 'text-[#6366F1] bg-[#6366F1]/10 border border-[#6366F1]/25'
-                  : 'text-[#4A5A6A] border border-[#1F2E48] bg-[#0C1220] hover:text-[#A0B0BF]'
+                  ? 'text-[#6EA8FE] bg-[#6EA8FE]/10 border border-[#6EA8FE]/25'
+                  : 'text-[#6E788A] border border-[#1E2635] bg-[#0A0D12] hover:text-[#A7B0C0]'
               }`}
             >
               {tab === 'mcp' ? 'MCP Interface' : 'Overview'}
@@ -142,7 +142,7 @@ export default function DashboardPage() {
 
           <Link
             href="/upload"
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-[#6366F1] text-white font-mono text-[10px] font-semibold hover:bg-[#4338CA] transition-colors"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-[#6EA8FE] text-white font-mono text-[10px] font-semibold hover:bg-[#2B58D8] transition-colors"
           >
             <Zap size={10} />
             New Audit
@@ -181,19 +181,19 @@ export default function DashboardPage() {
               <div className="flex-1 flex flex-col items-center justify-center py-2">
                 <DIRGauge value={0.77} label="Hispanic vs. White · Q4 ′25" />
               </div>
-              <div className="space-y-2 pt-3 border-t border-[#1F2E48]">
+              <div className="space-y-2 pt-3 border-t border-[#1E2635]">
                 {[
-                  { l: 'Reference group', v: '68.4%', c: 'text-[#6366F1]' },
+                  { l: 'Reference group', v: '68.4%', c: 'text-[#6EA8FE]' },
                   { l: 'Comparison group', v: '52.7%', c: 'text-red-400' },
                   { l: 'Absolute gap', v: '15.7pp', c: 'text-red-400' },
                 ].map(({ l, v, c }) => (
                   <div key={l} className="flex justify-between items-center">
-                    <span className="font-mono text-[10px] text-[#3A4A5A]">{l}</span>
+                    <span className="font-mono text-[10px] text-[#6E788A]">{l}</span>
                     <span className={`font-mono text-xs font-bold ${c}`}>{v}</span>
                   </div>
                 ))}
               </div>
-              <p className="font-mono text-[9px] text-[#2A3540] leading-relaxed">
+              <p className="font-mono text-[9px] text-[#6E788A] leading-relaxed">
                 Bartlett et al. (2022) · 3.6M FinTech loans · plain-language label required for CFPB examinations
               </p>
             </SectionCard>
@@ -235,18 +235,18 @@ export default function DashboardPage() {
                   <CardLabel>Recent Audits</CardLabel>
                   <p className="font-sans text-sm font-semibold text-white">Audit History</p>
                 </div>
-                <Link href="/reports" className="flex items-center gap-1 font-mono text-[10px] text-[#6366F1] hover:text-[#818CF8] transition-colors">
+                <Link href="/reports" className="flex items-center gap-1 font-mono text-[10px] text-[#6EA8FE] hover:text-[#6EA8FE] transition-colors">
                   View all <ExternalLink size={10} />
                 </Link>
               </div>
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <div className="p-4 rounded-2xl bg-[#101828] border border-[#1F2E48] mb-4">
-                  <FileText size={24} className="text-[#2A3540]" />
+                <div className="p-4 rounded-2xl bg-[#0A0D12] border border-[#1E2635] mb-4">
+                  <FileText size={24} className="text-[#6E788A]" />
                 </div>
-                <p className="font-mono text-xs text-[#3A4A5A] mb-4">Upload decision data to populate audit history</p>
+                <p className="font-mono text-xs text-[#6E788A] mb-4">Upload decision data to populate audit history</p>
                 <Link
                   href="/upload"
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#6366F1]/15 border border-[#6366F1]/25 text-[#6366F1] font-mono text-xs hover:bg-[#6366F1]/25 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#6EA8FE]/15 border border-[#6EA8FE]/25 text-[#6EA8FE] font-mono text-xs hover:bg-[#6EA8FE]/25 transition-colors"
                 >
                   <Zap size={12} />
                   Upload Decision Data
@@ -287,12 +287,12 @@ export default function DashboardPage() {
         >
           <SectionCard>
             <div className="flex items-center gap-3 mb-5">
-              <div className="p-2 rounded-xl bg-[#6366F1]/10 border border-[#6366F1]/20">
-                <Shield size={16} className="text-[#6366F1]" />
+              <div className="p-2 rounded-xl bg-[#6EA8FE]/10 border border-[#6EA8FE]/20">
+                <Shield size={16} className="text-[#6EA8FE]" />
               </div>
               <div>
                 <p className="font-sans text-sm font-semibold text-white">Model Context Protocol Interface</p>
-                <p className="font-mono text-[10px] text-[#3A4A5A]">Read-only aggregated telemetry · no PII · no individual records</p>
+                <p className="font-mono text-[10px] text-[#6E788A]">Read-only aggregated telemetry · no PII · no individual records</p>
               </div>
             </div>
 
@@ -308,14 +308,14 @@ export default function DashboardPage() {
                 <motion.div
                   key={path}
                   whileHover={{ x: 2 }}
-                  className="flex items-center gap-4 p-3.5 rounded-xl border border-[#1F2E48] bg-[#101828] hover:border-[#6366F1]/20 transition-colors group cursor-default"
+                  className="flex items-center gap-4 p-3.5 rounded-xl border border-[#1E2635] bg-[#0A0D12] hover:border-[#6EA8FE]/20 transition-colors group cursor-default"
                 >
-                  <span className="font-mono text-[10px] font-bold text-[#6366F1] w-10 shrink-0">{method}</span>
+                  <span className="font-mono text-[10px] font-bold text-[#6EA8FE] w-10 shrink-0">{method}</span>
                   <code className="font-mono text-xs text-white flex-1">{path}</code>
-                  <span className="font-mono text-[10px] text-[#3A4A5A] flex-1">{description}</span>
-                  <span className="font-mono text-[10px] text-[#6366F1] font-semibold w-12 text-right">{latency}</span>
+                  <span className="font-mono text-[10px] text-[#6E788A] flex-1">{description}</span>
+                  <span className="font-mono text-[10px] text-[#6EA8FE] font-semibold w-12 text-right">{latency}</span>
                   <a href={path} target="_blank" rel="noopener noreferrer" className="opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ExternalLink size={12} className="text-[#6366F1]" />
+                    <ExternalLink size={12} className="text-[#6EA8FE]" />
                   </a>
                 </motion.div>
               ))}
@@ -323,8 +323,8 @@ export default function DashboardPage() {
           </SectionCard>
 
           <SectionCard>
-            <p className="font-mono text-[10px] font-semibold text-[#4A5A6A] uppercase tracking-widest mb-4">Example Response</p>
-            <pre className="rounded-xl bg-[#080D1A] border border-[#1F2E48] p-4 text-[10px] font-mono text-[#6A9A8A] overflow-x-auto leading-relaxed">
+            <p className="font-mono text-[10px] font-semibold text-[#6E788A] uppercase tracking-widest mb-4">Example Response</p>
+            <pre className="rounded-xl bg-[#06070A] border border-[#1E2635] p-4 text-[10px] font-mono text-[#6A9A8A] overflow-x-auto leading-relaxed">
 {`{
   "schema": "noema-mcp-v1",
   "generated_at": "2026-04-10T14:32:00Z",

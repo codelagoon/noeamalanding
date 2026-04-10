@@ -4,68 +4,48 @@
 
 /* ─── Design tokens ─────────────────────────────────────────────────────── */
 :root {
-  /* Foundation */
-  --bg:             #080D1A;
-  --surface:        #0C1220;
-  --border:         #1F2E48;
-
-  /* Semantic */
-  --pass:           #10b981;   /* emerald-500 */
-  --pass-dim:       rgba(16,185,129,0.12);
-  --deny:           #dc2626;   /* crimson-500 */
-  --deny-dim:       rgba(220,38,38,0.12);
-  --refer:          #f59e0b;   /* amber-500   */
-  --refer-dim:      rgba(245,158,11,0.12);
-
-  /* Accent */
-  --accent:         #6366f1;   /* indigo-500  */
-  --accent-light:   #818cf8;   /* indigo-400  */
-  --accent-dim:     rgba(99,102,241,0.12);
-
-  /* Typography */
-  --text-primary:   #E8EDF5;
-  --text-secondary: #7A90A8;
-  --text-muted:     #3A5068;
+  --page:       #06070A;
+  --section:    #0A0D12;
+  --card:       #0F131A;
+  --raised:     #131926;
+  --border:     #1E2635;
+  --primary:    #F5F7FA;
+  --secondary:  #A7B0C0;
+  --muted:      #6E788A;
+  --accent:     #6EA8FE;
+  --teal:       #5FD1C4;
+  --gold:       #F2C14E;
+  --danger:     #FF5C6C;
 }
 
 html { scroll-behavior: smooth; }
 *, *::before, *::after { box-sizing: border-box; padding: 0; margin: 0; }
-html, body { max-width: 100vw; overflow-x: hidden; background: var(--bg); color: var(--text-primary); }
+html, body { max-width: 100vw; overflow-x: hidden; background: var(--page); color: var(--primary); }
 a { color: inherit; text-decoration: none; }
 
-::-webkit-scrollbar       { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #2E4A70; }
-::selection { background: var(--accent); color: #fff; }
+/* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--page); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #1E2635; }
+::selection { background: #6EA8FE22; color: #6EA8FE; }
 
-/* ─── Semantic status utilities ─────────────────────────────────────────── */
-.status-pass    { @apply bg-emerald-500/10 border border-emerald-500/20 text-emerald-400; }
-.status-deny    { @apply bg-crimson-500/10 border border-crimson-500/20 text-crimson-400; }
-.status-refer   { @apply bg-amber-500/10   border border-amber-500/20   text-amber-400;   }
-.status-accent  { @apply bg-indigo-500/10  border border-indigo-500/20  text-indigo-400;  }
+/* ─── Status utilities ───────────────────────────────────────────────────── */
+.status-pass   { background: rgba(95,209,196,0.08); border: 1px solid rgba(95,209,196,0.15); color: #7FE0D8; }
+.status-deny   { background: rgba(255,92,108,0.08); border: 1px solid rgba(255,92,108,0.15); color: #FF5C6C; }
+.status-refer  { background: rgba(242,193,78,0.08); border: 1px solid rgba(242,193,78,0.15); color: #F2C14E; }
+.status-accent { background: rgba(110,168,254,0.08); border: 1px solid rgba(110,168,254,0.15); color: #6EA8FE; }
 
-/* ─── Dashboard surface utilities ───────────────────────────────────────── */
-.dash-card      { @apply rounded-2xl border border-navy-700 bg-navy-900; }
-.dash-card-pad  { @apply p-6; }
-.dash-glow-pass { box-shadow: 0 0 0 1px rgba(16,185,129,0.25), 0 0 24px rgba(16,185,129,0.08); }
-.dash-glow-deny { box-shadow: 0 0 0 1px rgba(220,38,38,0.3),  0 0 24px rgba(220,38,38,0.10); }
-.dash-glow-accent { box-shadow: 0 0 0 1px rgba(99,102,241,0.3), 0 0 24px rgba(99,102,241,0.10); }
-
-/* ─── Bento card (marketing) ────────────────────────────────────────────── */
+/* ─── Marketing card ─────────────────────────────────────────────────────── */
 .bento-card {
-  @apply relative overflow-hidden rounded-xl border border-navy-700 bg-navy-900;
+  @apply relative overflow-hidden rounded-xl border border-[#1E2635] bg-[#0F131A];
 }
 
-/* ─── Noise pseudo-element ──────────────────────────────────────────────── */
-.noise::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 0;
-}
+/* ─── Dashboard surface ──────────────────────────────────────────────────── */
+.dash-card     { @apply rounded-xl border border-[#1E2635] bg-[#0F131A]; }
+.dash-card-pad { @apply p-5; }
 
-/* ─── Reduced motion ────────────────────────────────────────────────────── */
+/* ─── Reduced motion ─────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

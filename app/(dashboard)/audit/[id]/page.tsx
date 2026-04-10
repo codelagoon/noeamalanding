@@ -41,7 +41,7 @@ export default function AuditReportPage() {
   if (loading) {
     return (
       <div className="p-8">
-        <div className="animate-pulse space-y-6">
+        <div className="space-y-6">
           <div className="h-8 bg-gray-200 rounded w-1/3"></div>
           <div className="h-40 bg-gray-200 rounded"></div>
           <div className="grid grid-cols-3 gap-6">
@@ -73,7 +73,7 @@ export default function AuditReportPage() {
             Detailed fairness analysis and recommendations
           </p>
         </div>
-        <button className="flex items-center gap-2 px-6 py-3 bg-[#6366F1] text-white font-mono rounded-lg hover:bg-[#4338CA] transition-colors">
+        <button className="flex items-center gap-2 px-6 py-3 bg-[#6EA8FE] text-white font-mono rounded-lg hover:bg-[#2B58D8] transition-colors">
           <Download size={20} />
           Download PDF
         </button>

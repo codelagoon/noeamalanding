@@ -98,7 +98,7 @@ export default function UploadPage() {
       <select
         value={(columnMap[field] as string) || ''}
         onChange={(e) => setColumnMap({ ...columnMap, [field]: e.target.value })}
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#6366F1] font-mono"
+        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#6EA8FE] font-mono"
       >
         <option value="">Select column...</option>
         {columns.map((col) => (
@@ -165,7 +165,7 @@ export default function UploadPage() {
                 </tbody>
               </table>
             </div>
-            <button className="mt-4 flex items-center gap-2 text-[#6366F1] hover:text-[#4338CA] font-mono text-sm">
+            <button className="mt-4 flex items-center gap-2 text-[#6EA8FE] hover:text-[#2B58D8] font-mono text-sm">
               <Download size={16} />
               Download Sample CSV
             </button>
@@ -188,7 +188,7 @@ export default function UploadPage() {
                   value={institutionName}
                   onChange={(e) => setInstitutionName(e.target.value)}
                   placeholder="Your Institution Name"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#6366F1] font-mono"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#6EA8FE] font-mono"
                 />
               </div>
 
@@ -216,7 +216,7 @@ export default function UploadPage() {
               <button
                 onClick={handleAnalyze}
                 disabled={analyzing}
-                className="flex-1 px-6 py-3 bg-[#6366F1] text-white font-mono rounded-lg hover:bg-[#4338CA] transition-colors disabled:opacity-50"
+                className="flex-1 px-6 py-3 bg-[#6EA8FE] text-white font-mono rounded-lg hover:bg-[#2B58D8] transition-colors disabled:opacity-50"
               >
                 {analyzing ? 'Running Analysis...' : 'Run Audit'}
               </button>
@@ -229,7 +229,7 @@ export default function UploadPage() {
               <div className="space-y-3 font-mono text-sm">
                 {['Parsing data', 'Calculating approval rate disparities', 'Identifying proxy variables', 'Generating recommendations'].map((step, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-green-500 rounded-full "></div>
                     <span className="text-gray-700">{step}</span>
                   </div>
                 ))}

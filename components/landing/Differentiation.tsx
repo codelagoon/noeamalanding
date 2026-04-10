@@ -1,61 +1,36 @@
 export default function Differentiation() {
-  const comparisons = [
-    {
-      dimension: 'Setup time',
-      noema: 'Minutes — upload a CSV',
-      alternative: 'Weeks of consultant engagement',
-    },
-    {
-      dimension: 'Disparity measurement',
-      noema: 'Disparate Impact Ratio (DIR) + four-fifths rule',
-      alternative: 'Informal pp gap review, inconsistently applied',
-    },
-    {
-      dimension: 'Proxy detection',
-      noema: 'Correlation scores + reconstruction risk flag',
-      alternative: 'Manual variable review by committee',
-    },
-    {
-      dimension: 'Adverse action',
-      noema: 'Checked against CFPB Circular 2022-03 specificity standard',
-      alternative: 'Generic reason codes assumed sufficient',
-    },
-    {
-      dimension: 'Iteration speed',
-      noema: 'Re-run after every model change to track fairness drift',
-      alternative: 'Annual or pre-exam only',
-    },
-    {
-      dimension: 'Data privacy',
-      noema: 'Aggregate results only — no PII stored',
-      alternative: 'Raw data shared with third party',
-    },
+  const rows = [
+    { d: 'Time to first audit',     noema: 'Under 5 minutes — upload a CSV',                traditional: '4–8 weeks of consulting scoping' },
+    { d: 'Disparity measurement',   noema: 'DIR + four-fifths rule, automated',              traditional: 'Informal pp-gap review, inconsistently applied' },
+    { d: 'Proxy detection',         noema: 'Correlation scores + reconstruction risk flag',  traditional: 'Manual variable committee review' },
+    { d: 'Adverse action specificity', noema: 'CFPB 2022-03 behavioral narratives via SLM', traditional: 'Generic reason codes assumed sufficient' },
+    { d: 'Regulatory frameworks',   noema: 'ECOA · Reg B · CFPB 2022-03 · EU AI Act',       traditional: 'Reviewed annually or pre-examination only' },
+    { d: 'Data privacy',            noema: 'Aggregate results only — no PII stored',         traditional: 'Raw data shared with third-party reviewer' },
+    { d: 'Iteration speed',         noema: 'Re-run after every model change',                traditional: 'Annual or ad hoc' },
   ];
 
   return (
-    <section className="px-8 py-24 border-t border-[#1F2E48]">
+    <section className="px-8 py-20 border-t border-[#1E2635] bg-[#0A0D12]">
       <div className="max-w-5xl mx-auto">
-        <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#7A90A8] mb-4">
-          Why Noema
-        </p>
-        <h2 className="font-serif text-[clamp(32px,4vw,48px)] leading-[1.15] text-[#E8EDF5] mb-12 max-w-2xl">
-          Infrastructure-grade fairness auditing, not a consulting project
+        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E788A] mb-4">Why Noema</p>
+        <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] leading-[1.15] text-[#F5F7FA] mb-10 max-w-xl">
+          Infrastructure-grade auditing, not a consulting engagement.
         </h2>
 
-        <div className="border border-[#1F2E48] rounded-lg overflow-hidden">
-          <div className="grid grid-cols-3 bg-[#0C1220] border-b border-[#1F2E48] px-6 py-3">
-            <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#7A90A8]"></p>
-            <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-indigo-400">Noema</p>
-            <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-[#7A90A8]">Traditional</p>
+        <div className="rounded-xl border border-[#1E2635] overflow-hidden">
+          <div className="grid grid-cols-3 bg-[#131926] border-b border-[#1E2635] px-5 py-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#6E788A]" />
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#6EA8FE]">Noema</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#6E788A]">Traditional approach</p>
           </div>
-          {comparisons.map(({ dimension, noema, alternative }, i) => (
+          {rows.map((row, i) => (
             <div
-              key={dimension}
-              className={`grid grid-cols-3 px-6 py-4 ${i < comparisons.length - 1 ? 'border-b border-[#1F2E48]' : ''}`}
+              key={row.d}
+              className={`grid grid-cols-3 px-5 py-4 gap-4 ${i < rows.length - 1 ? 'border-b border-[#1E2635]' : ''} hover:bg-[#131926]/50 transition-colors`}
             >
-              <p className="font-mono text-sm text-[#7A90A8]">{dimension}</p>
-              <p className="font-mono text-sm text-[#E8EDF5] font-semibold">{noema}</p>
-              <p className="font-mono text-sm text-[#7A90A8]">{alternative}</p>
+              <p className="font-sans text-sm text-[#A7B0C0] font-medium">{row.d}</p>
+              <p className="font-sans text-sm text-[#F5F7FA]">{row.noema}</p>
+              <p className="font-sans text-sm text-[#6E788A]">{row.traditional}</p>
             </div>
           ))}
         </div>

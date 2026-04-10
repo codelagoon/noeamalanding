@@ -1,22 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import AnimatedGridPattern from '@/components/magicui/AnimatedGridPattern';
-import ShimmerButton from '@/components/magicui/ShimmerButton';
 import NumberTicker from '@/components/magicui/NumberTicker';
-import Marquee from '@/components/magicui/Marquee';
+import PrimaryButton from '@/components/ui/PrimaryButton';
 
-const marqueeItems = [
-  'Disparate Impact Ratio · Four-Fifths Rule',
-  'CFPB Circular 2022-03 Behavioral Specificity',
-  'SHAP → Adverse Action Narratives',
-  'Reg B Counterfactual Explanations',
-  'Proxy Variable Reconstruction Risk',
-  'Fairness Drift Monitoring · Quarterly Cadence',
-  'Rashomon Set · Pareto Frontier LDAs',
-  'Binary Medium Threshold · 40% Gap Closure',
-  'EU AI Act High-Risk Audit Trail',
-  '26M Credit-Invisible Recovery · +21.3% Scorability',
+const stats = [
+  { value: 765,  suffix: 'M', prefix: '$', label: 'annual cost of lending disparity to minority borrowers', source: 'Bartlett et al., 2022', decimals: 0, color: '#FF5C6C' },
+  { value: 40,   suffix: '%', prefix: '',  label: 'decisioning gap closed by the Binary Medium threshold', source: 'Internal PoC benchmark', decimals: 0, color: '#6EA8FE' },
+  { value: 21.3, suffix: '%', prefix: '+', label: 'scorability lift from alternative data integration', source: 'Urban Institute, 2021', decimals: 1, color: '#5FD1C4' },
 ];
 
 export default function Hero() {
@@ -48,114 +39,91 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-8 pt-28 pb-20 overflow-hidden">
-      <AnimatedGridPattern numSquares={60} maxOpacity={0.05} duration={3} className="inset-0" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,#080D1A_70%,transparent_100%)]" />
+    <section className="relative pt-32 pb-24 px-8 overflow-hidden">
+      {/* Subtle horizontal rule accent */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1E2635] to-transparent" />
 
-      <div className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto">
+        {/* Eyebrow */}
+        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E788A] mb-6">
+          Fair Lending Audit Infrastructure
+        </p>
 
-        {/* Announcement chip */}
-        <div className="mb-6 flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/20 bg-indigo-500/8">
-          <span className="h-2 w-2 rounded-full bg-indigo-500 animate-pulse2" />
-          <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-indigo-300">
-            $2.01T AI lending market · compliance is the moat
-          </p>
-        </div>
-
-        {/* Strategic Moat headline */}
-        <h1 className="font-serif text-[clamp(38px,6.5vw,76px)] leading-[1.06] text-[#E8EDF5] mb-5">
-          Turn compliance into a{' '}
-          <span className="relative">
-            <span className="text-indigo-400">strategic moat.</span>
-            <span
-              aria-hidden
-              className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-indigo-500/0 via-indigo-400/60 to-indigo-500/0"
-            />
-          </span>
-          <br />
-          <span className="text-[#7A90A8] text-[0.75em] font-sans font-normal">
-            Close the institutional lag before regulators arrive.
-          </span>
+        {/* Headline — two-line editorial */}
+        <h1 className="font-serif text-[clamp(38px,5.5vw,64px)] leading-[1.06] text-[#F5F7FA] max-w-3xl mb-6">
+          The governance layer for AI-driven lending.
         </h1>
 
-        {/* Sub-headline: problem framing */}
-        <p className="font-mono text-[15px] text-[#7A90A8] max-w-[620px] mb-4 leading-relaxed">
-          AI underwriting models outpace the governance infrastructure around them.
+        {/* Sub-headline */}
+        <p className="text-[17px] text-[#A7B0C0] leading-relaxed max-w-xl mb-4 font-sans">
+          AI underwriting models outpace the compliance infrastructure around them.
           Noema closes that gap — automating Disparate Impact Ratio measurement,
-          SHAP-to-narrative translation, and CFPB Circular 2022-03 adverse action specificity
+          CFPB-compliant adverse action narratives, and fairness drift monitoring
           in a single audit run.
         </p>
 
-        {/* Behavioral specificity callout — the core "translator" value prop */}
-        <div className="mb-8 max-w-2xl w-full mx-auto p-4 rounded-xl border border-indigo-500/15 bg-indigo-500/5">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-indigo-400 mb-2">
-            CFPB 2022-03 · Behavioral Specificity (not a generic reason code)
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
-            <div className="p-3 rounded-lg bg-[#DC2626]/8 border border-[#DC2626]/15">
-              <p className="font-mono text-[9px] text-[#DC2626]/70 uppercase tracking-wider mb-1">Non-compliant ✗</p>
-              <p className="font-mono text-xs text-[#E8EDF5]">&ldquo;Credit history insufficient&rdquo;</p>
+        {/* CFPB behavioral specificity — the core product proof */}
+        <div className="mb-10 max-w-2xl rounded-lg border border-[#1E2635] bg-[#0F131A] overflow-hidden">
+          <div className="px-4 py-2 border-b border-[#1E2635] bg-[#131926]">
+            <p className="font-mono text-[10px] text-[#6E788A] uppercase tracking-widest">
+              CFPB Circular 2022-03 · Adverse action specificity requirement
+            </p>
+          </div>
+          <div className="grid grid-cols-2 divide-x divide-[#1E2635]">
+            <div className="p-4">
+              <p className="font-mono text-[10px] text-[#FF5C6C] uppercase tracking-widest mb-2">Non-compliant</p>
+              <p className="font-sans text-sm text-[#A7B0C0] italic">&ldquo;Credit history insufficient&rdquo;</p>
             </div>
-            <div className="p-3 rounded-lg bg-emerald-500/8 border border-emerald-500/15">
-              <p className="font-mono text-[9px] text-emerald-400/70 uppercase tracking-wider mb-1">Compliant ✓</p>
-              <p className="font-mono text-xs text-[#E8EDF5]">&ldquo;Multiple cash advances exceeding 30% of income in the past 60 days&rdquo;</p>
+            <div className="p-4">
+              <p className="font-mono text-[10px] text-[#5FD1C4] uppercase tracking-widest mb-2">Compliant</p>
+              <p className="font-sans text-sm text-[#F5F7FA]">&ldquo;Multiple cash advances exceeding 30% of income in the past 60 days&rdquo;</p>
             </div>
           </div>
         </div>
 
-        {/* Waitlist form */}
+        {/* CTA */}
         {!submitted ? (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md mb-4">
+          <form onSubmit={handleSubmit} className="flex items-center gap-3 mb-3">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@institution.com"
+              placeholder="your@institution.com"
               required
-              className="flex-1 px-4 py-3 bg-navy-850 border border-navy-700 rounded-[4px] text-[#E8EDF5] font-mono text-sm placeholder:text-[#3A5068] focus:outline-none focus:border-indigo-500"
+              className="w-72 px-4 py-2.5 bg-[#0F131A] border border-[#1E2635] rounded-[6px] text-[#F5F7FA] font-mono text-sm placeholder:text-[#6E788A] focus:outline-none focus:border-accent/50 transition-colors"
             />
-            <ShimmerButton type="submit" disabled={loading} shimmerColor="#818CF8" background="#080D1A">
-              {loading ? 'Joining…' : 'Launch Private Beta'}
-            </ShimmerButton>
+            <PrimaryButton type="submit" disabled={loading} size="md">
+              {loading ? 'Submitting…' : 'Request access'}
+            </PrimaryButton>
+            <PrimaryButton variant="ghost" size="md" type="button" onClick={() => window.location.href='#how-it-works'}>
+              See how it works
+            </PrimaryButton>
           </form>
         ) : (
-          <div className="px-6 py-3 mb-4 bg-indigo-500/10 border border-indigo-500/25 rounded-[4px] font-mono text-sm text-indigo-300">
+          <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-[6px] border border-[#1E2635] bg-[#0F131A] font-mono text-sm text-[#5FD1C4] mb-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#5FD1C4]" />
             You&apos;re on the list. We&apos;ll be in touch.
           </div>
         )}
-        {error && <p className="mb-4 font-mono text-sm text-[#DC2626]">{error}</p>}
+        {error && <p className="font-mono text-sm text-[#FF5C6C] mb-3">{error}</p>}
 
-        {/* Research-backed stat tickers */}
-        <div className="grid grid-cols-3 gap-10 mt-8 mb-14">
-          {[
-            { value: 765, suffix: 'M', prefix: '$', label: 'annual minority borrower cost', source: 'Bartlett et al. 2022', decimals: 0, color: 'text-[#DC2626]' },
-            { value: 40,  suffix: '%', prefix: '',  label: 'decisioning gap closed by binary medium threshold', source: 'PoC benchmark', decimals: 0, color: 'text-indigo-400' },
-            { value: 21.3,suffix: '%', prefix: '+', label: 'scorability lift from alternative data', source: 'Urban Institute 2021', decimals: 1, color: 'text-emerald-400' },
-          ].map(({ value, suffix, prefix, label, source, decimals, color }) => (
-            <div key={label} className="text-center">
-              <p className={`font-mono font-bold text-3xl mb-1 ${color}`}>
-                <NumberTicker value={value} prefix={prefix} suffix={suffix} decimalPlaces={decimals} delay={0.3} />
+        <p className="font-mono text-[11px] text-[#6E788A]">
+          Used by compliance teams at Tier 1 and Tier 2 institutions.
+          Statistical analysis only — not legal advice.
+        </p>
+
+        {/* Stat row — research-backed numbers */}
+        <div className="mt-16 pt-8 border-t border-[#1E2635] grid grid-cols-1 sm:grid-cols-3 gap-8">
+          {stats.map(({ value, suffix, prefix, label, source, decimals, color }) => (
+            <div key={label}>
+              <p className="font-mono font-bold text-[34px] leading-none mb-2" style={{ color }}>
+                <NumberTicker value={value} prefix={prefix} suffix={suffix} decimalPlaces={decimals} delay={0.4} />
               </p>
-              <p className="font-mono text-[10px] text-[#7A90A8] uppercase tracking-wider leading-tight max-w-[120px] mx-auto">{label}</p>
-              <p className="font-mono text-[9px] text-[#3A5068] mt-0.5">{source}</p>
+              <p className="font-sans text-sm text-[#A7B0C0] leading-snug mb-1">{label}</p>
+              <p className="font-mono text-[10px] text-[#6E788A]">{source}</p>
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Compliance signal marquee */}
-      <div className="relative z-10 w-full max-w-5xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <Marquee pauseOnHover duration={28} repeat={2}>
-          {marqueeItems.map((item) => (
-            <div
-              key={item}
-              className="mx-3 flex items-center gap-2 px-4 py-1.5 rounded-full border border-navy-700 bg-navy-850"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-indigo-500 shrink-0" />
-              <span className="font-mono text-[10px] text-[#7A90A8] whitespace-nowrap">{item}</span>
-            </div>
-          ))}
-        </Marquee>
       </div>
     </section>
   );

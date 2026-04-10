@@ -1,111 +1,74 @@
-'use client';
-
 import { Shield, Lock, Eye, Database, Key, Users } from 'lucide-react';
 
-interface PillarProps {
-  icon: React.ReactNode;
-  title: string;
-  badge: string;
-  description: string;
-  detail: string;
-}
-
-function Pillar({ icon, title, badge, description, detail }: PillarProps) {
-  return (
-    <div className="group relative overflow-hidden rounded-xl border border-[#1F2E48] bg-[#0C1220] p-6 hover:border-indigo-500/60 transition-colors duration-300">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_100%,#6366F108,transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="relative z-10">
-        <div className="flex items-start justify-between mb-4">
-          <div className="p-2 rounded-lg bg-[#080D1A] border border-[#1F2E48] text-indigo-400">{icon}</div>
-          <span className="font-mono text-[9px] tracking-widest uppercase text-indigo-400 border border-indigo-500/30 bg-indigo-500/10 px-2 py-0.5 rounded-full">{badge}</span>
-        </div>
-        <h3 className="font-mono text-sm font-semibold text-[#E8EDF5] mb-1">{title}</h3>
-        <p className="font-mono text-xs text-[#7A90A8] mb-3 leading-relaxed">{description}</p>
-        <p className="font-mono text-[10px] text-[#7A90A8]/70 leading-relaxed border-t border-[#1F2E48] pt-3">{detail}</p>
-      </div>
-    </div>
-  );
-}
+const pillars = [
+  {
+    icon: Database,
+    title: 'Aggregate results only',
+    badge: 'Zero PII',
+    body: 'Raw applicant records are never stored. Only statistical aggregates — approval rates by group, correlation scores, DIR values — persist beyond the audit session.',
+  },
+  {
+    icon: Shield,
+    title: 'Row-Level Security',
+    badge: 'Supabase RLS',
+    body: 'Every audit record is gated by Supabase RLS policies using auth.uid() matching. Cross-institution data access is structurally impossible.',
+  },
+  {
+    icon: Lock,
+    title: 'Secure Multi-Party Computation',
+    badge: 'SMPC-ready',
+    body: 'Architecture supports cross-lender benchmark audits where no institution sees another\'s raw portfolio — only the aggregate fairness signal.',
+  },
+  {
+    icon: Eye,
+    title: 'Differential Privacy',
+    badge: 'DP-ready',
+    body: 'Aggregate statistics support calibrated noise injection before cross-institution sharing, satisfying formal ε-DP guarantees.',
+  },
+  {
+    icon: Key,
+    title: 'Isolated API surface',
+    badge: 'MCP-scoped',
+    body: 'The MCP endpoint exposes only aggregated telemetry. Auditing agents receive fairness signals — never individual applicant records.',
+  },
+  {
+    icon: Users,
+    title: 'ECOA data minimisation',
+    badge: 'Reg B',
+    body: 'Protected-class columns are used solely to compute group-level statistics, consistent with ECOA data collection rules. Never used as model inputs.',
+  },
+];
 
 export default function PrivacyMoat() {
-  const pillars: PillarProps[] = [
-    {
-      icon: <Database size={18} />,
-      title: 'Aggregate Results Only',
-      badge: 'Zero PII',
-      description: 'Raw applicant records are never stored. Only statistical aggregates — approval rates by group, correlation scores, DIR values — persist beyond the audit session.',
-      detail: 'Per-applicant data is processed in memory and discarded immediately. No protected-class PII is written to any database, log, or storage bucket at any point.',
-    },
-    {
-      icon: <Shield size={18} />,
-      title: 'Row-Level Security',
-      badge: 'Supabase RLS',
-      description: 'Every audit record, dataset reference, and report is gated by Supabase Row-Level Security policies. Users can only access rows they own — at the database layer, not application layer.',
-      detail: 'RLS policies use auth.uid() matching. The service-role key never touches the client. Cross-institution data access is structurally impossible, not merely prohibited by application logic.',
-    },
-    {
-      icon: <Lock size={18} />,
-      title: 'Secure Multi-Party Computation',
-      badge: 'SMPC-ready',
-      description: 'Architecture designed for cross-lender benchmark audits where no institution sees another\'s raw decision data — only the aggregate fairness signal computed under SMPC.',
-      detail: 'SMPC allows peer comparison against industry DIR benchmarks without exposing individual loan portfolios. Institutions learn their relative standing, not each other\'s data.',
-    },
-    {
-      icon: <Eye size={18} />,
-      title: 'Differential Privacy',
-      badge: 'DP-ready',
-      description: 'Aggregate statistics are designed to support calibrated noise injection before cross-institution sharing, satisfying formal differential privacy guarantees (ε-DP).',
-      detail: 'Even in the event of a data breach, ε-DP ensures no individual applicant\'s protected class or decision outcome can be reconstructed from published fairness statistics.',
-    },
-    {
-      icon: <Key size={18} />,
-      title: 'Isolated API Surface',
-      badge: 'MCP-secured',
-      description: 'The Model Context Protocol endpoint exposes only aggregated runtime telemetry — route status, audit latency, disparity score summaries — never individual record data.',
-      detail: 'MCP read access is scoped to non-PII telemetry. Auditing agents receive fairness signals they can reason about; they cannot retrieve underlying applicant records.',
-    },
-    {
-      icon: <Users size={18} />,
-      title: 'ECOA-Aligned Data Minimization',
-      badge: 'Reg B',
-      description: 'Only the columns necessary for disparity analysis are used. Protected-class indicators are processed for statistical comparison only — never used as model inputs.',
-      detail: 'The column mapping step intentionally separates the protected-class column from model inputs. It is used solely to compute group-level statistics, consistent with ECOA data collection rules.',
-    },
-  ];
-
   return (
-    <section className="px-8 py-24 border-t border-[#1F2E48]">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="h-px flex-1 bg-[#1F2E48]" />
-          <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-indigo-400">Privacy Architecture</p>
-          <div className="h-px flex-1 bg-[#1F2E48]" />
-        </div>
-
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-[clamp(28px,4vw,44px)] leading-[1.15] text-[#E8EDF5] mb-4">
-            The Privacy Moat
+    <section className="px-8 py-20 border-t border-[#1E2635]">
+      <div className="max-w-5xl mx-auto">
+        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#6E788A] mb-4">Privacy architecture</p>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <h2 className="font-serif text-[clamp(26px,3.5vw,40px)] leading-[1.15] text-[#F5F7FA] max-w-xl">
+            Structural data isolation at every layer.
           </h2>
-          <p className="font-mono text-sm text-[#7A90A8] max-w-xl mx-auto leading-relaxed">
-            Structural data isolation at every layer — from the database constraint to the cryptographic primitive. Not a compliance checkbox. An architectural commitment.
+          <p className="font-sans text-sm text-[#A7B0C0] max-w-xs leading-relaxed">
+            Not a compliance checkbox. An architectural commitment — from the database constraint to the cryptographic primitive.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {pillars.map((p) => <Pillar key={p.title} {...p} />)}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#1E2635] border border-[#1E2635] rounded-xl overflow-hidden">
+          {pillars.map(({ icon: Icon, title, badge, body }) => (
+            <div key={title} className="p-5 bg-[#0F131A] hover:bg-[#131926] transition-colors">
+              <div className="flex items-center justify-between mb-3">
+                <Icon size={16} className="text-[#6E788A]" />
+                <span className="font-mono text-[9px] uppercase tracking-widest text-[#6EA8FE] border border-[#6EA8FE]/20 bg-[#6EA8FE]/8 px-2 py-0.5 rounded-full">{badge}</span>
+              </div>
+              <h3 className="font-sans text-sm font-semibold text-[#F5F7FA] mb-2">{title}</h3>
+              <p className="font-sans text-sm text-[#6E788A] leading-relaxed">{body}</p>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-8 p-5 rounded-xl border border-[#1F2E48] bg-[#0C1220] flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-mono text-sm text-[#7A90A8] leading-relaxed max-w-xl">
-            <span className="text-[#E8EDF5] font-semibold">Statistical analysis only.</span>{' '}
-            Noema does not provide legal advice, certify regulatory compliance, or guarantee outcomes in regulatory examinations. Results should be reviewed with qualified fair lending counsel.
-          </p>
-          <div className="flex gap-3 shrink-0">
-            {['SOC 2 ready', 'ECOA-aligned', 'RLS-enforced'].map((tag) => (
-              <span key={tag} className="px-3 py-1.5 font-mono text-[10px] text-indigo-400 border border-indigo-500/30 bg-indigo-500/10 rounded-full whitespace-nowrap">{tag}</span>
-            ))}
-          </div>
-        </div>
+        <p className="mt-6 font-mono text-[11px] text-[#6E788A] max-w-3xl leading-relaxed">
+          Statistical analysis only. Noema does not provide legal advice or certify regulatory compliance. Results should be reviewed with qualified fair-lending counsel before use in examination submissions.
+        </p>
       </div>
     </section>
   );
