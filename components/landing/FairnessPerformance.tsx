@@ -143,105 +143,151 @@ function ParetoChart() {
     return () => observer.disconnect();
   }, []);
 
-  const points = [
-    { x: 20, y: 95, label: 'Baseline', frontier: false },
-    { x: 35, y: 94, label: '', frontier: false },
-    { x: 45, y: 93, label: '', frontier: true },
-    { x: 55, y: 92, label: '', frontier: true },
-    { x: 65, y: 91, label: 'Optimal', frontier: true },
-    { x: 72, y: 89, label: '', frontier: true },
-    { x: 78, y: 86, label: '', frontier: true },
-    { x: 82, y: 82, label: 'Max Fair', frontier: true },
-    { x: 40, y: 88, label: '', frontier: false },
-    { x: 50, y: 85, label: '', frontier: false },
-    { x: 30, y: 90, label: '', frontier: false },
+  // Frontier points (optimal trade-off curve)
+  const frontierPoints = [
+    { x: 15, y: 92 },
+    { x: 28, y: 91 },
+    { x: 40, y: 90 },
+    { x: 52, y: 89 },
+    { x: 64, y: 87 },
+    { x: 74, y: 84 },
+    { x: 82, y: 80 },
+    { x: 88, y: 75 },
   ];
+
+  // All data points
+  const allPoints = [
+    // Frontier points
+    ...frontierPoints.map((p) => ({ ...p, frontier: true, label: '' })),
+    // Suboptimal points (below frontier)
+    { x: 25, y: 85, frontier: false, label: '' },
+    { x: 35, y: 83, frontier: false, label: '' },
+    { x: 45, y: 82, frontier: false, label: '' },
+    { x: 55, y: 80, frontier: false, label: '' },
+    { x: 65, y: 78, frontier: false, label: '' },
+    { x: 70, y: 75, frontier: false, label: '' },
+    { x: 30, y: 88, frontier: false, label: '' },
+    { x: 50, y: 86, frontier: false, label: '' },
+    { x: 75, y: 79, frontier: false, label: '' },
+  ];
+
+  // Generate smooth curve path
+  const generateCurvePath = () => {
+    if (frontierPoints.length < 2) return '';
+    
+    let path = `M ${frontierPoints[0].x} ${100 - frontierPoints[0].y}`;
+    
+    for (let i = 0; i < frontierPoints.length - 1; i++) {
+      const current = frontierPoints[i];
+      const next = frontierPoints[i + 1];
+      const controlX = (current.x + next.x) / 2;
+      const controlY = (100 - current.y + 100 - next.y) / 2;
+      
+      path += ` Q ${controlX} ${controlY} ${next.x} ${100 - next.y}`;
+    }
+    
+    return path;
+  };
 
   return (
     <div ref={ref} className="relative">
       <div className="aspect-square bg-section-bg border border-border-subtle rounded-lg p-6 relative overflow-hidden">
+        {/* Grid lines */}
         <div className="absolute inset-6">
           {[0, 25, 50, 75, 100].map((v) => (
             <div
               key={`h-${v}`}
-              className="absolute left-0 right-0 border-t border-border-subtle"
+              className="absolute left-0 right-0 border-t border-border-subtle/40"
               style={{ top: `${100 - v}%` }}
             />
           ))}
           {[0, 25, 50, 75, 100].map((v) => (
             <div
               key={`v-${v}`}
-              className="absolute top-0 bottom-0 border-l border-border-subtle"
+              className="absolute top-0 bottom-0 border-l border-border-subtle/40"
               style={{ left: `${v}%` }}
             />
           ))}
         </div>
 
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 -rotate-90 origin-center">
+        {/* Y-axis label */}
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 -rotate-90 origin-center">
           <span className="font-mono text-caption text-text-muted whitespace-nowrap">
             Model Performance (AUC)
           </span>
         </div>
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6">
+
+        {/* X-axis label */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-7">
           <span className="font-mono text-caption text-text-muted">
-            Fairness Score (Demographic Parity)
+            Fairness Score
           </span>
         </div>
 
+        {/* Chart SVG */}
         <svg className="absolute inset-6 overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
+          {/* Frontier curve */}
           <path
-            d={`M 45,${100 - 93} C 55,${100 - 92} 65,${100 - 91} 72,${100 - 89} S 78,${100 - 86} 82,${100 - 82}`}
+            d={generateCurvePath()}
             fill="none"
             stroke="#D6B25E"
-            strokeWidth="1.5"
-            strokeDasharray={isVisible ? "0" : "200"}
-            strokeDashoffset={isVisible ? "0" : "200"}
-            className="transition-all duration-1000 ease-out"
-            style={{ transitionDelay: '300ms' }}
+            strokeWidth="2"
+            strokeDasharray={isVisible ? "0" : "500"}
+            strokeDashoffset={isVisible ? "0" : "500"}
+            className="transition-all duration-1200 ease-out"
+            style={{ transitionDelay: '200ms' }}
+            vectorEffect="non-scaling-stroke"
           />
-          
-          {points.map((point, i) => (
+
+          {/* Data points */}
+          {allPoints.map((point, i) => (
             <g key={i}>
+              {/* Point circle */}
               <circle
                 cx={point.x}
                 cy={100 - point.y}
-                r={point.frontier ? 4 : 3}
+                r={point.frontier ? 2.5 : 1.8}
                 fill={point.frontier ? '#D6B25E' : '#7A7A73'}
-                className={`transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-                style={{ transitionDelay: `${i * 50 + 500}ms` }}
+                opacity={isVisible ? 1 : 0}
+                className="transition-opacity duration-500"
+                style={{ transitionDelay: `${200 + i * 40}ms` }}
+                vectorEffect="non-scaling-stroke"
               />
-              {point.label && (
-                <text
-                  x={point.x + 3}
-                  y={100 - point.y - 4}
-                  className="font-mono fill-text-secondary"
-                  style={{ 
-                    fontSize: '8px',
-                    opacity: isVisible ? 1 : 0,
-                    transition: 'opacity 0.5s',
-                    transitionDelay: `${i * 50 + 700}ms`
-                  }}
-                >
-                  {point.label}
-                </text>
+              
+              {/* Glow effect for frontier points */}
+              {point.frontier && (
+                <circle
+                  cx={point.x}
+                  cy={100 - point.y}
+                  r={4}
+                  fill="none"
+                  stroke="#D6B25E"
+                  strokeWidth="0.5"
+                  opacity={isVisible ? 0.3 : 0}
+                  className="transition-opacity duration-500"
+                  style={{ transitionDelay: `${200 + i * 40}ms` }}
+                  vectorEffect="non-scaling-stroke"
+                />
               )}
             </g>
           ))}
         </svg>
 
+        {/* Axis labels */}
         <div className="absolute right-4 top-6 font-mono text-caption text-text-muted">95%</div>
-        <div className="absolute right-4 bottom-6 font-mono text-caption text-text-muted">80%</div>
+        <div className="absolute right-4 bottom-6 font-mono text-caption text-text-muted">70%</div>
         <div className="absolute left-6 bottom-1 font-mono text-caption text-text-muted">0</div>
         <div className="absolute right-4 bottom-1 font-mono text-caption text-text-muted">100</div>
       </div>
 
-      <div className="flex items-center justify-center gap-6 mt-4">
+      {/* Legend */}
+      <div className="flex items-center justify-center gap-8 mt-6">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-text-secondary" />
+          <div className="w-2 h-2 rounded-full bg-accent-gold" />
           <span className="font-sans text-caption text-text-muted">Efficient frontier</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-text-muted" />
+          <div className="w-2 h-2 rounded-full bg-text-muted" />
           <span className="font-sans text-caption text-text-muted">Suboptimal</span>
         </div>
       </div>
