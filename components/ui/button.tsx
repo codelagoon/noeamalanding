@@ -9,15 +9,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[#F5F5F2] text-[#000000] hover:bg-[#E0E0DC] hover:text-[#000000] active:bg-[#CACAC6] active:text-[#000000]",
+          "bg-[#F5F5F2] text-[#000000] hover:bg-[#E0E0DC] active:bg-[#CACAC6]",
         secondary:
-          "bg-card-elevated text-text-primary border border-divider hover:bg-card-bg hover:text-text-primary hover:border-text-muted/30 active:bg-section-bg active:text-text-primary",
+          "bg-card-elevated text-text-primary border border-divider hover:bg-card-bg hover:border-text-muted/30 active:bg-section-bg",
         outline:
-          "border border-divider bg-transparent text-text-secondary hover:text-text-primary hover:border-text-muted/50 active:bg-card-bg active:text-text-primary",
+          "border border-divider bg-transparent text-text-secondary hover:text-text-primary hover:border-text-muted/50 active:bg-card-bg",
         ghost:
-          "text-text-secondary hover:text-text-primary hover:bg-card-bg active:bg-card-elevated active:text-text-primary",
+          "text-text-secondary hover:text-text-primary hover:bg-card-bg active:bg-card-elevated",
         link:
-          "text-text-secondary hover:text-text-primary underline-offset-4 hover:underline active:text-text-primary",
+          "text-text-secondary hover:text-text-primary underline-offset-4 hover:underline",
         destructive:
           "bg-accent-red text-text-primary hover:bg-accent-red/90 active:bg-accent-red/80",
       },
@@ -44,9 +44,13 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
+    // Injecting style directly to override any potential global link styles when asChild is used
+    const style = variant === 'default' || !variant ? { color: '#000000' } : {};
+    
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
+        style={style}
         ref={ref}
         {...props}
       />
