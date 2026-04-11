@@ -7,32 +7,68 @@ interface Marker {
   id: number;
   x: number;
   y: number;
-  w: number;
-  h: number;
+  size: number;
   opacity: number;
   duration: number;
   delay: number;
   parallaxFactor: number;
-  anim: 'a' | 'b' | 'c' | 'd';
+  floatAnim: 'a' | 'b' | 'c' | 'd';
+  fadeAnim: 'fade-in-out-a' | 'fade-in-out-b' | 'fade-in-out-c';
 }
 
 const MARKERS: Marker[] = [
-  { id: 0, x:  8,  y: 12, w:  6, h:  6, opacity: 0.40, duration: 22, delay: 0.0, parallaxFactor: 0.45, anim: 'a' },
-  { id: 1, x: 83,  y:  9, w: 22, h:  4, opacity: 0.40, duration: 35, delay: 2.5, parallaxFactor: 0.70, anim: 'b' },
-  { id: 2, x: 73,  y: 20, w:  8, h:  8, opacity: 0.40, duration: 28, delay: 1.0, parallaxFactor: 0.55, anim: 'c' },
-  { id: 3, x: 91,  y: 31, w: 16, h:  3, opacity: 0.40, duration: 40, delay: 5.0, parallaxFactor: 0.85, anim: 'd' },
-  { id: 4, x: 67,  y: 43, w:  5, h:  5, opacity: 0.40, duration: 25, delay: 3.0, parallaxFactor: 0.40, anim: 'a' },
-  { id: 5, x: 87,  y: 54, w: 26, h:  4, opacity: 0.40, duration: 38, delay: 7.0, parallaxFactor: 0.90, anim: 'b' },
-  { id: 6, x: 12,  y: 67, w: 10, h:  4, opacity: 0.40, duration: 31, delay: 4.0, parallaxFactor: 0.60, anim: 'c' },
-  { id: 7, x: 76,  y: 75, w:  7, h:  7, opacity: 0.40, duration: 24, delay: 1.5, parallaxFactor: 0.50, anim: 'd' },
-  { id: 8, x: 59,  y: 85, w: 18, h:  3, opacity: 0.40, duration: 36, delay: 6.0, parallaxFactor: 0.75, anim: 'a' },
+  { id: 0, x: 8, y: 12, size: 4, opacity: 0.25, duration: 28, delay: 0.0, parallaxFactor: 0.45, floatAnim: 'a', fadeAnim: 'fade-in-out-a' },
+  { id: 1, x: 83, y: 9, size: 5, opacity: 0.20, duration: 35, delay: 2.5, parallaxFactor: 0.70, floatAnim: 'b', fadeAnim: 'fade-in-out-b' },
+  { id: 2, x: 73, y: 20, size: 3, opacity: 0.22, duration: 32, delay: 1.0, parallaxFactor: 0.55, floatAnim: 'c', fadeAnim: 'fade-in-out-c' },
+  { id: 3, x: 91, y: 31, size: 4, opacity: 0.18, duration: 40, delay: 5.0, parallaxFactor: 0.85, floatAnim: 'd', fadeAnim: 'fade-in-out-a' },
+  { id: 4, x: 67, y: 43, size: 3, opacity: 0.24, duration: 26, delay: 3.0, parallaxFactor: 0.40, floatAnim: 'a', fadeAnim: 'fade-in-out-b' },
+  { id: 5, x: 87, y: 54, size: 5, opacity: 0.19, duration: 38, delay: 7.0, parallaxFactor: 0.90, floatAnim: 'b', fadeAnim: 'fade-in-out-c' },
+  { id: 6, x: 12, y: 67, size: 4, opacity: 0.21, duration: 31, delay: 4.0, parallaxFactor: 0.60, floatAnim: 'c', fadeAnim: 'fade-in-out-a' },
+  { id: 7, x: 76, y: 75, size: 3, opacity: 0.23, duration: 27, delay: 1.5, parallaxFactor: 0.50, floatAnim: 'd', fadeAnim: 'fade-in-out-b' },
+  { id: 8, x: 59, y: 85, size: 4, opacity: 0.20, duration: 36, delay: 6.0, parallaxFactor: 0.75, floatAnim: 'a', fadeAnim: 'fade-in-out-c' },
 ];
 
 const KEYFRAMES = `
-  @keyframes marker-float-a { 0%{transform:translate(0,0)} 100%{transform:translate(6px,-18px)} }
-  @keyframes marker-float-b { 0%{transform:translate(0,0)} 100%{transform:translate(-6px,18px)} }
-  @keyframes marker-float-c { 0%{transform:translate(0,0)} 100%{transform:translate(6px,18px)} }
-  @keyframes marker-float-d { 0%{transform:translate(0,0)} 100%{transform:translate(-6px,-18px)} }
+  @keyframes marker-float-a { 
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(8px, -12px); }
+  }
+  @keyframes marker-float-b { 
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-8px, 12px); }
+  }
+  @keyframes marker-float-c { 
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(8px, 12px); }
+  }
+  @keyframes marker-float-d { 
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-8px, -12px); }
+  }
+  
+  @keyframes fade-in-out-a {
+    0% { opacity: 0; }
+    20% { opacity: 0.25; }
+    50% { opacity: 0.25; }
+    80% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  @keyframes fade-in-out-b {
+    0% { opacity: 0; }
+    25% { opacity: 0; }
+    45% { opacity: 0.25; }
+    75% { opacity: 0.25; }
+    95% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  @keyframes fade-in-out-c {
+    0% { opacity: 0; }
+    30% { opacity: 0; }
+    50% { opacity: 0.25; }
+    70% { opacity: 0.25; }
+    90% { opacity: 0; }
+    100% { opacity: 0; }
+  }
 `;
 
 export default function AmbientDataMarkers() {
@@ -90,13 +126,12 @@ export default function AmbientDataMarkers() {
           >
             <div
               style={{
-                width: `${m.w}px`,
-                height: `${m.h}px`,
-                opacity: m.opacity,
-                backgroundColor: '#B7B7B0',
+                width: `${m.size}px`,
+                height: `${m.size}px`,
+                backgroundColor: '#8BA7FF',
                 animation: reducedMotion
                   ? 'none'
-                  : `marker-float-${m.anim} ${m.duration}s ease-in-out ${m.delay}s infinite alternate`,
+                  : `marker-float-${m.floatAnim} ${m.duration}s ease-in-out ${m.delay}s infinite alternate, fade-in-out-${m.fadeAnim} ${m.duration * 1.5}s ease-in-out ${m.delay}s infinite`,
               } as CSSProperties}
             />
           </div>
