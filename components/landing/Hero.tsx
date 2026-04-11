@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import DataGlyphs from '@/components/landing/DataGlyphs';
+import AmbientMarkers from '@/components/landing/AmbientMarkers';
 import { useEffect, useRef, useState } from 'react';
 
 function AnimatedSection({ 
@@ -63,15 +63,11 @@ export default function Hero() {
         }}
       />
 
-      {/* Floating data glyphs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <DataGlyphs density={35} maxOpacity={0.06} />
-      </div>
-      
+      {/* Ambient data markers */}
+      <AmbientMarkers />
+
       {/* Gradient fade at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-page-bg to-transparent pointer-events-none z-[1]" />
-      {/* Gradient fade at top */}
-      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-page-bg to-transparent pointer-events-none z-[1]" />
 
       <div className="max-w-content mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl">
