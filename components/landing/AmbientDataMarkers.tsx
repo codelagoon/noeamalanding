@@ -17,15 +17,15 @@ interface Marker {
 }
 
 const MARKERS: Marker[] = [
-  { id: 0, x:  8,  y: 12, w:  6, h:  6, opacity: 0.040, duration: 22, delay: 0.0, parallaxFactor: 0.45, anim: 'a' },
-  { id: 1, x: 83,  y:  9, w: 22, h:  4, opacity: 0.030, duration: 35, delay: 2.5, parallaxFactor: 0.70, anim: 'b' },
-  { id: 2, x: 73,  y: 20, w:  8, h:  8, opacity: 0.050, duration: 28, delay: 1.0, parallaxFactor: 0.55, anim: 'c' },
-  { id: 3, x: 91,  y: 31, w: 16, h:  3, opacity: 0.030, duration: 40, delay: 5.0, parallaxFactor: 0.85, anim: 'd' },
-  { id: 4, x: 67,  y: 43, w:  5, h:  5, opacity: 0.040, duration: 25, delay: 3.0, parallaxFactor: 0.40, anim: 'a' },
-  { id: 5, x: 87,  y: 54, w: 26, h:  4, opacity: 0.025, duration: 38, delay: 7.0, parallaxFactor: 0.90, anim: 'b' },
-  { id: 6, x: 12,  y: 67, w: 10, h:  4, opacity: 0.035, duration: 31, delay: 4.0, parallaxFactor: 0.60, anim: 'c' },
-  { id: 7, x: 76,  y: 75, w:  7, h:  7, opacity: 0.050, duration: 24, delay: 1.5, parallaxFactor: 0.50, anim: 'd' },
-  { id: 8, x: 59,  y: 85, w: 18, h:  3, opacity: 0.030, duration: 36, delay: 6.0, parallaxFactor: 0.75, anim: 'a' },
+  { id: 0, x:  8,  y: 12, w:  6, h:  6, opacity: 0.40, duration: 22, delay: 0.0, parallaxFactor: 0.45, anim: 'a' },
+  { id: 1, x: 83,  y:  9, w: 22, h:  4, opacity: 0.40, duration: 35, delay: 2.5, parallaxFactor: 0.70, anim: 'b' },
+  { id: 2, x: 73,  y: 20, w:  8, h:  8, opacity: 0.40, duration: 28, delay: 1.0, parallaxFactor: 0.55, anim: 'c' },
+  { id: 3, x: 91,  y: 31, w: 16, h:  3, opacity: 0.40, duration: 40, delay: 5.0, parallaxFactor: 0.85, anim: 'd' },
+  { id: 4, x: 67,  y: 43, w:  5, h:  5, opacity: 0.40, duration: 25, delay: 3.0, parallaxFactor: 0.40, anim: 'a' },
+  { id: 5, x: 87,  y: 54, w: 26, h:  4, opacity: 0.40, duration: 38, delay: 7.0, parallaxFactor: 0.90, anim: 'b' },
+  { id: 6, x: 12,  y: 67, w: 10, h:  4, opacity: 0.40, duration: 31, delay: 4.0, parallaxFactor: 0.60, anim: 'c' },
+  { id: 7, x: 76,  y: 75, w:  7, h:  7, opacity: 0.40, duration: 24, delay: 1.5, parallaxFactor: 0.50, anim: 'd' },
+  { id: 8, x: 59,  y: 85, w: 18, h:  3, opacity: 0.40, duration: 36, delay: 6.0, parallaxFactor: 0.75, anim: 'a' },
 ];
 
 const KEYFRAMES = `
