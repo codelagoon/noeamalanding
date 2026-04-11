@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import AmbientMarkers from '@/components/landing/AmbientMarkers';
+import AmbientDataMarkers from '@/components/landing/AmbientDataMarkers';
 import { useEffect, useRef, useState } from 'react';
 
 function AnimatedSection({ 
@@ -63,8 +63,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Ambient data markers */}
-      <AmbientMarkers />
+      <AmbientDataMarkers />
 
       {/* Gradient fade at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-page-bg to-transparent pointer-events-none z-[1]" />
