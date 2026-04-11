@@ -16,13 +16,7 @@ interface Glyph {
   y: number;
   char: string;
   opacity: number;
-  targetOpacity: number;
-  speed: number;
   size: number;
-  drift: number;
-  phase: number;
-  lifetime: number;
-  age: number;
 }
 
 interface DataGlyphsProps {
@@ -34,136 +28,76 @@ interface DataGlyphsProps {
 export default function DataGlyphs({
   className = '',
   density = 40,
-  maxOpacity = 0.07,
+  maxOpacity = 0.06,
 }: DataGlyphsProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const glyphsRef = useRef<Glyph[]>([]);
-  const frameRef = useRef<number>(0);
-  const reducedMotion = useRef(false);
+  const drawnRef = useRef(false);
 
-  const createGlyph = useCallback((width: number, height: number, startRandom = true): Glyph => {
-    const lifetime = 600 + Math.random() * 1200;
-    return {
+  const scatter = useCallback((width: number, height: number): Glyph[] => {
+    return Array.from({ length: density }, () => ({
       x: Math.random() * width,
-      y: startRandom ? Math.random() * height : height + 20,
+      y: Math.random() * height,
       char: GLYPHS[Math.floor(Math.random() * GLYPHS.length)],
-      opacity: 0,
-      targetOpacity: (0.3 + Math.random() * 0.7) * maxOpacity,
-      speed: 0.08 + Math.random() * 0.15,
+      opacity: (0.25 + Math.random() * 0.75) * maxOpacity,
       size: 10 + Math.random() * 4,
-      drift: (Math.random() - 0.5) * 0.3,
-      phase: Math.random() * Math.PI * 2,
-      lifetime,
-      age: startRandom ? Math.random() * lifetime : 0,
-    };
-  }, [maxOpacity]);
+    }));
+  }, [density, maxOpacity]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    reducedMotion.current = mq.matches;
-    const handleMotionChange = (e: MediaQueryListEvent) => {
-      reducedMotion.current = e.matches;
-    };
-    mq.addEventListener('change', handleMotionChange);
+    if (!canvas || drawnRef.current) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const getDpr = () => Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = canvas.parentElement?.getBoundingClientRect();
+    if (!rect) return;
 
-    const resize = () => {
-      const dpr = getDpr();
-      const rect = canvas.parentElement?.getBoundingClientRect();
-      if (!rect) return;
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      canvas.style.width = rect.width + 'px';
-      canvas.style.height = rect.height + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    resize();
+    const glyphs = scatter(rect.width, rect.height);
 
-    const displayWidth = () => canvas.width / getDpr();
-    const displayHeight = () => canvas.height / getDpr();
-
-    glyphsRef.current = Array.from({ length: density }, () =>
-      createGlyph(displayWidth(), displayHeight(), true)
-    );
-
-    let lastTime = 0;
-
-    const render = (time: number) => {
-      const delta = Math.min(time - lastTime, 50);
-      lastTime = time;
-
-      const w = displayWidth();
-      const h = displayHeight();
-
-      ctx.clearRect(0, 0, w, h);
-
-      if (reducedMotion.current) {
-        glyphsRef.current.forEach((g) => {
-          ctx.font = '300 ' + g.size + 'px "DM Mono", monospace';
-          ctx.fillStyle = 'rgba(183, 183, 176, ' + (g.targetOpacity * 0.5) + ')';
-          ctx.fillText(g.char, g.x, g.y);
-        });
-        frameRef.current = requestAnimationFrame(render);
-        return;
-      }
-
-      const dt = delta / 16.67;
-
-      glyphsRef.current.forEach((g) => {
-        g.age += dt;
-
-        const lifeProgress = g.age / g.lifetime;
-        if (lifeProgress < 0.15) {
-          g.opacity = (lifeProgress / 0.15) * g.targetOpacity;
-        } else if (lifeProgress > 0.8) {
-          g.opacity = ((1 - lifeProgress) / 0.2) * g.targetOpacity;
-        } else {
-          g.opacity = g.targetOpacity;
-        }
-
-        g.y -= g.speed * dt;
-        g.x += Math.sin(g.phase + g.age * 0.005) * g.drift * dt;
-
-        ctx.font = '300 ' + g.size + 'px "DM Mono", monospace';
-        ctx.fillStyle = 'rgba(183, 183, 176, ' + Math.max(0, g.opacity) + ')';
-        ctx.fillText(g.char, g.x, g.y);
-      });
-
-      glyphsRef.current = glyphsRef.current.filter((g) => {
-        return g.age < g.lifetime && g.y > -30;
-      });
-
-      while (glyphsRef.current.length < density) {
-        glyphsRef.current.push(createGlyph(w, h, false));
-      }
-
-      frameRef.current = requestAnimationFrame(render);
-    };
-
-    frameRef.current = requestAnimationFrame(render);
-
-    const resizeObserver = new ResizeObserver(() => {
-      resize();
+    glyphs.forEach((g) => {
+      ctx.font = '300 ' + g.size + 'px "DM Mono", monospace';
+      ctx.fillStyle = 'rgba(183, 183, 176, ' + g.opacity + ')';
+      ctx.fillText(g.char, g.x, g.y);
     });
 
+    drawnRef.current = true;
+
+    const handleResize = () => {
+      const r = canvas.parentElement?.getBoundingClientRect();
+      if (!r) return;
+      const d = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = r.width * d;
+      canvas.height = r.height * d;
+      canvas.style.width = r.width + 'px';
+      canvas.style.height = r.height + 'px';
+      ctx.setTransform(d, 0, 0, d, 0, 0);
+
+      const fresh = scatter(r.width, r.height);
+      ctx.clearRect(0, 0, r.width, r.height);
+      fresh.forEach((g) => {
+        ctx.font = '300 ' + g.size + 'px "DM Mono", monospace';
+        ctx.fillStyle = 'rgba(183, 183, 176, ' + g.opacity + ')';
+        ctx.fillText(g.char, g.x, g.y);
+      });
+    };
+
+    const resizeObserver = new ResizeObserver(handleResize);
     if (canvas.parentElement) {
       resizeObserver.observe(canvas.parentElement);
     }
 
     return () => {
-      cancelAnimationFrame(frameRef.current);
       resizeObserver.disconnect();
-      mq.removeEventListener('change', handleMotionChange);
     };
-  }, [density, createGlyph]);
+  }, [scatter]);
 
   return (
     <canvas
