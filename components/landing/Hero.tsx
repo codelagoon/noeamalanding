@@ -119,7 +119,7 @@ export default function Hero() {
                   <div className="w-2.5 h-2.5 rounded-full bg-text-muted/30" />
                 </div>
                 <div className="ml-4 h-6 flex-1 max-w-md bg-section-bg rounded border border-border-subtle flex items-center px-3">
-                  <span className="font-mono text-caption text-text-muted">app.avarent.ai/dashboard</span>
+                  <span className="font-mono text-caption text-text-muted">app.avarent.app/dashboard</span>
                 </div>
               </div>
               

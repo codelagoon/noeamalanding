@@ -73,13 +73,13 @@ export default function FinalCTA() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Button asChild size="lg" className="group">
-                <a href="mailto:contact@avarent.ai">
+                <a href="mailto:contact@avarent.app">
                   Request Demo
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                 </a>
               </Button>
               <Button variant="outline" asChild size="lg">
-                <a href="mailto:contact@avarent.ai">Talk to the Team</a>
+                <a href="mailto:contact@avarent.app">Talk to the Team</a>
               </Button>
             </div>
           </div>
@@ -96,10 +96,10 @@ export default function FinalCTA() {
                   Discuss deployment options, custom integrations, and volume pricing.
                 </p>
                 <a 
-                  href="mailto:enterprise@avarent.ai" 
+                  href="mailto:enterprise@avarent.app" 
                   className="font-mono text-body-sm text-accent-blue hover:text-accent-blue/80 transition-colors duration-200"
                 >
-                  enterprise@avarent.ai
+                  enterprise@avarent.app
                 </a>
               </div>
               
@@ -111,10 +111,10 @@ export default function FinalCTA() {
                   Explore integration partnerships and channel opportunities.
                 </p>
                 <a 
-                  href="mailto:partners@avarent.ai" 
+                  href="mailto:partners@avarent.app" 
                   className="font-mono text-body-sm text-accent-blue hover:text-accent-blue/80 transition-colors duration-200"
                 >
-                  partners@avarent.ai
+                  partners@avarent.app
                 </a>
               </div>
             </div>
