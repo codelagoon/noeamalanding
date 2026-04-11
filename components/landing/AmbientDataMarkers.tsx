@@ -12,58 +12,58 @@ interface Marker {
   opacity: number;
   duration: number;
   delay: number;
-  dx: number;
-  dy: number;
-  parallaxRate: number;
-  hideOnMobile?: boolean;
+  parallaxFactor: number;
+  anim: 'a' | 'b' | 'c' | 'd';
 }
 
 const MARKERS: Marker[] = [
-  { id: 0, x: 78, y: 8,  w: 20, h: 4,  opacity: 0.75, duration: 28, delay: 0,   dx: -5,  dy:  14, parallaxRate: 0.018 },
-  { id: 1, x: 89, y: 16, w:  7, h:  7, opacity: 0.75, duration: 36, delay: 4,   dx:  4,  dy: -16, parallaxRate: 0.014 },
-  { id: 2, x: 71, y: 23, w:  6, h:  6, opacity: 0.75, duration: 30, delay: 1.5, dx: -3,  dy:  13, parallaxRate: 0.022 },
-  { id: 3, x: 87, y: 32, w: 24, h:  4, opacity: 0.75, duration: 34, delay: 6,   dx:  6,  dy: -15, parallaxRate: 0.016 },
-  { id: 4, x: 93, y: 44, w: 13, h:  4, opacity: 0.75, duration: 24, delay: 2.5, dx: -2,  dy:  12, parallaxRate: 0.012, hideOnMobile: true },
-  { id: 5, x: 82, y: 54, w:  8, h:  8, opacity: 0.75, duration: 38, delay: 5,   dx:  4,  dy: -17, parallaxRate: 0.019 },
-  { id: 6, x: 15, y: 72, w:  6, h:  6, opacity: 0.75, duration: 32, delay: 2,   dx: -3,  dy:  15, parallaxRate: 0.015, hideOnMobile: true },
-  { id: 7, x: 62, y: 77, w: 16, h:  5, opacity: 0.75, duration: 27, delay: 7,   dx:  5,  dy:  13, parallaxRate: 0.020 },
-  { id: 8, x: 81, y: 65, w:  7, h:  7, opacity: 0.75, duration: 35, delay: 1,   dx:  3,  dy: -14, parallaxRate: 0.013 },
-  { id: 9, x: 91, y: 84, w: 18, h:  4, opacity: 0.75, duration: 40, delay: 0.5, dx: -5,  dy:  17, parallaxRate: 0.017 },
+  { id: 0, x:  8,  y: 12, w:  6, h:  6, opacity: 0.040, duration: 22, delay: 0.0, parallaxFactor: 0.45, anim: 'a' },
+  { id: 1, x: 83,  y:  9, w: 22, h:  4, opacity: 0.030, duration: 35, delay: 2.5, parallaxFactor: 0.70, anim: 'b' },
+  { id: 2, x: 73,  y: 20, w:  8, h:  8, opacity: 0.050, duration: 28, delay: 1.0, parallaxFactor: 0.55, anim: 'c' },
+  { id: 3, x: 91,  y: 31, w: 16, h:  3, opacity: 0.030, duration: 40, delay: 5.0, parallaxFactor: 0.85, anim: 'd' },
+  { id: 4, x: 67,  y: 43, w:  5, h:  5, opacity: 0.040, duration: 25, delay: 3.0, parallaxFactor: 0.40, anim: 'a' },
+  { id: 5, x: 87,  y: 54, w: 26, h:  4, opacity: 0.025, duration: 38, delay: 7.0, parallaxFactor: 0.90, anim: 'b' },
+  { id: 6, x: 12,  y: 67, w: 10, h:  4, opacity: 0.035, duration: 31, delay: 4.0, parallaxFactor: 0.60, anim: 'c' },
+  { id: 7, x: 76,  y: 75, w:  7, h:  7, opacity: 0.050, duration: 24, delay: 1.5, parallaxFactor: 0.50, anim: 'd' },
+  { id: 8, x: 59,  y: 85, w: 18, h:  3, opacity: 0.030, duration: 36, delay: 6.0, parallaxFactor: 0.75, anim: 'a' },
 ];
 
-const KEYFRAMES =
-  '@keyframes ambient-drift{0%{transform:translate(0,0)}100%{transform:translate(var(--dx),var(--dy))}}';
+const KEYFRAMES = `
+  @keyframes marker-float-a { 0%{transform:translate(0,0)} 100%{transform:translate(6px,-18px)} }
+  @keyframes marker-float-b { 0%{transform:translate(0,0)} 100%{transform:translate(-6px,18px)} }
+  @keyframes marker-float-c { 0%{transform:translate(0,0)} 100%{transform:translate(6px,18px)} }
+  @keyframes marker-float-d { 0%{transform:translate(0,0)} 100%{transform:translate(-6px,-18px)} }
+`;
 
 export default function AmbientDataMarkers() {
-  const [scrollOffset, setScrollOffset] = useState(0);
-  const [isReducedMotion, setIsReducedMotion] = useState(false);
-  const reducedMotionRef = useRef(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const rmRef = useRef(false);
   const ticking = useRef(false);
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    reducedMotionRef.current = mq.matches;
-    setIsReducedMotion(mq.matches);
+    rmRef.current = mq.matches;
+    setReducedMotion(mq.matches);
 
-    const onPrefChange = (e: MediaQueryListEvent) => {
-      reducedMotionRef.current = e.matches;
-      setIsReducedMotion(e.matches);
+    const onPref = (e: MediaQueryListEvent) => {
+      rmRef.current = e.matches;
+      setReducedMotion(e.matches);
     };
 
     const onScroll = () => {
-      if (reducedMotionRef.current || ticking.current) return;
+      if (rmRef.current || ticking.current) return;
       ticking.current = true;
       requestAnimationFrame(() => {
-        setScrollOffset(window.scrollY);
+        setScrollY(window.scrollY);
         ticking.current = false;
       });
     };
 
-    mq.addEventListener('change', onPrefChange);
+    mq.addEventListener('change', onPref);
     window.addEventListener('scroll', onScroll, { passive: true });
-
     return () => {
-      mq.removeEventListener('change', onPrefChange);
+      mq.removeEventListener('change', onPref);
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
@@ -75,32 +75,33 @@ export default function AmbientDataMarkers() {
     >
       <style dangerouslySetInnerHTML={{ __html: KEYFRAMES }} />
 
-      {MARKERS.map((marker) => (
-        <div
-          key={marker.id}
-          className={marker.hideOnMobile ? 'absolute hidden sm:block' : 'absolute'}
-          style={{
-            left: `${marker.x}%`,
-            top: `${marker.y}%`,
-            transform: `translate3d(0,${isReducedMotion ? 0 : -(scrollOffset * marker.parallaxRate)}px,0)`,
-            willChange: isReducedMotion ? 'auto' : 'transform',
-          }}
-        >
+      {MARKERS.map((m) => {
+        const parallaxShift = reducedMotion ? 0 : -(scrollY * m.parallaxFactor * 0.04);
+        return (
           <div
+            key={m.id}
+            className="absolute"
             style={{
-              width: `${marker.w}px`,
-              height: `${marker.h}px`,
-              opacity: marker.opacity,
-              backgroundColor: '#C8C8C0',
-              '--dx': `${marker.dx}px`,
-              '--dy': `${marker.dy}px`,
-              animation: isReducedMotion
-                ? 'none'
-                : `ambient-drift ${marker.duration}s ease-in-out ${marker.delay}s infinite alternate`,
-            } as CSSProperties}
-          />
-        </div>
-      ))}
+              left: `${m.x}%`,
+              top: `${m.y}%`,
+              transform: `translate3d(0,${parallaxShift}px,0)`,
+              willChange: reducedMotion ? 'auto' : 'transform',
+            }}
+          >
+            <div
+              style={{
+                width: `${m.w}px`,
+                height: `${m.h}px`,
+                opacity: m.opacity,
+                backgroundColor: '#B7B7B0',
+                animation: reducedMotion
+                  ? 'none'
+                  : `marker-float-${m.anim} ${m.duration}s ease-in-out ${m.delay}s infinite alternate`,
+              } as CSSProperties}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }
