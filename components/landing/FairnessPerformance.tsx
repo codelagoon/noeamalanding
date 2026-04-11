@@ -63,7 +63,7 @@ export default function FairnessPerformance() {
             </h2>
             <p className="font-sans text-body-lg text-text-secondary leading-relaxed">
               Research consistently shows that well-designed fairness constraints often improve 
-              model robustness. NOEMA helps you find the interventions that satisfy regulatory 
+              model robustness. Avarent helps you find the interventions that satisfy regulatory 
               requirements with minimal impact on predictive accuracy.
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function FairnessPerformance() {
                 </h3>
                 <ParetoChart />
                 <p className="font-sans text-body-sm text-text-muted mt-4 leading-relaxed">
-                  Each point represents a model configuration. NOEMA identifies options along 
+                  Each point represents a model configuration. Avarent identifies options along 
                   the efficient frontier—maximizing fairness for a given performance level.
                 </p>
               </div>
@@ -102,7 +102,7 @@ export default function FairnessPerformance() {
             <InsightCard
               number="01"
               title="Identify low-cost wins"
-              description="Many fairness improvements have negligible performance impact. NOEMA surfaces these opportunities first."
+              description="Many fairness improvements have negligible performance impact. Avarent surfaces these opportunities first."
             />
             <InsightCard
               number="02"

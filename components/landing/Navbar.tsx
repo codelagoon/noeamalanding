@@ -28,7 +28,7 @@ export default function Navbar() {
             href="/" 
             className="font-serif text-xl lg:text-2xl tracking-wide text-text-primary hover:text-text-secondary transition-colors duration-200"
           >
-            NOEMA
+            Avarent
           </a>
 
           <div className="flex items-center gap-6 lg:gap-10">

@@ -85,7 +85,7 @@ export default function Hero() {
 
           <AnimatedSection delay={200}>
             <p className="font-sans text-body-lg text-text-secondary max-w-prose mb-10 leading-relaxed">
-              NOEMA provides continuous fairness monitoring, disparity detection, and 
+              Avarent provides continuous fairness monitoring, disparity detection, and 
               audit-ready documentation for AI models in regulated lending. Identify 
               proxy discrimination, generate adverse action explanations, and maintain 
               examination readiness—without rebuilding your infrastructure.
@@ -119,7 +119,7 @@ export default function Hero() {
                   <div className="w-2.5 h-2.5 rounded-full bg-text-muted/30" />
                 </div>
                 <div className="ml-4 h-6 flex-1 max-w-md bg-section-bg rounded border border-border-subtle flex items-center px-3">
-                  <span className="font-mono text-caption text-text-muted">app.noema.ai/dashboard</span>
+                  <span className="font-mono text-caption text-text-muted">app.avarent.ai/dashboard</span>
                 </div>
               </div>
               

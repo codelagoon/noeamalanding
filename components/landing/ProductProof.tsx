@@ -68,7 +68,7 @@ export default function ProductProof() {
               <span className="italic">regulated</span> environments.
             </h2>
             <p className="font-sans text-body-lg text-text-secondary leading-relaxed">
-              NOEMA analyzes model outputs against multiple fairness definitions, 
+              Avarent analyzes model outputs against multiple fairness definitions, 
               detects proxy variables, and generates the documentation regulators expect—
               continuously, not just at deployment.
             </p>

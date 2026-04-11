@@ -1,6 +1,6 @@
-# Noema
+# Avarent
 
-**Landing page for Noema — fairness auditing and model governance for AI-driven lending.**
+**Landing page for Avarent — fairness auditing and model governance for AI-driven lending.**
 
 ## Stack
 
@@ -22,7 +22,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Project Structure
 
 ```
-noema/
+avarent/
 ├── app/
 │   ├── (marketing)/        # Landing page route
 │   │   ├── layout.tsx      # Marketing layout (fonts, nav)

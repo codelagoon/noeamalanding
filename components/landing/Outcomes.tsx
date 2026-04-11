@@ -120,7 +120,7 @@ export default function Outcomes() {
               <span className="italic">compounds</span>.
             </h2>
             <p className="font-sans text-body-lg text-text-secondary leading-relaxed">
-              The cost of reactive compliance compounds too. NOEMA shifts model governance 
+              The cost of reactive compliance compounds too. Avarent shifts model governance 
               from examination response to continuous monitoring—reducing remediation costs, 
               accelerating approvals, and building examiner confidence over time.
             </p>

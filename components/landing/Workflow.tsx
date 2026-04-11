@@ -51,14 +51,14 @@ export default function Workflow() {
       number: '01',
       icon: <Upload className="w-6 h-6" />,
       title: 'Connect Your Data',
-      description: 'Upload model outputs, decision data, or connect directly to your data warehouse. No model access required—NOEMA works with outcomes.',
+      description: 'Upload model outputs, decision data, or connect directly to your data warehouse. No model access required—Avarent works with outcomes.',
       details: ['CSV upload or API integration', 'Works with any model architecture', 'No retraining required'],
     },
     {
       number: '02',
       icon: <Search className="w-6 h-6" />,
       title: 'Run Fairness Analysis',
-      description: 'NOEMA computes multiple fairness metrics across protected classes, identifies proxy variables, and flags statistical anomalies.',
+      description: 'Avarent computes multiple fairness metrics across protected classes, identifies proxy variables, and flags statistical anomalies.',
       details: ['Demographic parity, equalized odds, calibration', 'Proxy variable correlation analysis', 'Statistical significance testing'],
     },
     {
@@ -97,7 +97,7 @@ export default function Workflow() {
               <span className="italic">minutes</span>.
             </h2>
             <p className="font-sans text-body-lg text-text-secondary leading-relaxed">
-              NOEMA integrates into your existing workflow without requiring model access 
+              Avarent integrates into your existing workflow without requiring model access 
               or retraining. Upload decision data, run analysis, and generate the 
               documentation regulators expect.
             </p>
@@ -152,7 +152,7 @@ export default function Workflow() {
             </h3>
             <p className="font-sans text-body text-text-secondary mb-8 max-w-2xl mx-auto">
               Connect via API, upload files directly, or integrate with your data warehouse. 
-              NOEMA works with the infrastructure you already have.
+              Avarent works with the infrastructure you already have.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-8">
               <IntegrationBadge name="REST API" />

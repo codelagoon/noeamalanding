@@ -60,7 +60,7 @@ export default function Governance() {
             </h2>
             <p className="font-sans text-body-lg text-text-secondary leading-relaxed">
               Fair lending examinations require evidence: testing methodology, results history, 
-              remediation documentation, and ongoing monitoring. NOEMA generates this 
+              remediation documentation, and ongoing monitoring. Avarent generates this 
               documentation automatically, in formats regulators recognize.
             </p>
           </div>
@@ -93,7 +93,7 @@ export default function Governance() {
                 Adverse Action Mapping
               </h3>
               <p className="font-sans text-body text-text-secondary mb-6 leading-relaxed">
-                ECOA requires specific reasons for denial. NOEMA maps model decision 
+                ECOA requires specific reasons for denial. Avarent maps model decision 
                 factors to compliant adverse action codes, generating defensible 
                 reason statements.
               </p>

@@ -66,20 +66,20 @@ export default function FinalCTA() {
             </h2>
             
             <p className="font-sans text-body-lg text-text-secondary mb-10 leading-relaxed max-w-2xl mx-auto">
-              NOEMA is available to select institutions during our early access period. 
+              Avarent is available to select institutions during our early access period. 
               Request a demo to see how continuous fairness monitoring can work for 
               your models.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Button asChild size="lg" className="group">
-                <a href="mailto:contact@noema.ai">
+                <a href="mailto:contact@avarent.ai">
                   Request Demo
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                 </a>
               </Button>
               <Button variant="outline" asChild size="lg">
-                <a href="mailto:contact@noema.ai">Talk to the Team</a>
+                <a href="mailto:contact@avarent.ai">Talk to the Team</a>
               </Button>
             </div>
           </div>
@@ -96,10 +96,10 @@ export default function FinalCTA() {
                   Discuss deployment options, custom integrations, and volume pricing.
                 </p>
                 <a 
-                  href="mailto:enterprise@noema.ai" 
+                  href="mailto:enterprise@avarent.ai" 
                   className="font-mono text-body-sm text-accent-blue hover:text-accent-blue/80 transition-colors duration-200"
                 >
-                  enterprise@noema.ai
+                  enterprise@avarent.ai
                 </a>
               </div>
               
@@ -111,10 +111,10 @@ export default function FinalCTA() {
                   Explore integration partnerships and channel opportunities.
                 </p>
                 <a 
-                  href="mailto:partners@noema.ai" 
+                  href="mailto:partners@avarent.ai" 
                   className="font-mono text-body-sm text-accent-blue hover:text-accent-blue/80 transition-colors duration-200"
                 >
-                  partners@noema.ai
+                  partners@avarent.ai
                 </a>
               </div>
             </div>

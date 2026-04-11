@@ -13,7 +13,7 @@ export default function Footer() {
               href="/" 
               className="font-serif text-xl tracking-wide text-text-primary hover:text-text-secondary transition-colors duration-200"
             >
-              NOEMA
+              Avarent
             </a>
             <p className="font-sans text-body-sm text-text-muted">
               Fairness infrastructure for regulated institutions
@@ -52,7 +52,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-divider flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-sans text-caption text-text-muted">
-            © {currentYear} Noema, Inc. All rights reserved.
+            © {currentYear} Avarent, Inc. All rights reserved.
           </p>
           
           <div className="flex items-center gap-6">

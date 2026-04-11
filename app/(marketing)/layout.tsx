@@ -24,10 +24,10 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'NOEMA — AI Fairness & Model Governance for Regulated Institutions',
+  title: 'Avarent — AI Fairness & Model Governance for Regulated Institutions',
   description: 'Surface model bias and governance gaps before regulators do. Enterprise fairness monitoring, audit documentation, and compliance infrastructure for banks and lenders.',
   openGraph: {
-    title: 'NOEMA — AI Fairness & Model Governance',
+    title: 'Avarent — AI Fairness & Model Governance',
     description: 'Surface model bias and governance gaps before regulators do.',
     type: 'website',
   },

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Noema - Fairness Auditing for AI Lending',
+  title: 'Avarent - Fairness Auditing for AI Lending',
   description: 'Audit AI underwriting decisions for demographic disparity, proxy variables, and ECOA compliance.',
 };
 

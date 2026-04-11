@@ -59,7 +59,7 @@ export default function Trust() {
               <span className="italic">sensitive</span> data.
             </h2>
             <p className="font-sans text-body-lg text-text-secondary leading-relaxed">
-              Lending data is among the most sensitive in financial services. NOEMA is 
+              Lending data is among the most sensitive in financial services. Avarent is 
               designed from the ground up for institutions with strict data governance 
               requirements.
             </p>
@@ -68,7 +68,7 @@ export default function Trust() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           <AnimatedSection delay={100}>
-            <SecurityFeature icon={<Lock className="w-5 h-5" />} title="No PII Storage" description="NOEMA works with statistical aggregates. Raw applicant data never leaves your infrastructure—we analyze patterns, not individuals." />
+            <SecurityFeature icon={<Lock className="w-5 h-5" />} title="No PII Storage" description="Avarent works with statistical aggregates. Raw applicant data never leaves your infrastructure—we analyze patterns, not individuals." />
           </AnimatedSection>
 
           <AnimatedSection delay={150}>
