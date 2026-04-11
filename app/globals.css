@@ -1,1 +1,123 @@
-瑀楡睬湩⁤慢敳਻瑀楡睬湩⁤潣灭湯湥獴਻瑀楡睬湩⁤瑵汩瑩敩㭳ਊ爺潯⁴੻†ⴭ杢›〣ぁぁ㭁 ⴠ猭牵慦散›ㄣㄴㄴ㬴 ⴠ戭牯敤㩲⌠䄲䄲䄲਻†ⴭ整瑸瀭楲慭祲›䘣䘵䘵㬵 ⴠ琭硥⵴敳潣摮牡㩹⌠ぁぁぁ਻†ⴭ捡散瑮札汯㩤⌠㡅㕄㍁਻†ⴭ捡散瑮琭慥㩬⌠䄴䌷䘶਻†ⴭ捡散瑮琭慥⵬楬桧㩴⌠䄵䌹䄸਻੽栊浴⁬੻†捳潲汬戭桥癡潩㩲猠潭瑯㭨紊ਊ‪੻†潢⵸楳楺杮›潢摲牥戭硯਻†慰摤湩㩧〠਻†慭杲湩›㬰紊ਊ瑨汭ਬ潢祤笠 洠硡眭摩桴›〱瘰㭷 漠敶晲潬⵷㩸栠摩敤㭮紊ਊ⁡੻†潣潬㩲椠桮牥瑩਻†整瑸搭捥牯瑡潩㩮渠湯㭥紊ਊ㨺眭扥楫⵴捳潲汬慢⁲੻†楷瑤㩨㘠硰਻†敨杩瑨›瀶㭸紊ਊ㨺眭扥楫⵴捳潲汬慢⵲牴捡⁫੻†慢正牧畯摮›慶⡲ⴭ杢㬩紊ਊ㨺眭扥楫⵴捳潲汬慢⵲桴浵⁢੻†慢正牧畯摮›慶⡲ⴭ潢摲牥㬩 戠牯敤⵲慲楤獵›瀳㭸紊ਊ㨺眭扥楫⵴捳潲汬慢⵲桴浵㩢潨敶⁲੻†慢正牧畯摮›㌣㍁㍁㭁紊ਊ㨺敳敬瑣潩⁮੻†慢正牧畯摮›慶⡲ⴭ捡散瑮札汯⥤਻†潣潬㩲瘠牡⴨戭⥧਻੽
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --page-bg: 5 5 5;
+    --section-bg: 10 10 10;
+    --card-bg: 16 16 16;
+    --card-elevated: 21 21 21;
+    --divider: 36 36 36;
+    
+    --text-primary: 245 245 242;
+    --text-secondary: 183 183 176;
+    --text-muted: 122 122 115;
+    
+    --accent-blue: 139 167 255;
+    --accent-gold: 214 178 94;
+    --accent-red: 216 92 92;
+    
+    --background: 5 5 5;
+    --foreground: 245 245 242;
+    --primary: 214 178 94;
+    --primary-foreground: 5 5 5;
+    --secondary: 21 21 21;
+    --secondary-foreground: 245 245 242;
+    --muted: 16 16 16;
+    --muted-foreground: 122 122 115;
+    --accent: 139 167 255;
+    --accent-foreground: 5 5 5;
+    --destructive: 216 92 92;
+    --destructive-foreground: 245 245 242;
+    --border: 36 36 36;
+    --input: 36 36 36;
+    --ring: 139 167 255;
+    --radius: 6px;
+  }
+
+  * {
+    border-color: rgb(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #050505;
+    color: #F5F5F2;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  ::selection {
+    background-color: rgba(214, 178, 94, 0.25);
+    color: #F5F5F2;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0A0A0A;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #242424;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a3a;
+  }
+}
+
+@layer components {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-mask-b {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+
+  .gradient-mask-t {
+    mask-image: linear-gradient(to top, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, black 60%, transparent 100%);
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation: fadeUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-in-delay-1 {
+    animation-delay: 0.1s;
+  }
+
+  .animate-in-delay-2 {
+    animation-delay: 0.2s;
+  }
+
+  .animate-in-delay-3 {
+    animation-delay: 0.3s;
+  }
+
+  .animate-in-delay-4 {
+    animation-delay: 0.4s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-in {
+      animation: none;
+      opacity: 1;
+    }
+  }
+}

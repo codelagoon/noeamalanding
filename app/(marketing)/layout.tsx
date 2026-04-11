@@ -1,10 +1,18 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, DM_Mono } from 'next/font/google';
+import { DM_Sans, DM_Mono, Cormorant_Garamond } from 'next/font/google';
 import Navbar from '@/components/landing/Navbar';
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
   variable: '--font-serif',
+  display: 'swap',
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
   display: 'swap',
 });
 
@@ -16,8 +24,13 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Noema - Fair Lending Audit Infrastructure',
-  description: 'Audit AI underwriting model outputs for demographic disparity, proxy variables, and ECOA compliance. Built for AI-native lenders.',
+  title: 'NOEMA — AI Fairness & Model Governance for Regulated Institutions',
+  description: 'Surface model bias and governance gaps before regulators do. Enterprise fairness monitoring, audit documentation, and compliance infrastructure for banks and lenders.',
+  openGraph: {
+    title: 'NOEMA — AI Fairness & Model Governance',
+    description: 'Surface model bias and governance gaps before regulators do.',
+    type: 'website',
+  },
 };
 
 export default function MarketingLayout({
@@ -26,7 +39,7 @@ export default function MarketingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`${playfair.variable} ${dmMono.variable} bg-bg min-h-screen text-text-primary`}>
+    <div className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable} font-sans bg-page-bg min-h-screen text-text-primary`}>
       <Navbar />
       {children}
     </div>

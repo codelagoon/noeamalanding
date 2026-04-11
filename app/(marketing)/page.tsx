@@ -1,20 +1,24 @@
 import Hero from '@/components/landing/Hero';
-import Problem from '@/components/landing/Problem';
-import HowItWorks from '@/components/landing/HowItWorks';
-import WhoItsFor from '@/components/landing/WhoItsFor';
-import Differentiation from '@/components/landing/Differentiation';
-import CTA from '@/components/landing/CTA';
+import ProductProof from '@/components/landing/ProductProof';
+import Outcomes from '@/components/landing/Outcomes';
+import FairnessPerformance from '@/components/landing/FairnessPerformance';
+import Governance from '@/components/landing/Governance';
+import Workflow from '@/components/landing/Workflow';
+import Trust from '@/components/landing/Trust';
+import FinalCTA from '@/components/landing/FinalCTA';
 import Footer from '@/components/landing/Footer';
 
 export default function LandingPage() {
   return (
     <main>
       <Hero />
-      <Problem />
-      <HowItWorks />
-      <WhoItsFor />
-      <Differentiation />
-      <CTA />
+      <ProductProof />
+      <Outcomes />
+      <FairnessPerformance />
+      <Governance />
+      <Workflow />
+      <Trust />
+      <FinalCTA />
       <Footer />
     </main>
   );
