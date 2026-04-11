@@ -154,7 +154,7 @@ export default function InvestorSection() {
                       Next Steps
                     </p>
                     <Button asChild size="lg" className="w-full group">
-                      <a href="mailto:investors@avarent.app">
+                      <a href="https://cal.com/georgetet/investor-call-reshaping-ai-governance-for-the-2.01-trillion-dollar-lending-market" target="_blank" rel="noopener noreferrer">
                         Schedule Investor Call
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                       </a>
@@ -172,12 +172,12 @@ export default function InvestorSection() {
               Interested in learning more about Avarent's vision and investment opportunity?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="group">
-                <a href="mailto:investors@avarent.app">
-                  Become an Early Investor
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-                </a>
-              </Button>
+            <Button asChild size="lg" className="group">
+              <a href="https://cal.com/georgetet/investor-call-reshaping-ai-governance-for-the-2.01-trillion-dollar-lending-market" target="_blank" rel="noopener noreferrer">
+                Become an Early Investor
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+              </a>
+            </Button>
               <Button variant="outline" asChild size="lg">
                 <a href="mailto:investors@avarent.app">Download Deck</a>
               </Button>
