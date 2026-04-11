@@ -71,7 +71,7 @@ export default function Hero() {
       <div className="max-w-content mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl">
           <AnimatedSection>
-            <p className="font-mono text-eyebrow uppercase text-accent-gold tracking-widest mb-6">
+            <p className="font-mono text-eyebrow uppercase text-text-secondary tracking-widest mb-6">
               Model Governance Infrastructure
             </p>
           </AnimatedSection>
@@ -108,7 +108,7 @@ export default function Hero() {
         <AnimatedSection delay={400} className="mt-8 lg:mt-12">
           <div className="relative">
             {/* Glow effect behind screenshot */}
-            <div className="absolute -inset-4 bg-gradient-to-b from-accent-gold/5 to-transparent rounded-lg blur-2xl" />
+            <div className="absolute -inset-4 bg-gradient-to-b from-text-primary/[0.04] to-transparent rounded-lg blur-2xl" />
             
             <div className="relative bg-card-bg border border-divider rounded-lg overflow-hidden shadow-card">
               {/* Browser chrome */}
@@ -158,7 +158,7 @@ export default function Hero() {
 function CredibilityStat({ value, label }: { value: string; label: string }) {
   return (
     <div className="text-center md:text-left">
-      <p className="font-serif text-stat text-accent-gold mb-3">{value}</p>
+      <p className="font-serif text-stat text-text-primary mb-3">{value}</p>
       <p className="font-sans text-body-sm text-text-muted leading-relaxed max-w-xs mx-auto md:mx-0">
         {label}
       </p>
@@ -176,7 +176,7 @@ function DashboardPreview() {
           <p className="font-sans text-body-sm text-text-muted">Consumer Loan Model v2.3 · Updated 2h ago</p>
         </div>
         <div className="flex items-center gap-3">
-          <span className="px-3 py-1 rounded bg-accent-gold/10 text-accent-gold text-caption font-medium">
+          <span className="px-3 py-1 rounded bg-accent-red/10 text-accent-red text-caption font-medium">
             3 Alerts
           </span>
           <span className="px-3 py-1 rounded bg-card-elevated text-text-secondary text-caption">
@@ -228,7 +228,7 @@ function MetricCard({
 }) {
   const statusColors = {
     good: 'text-text-primary',
-    warning: 'text-accent-gold',
+    warning: 'text-accent-blue',
     alert: 'text-accent-red',
   };
 
@@ -251,7 +251,7 @@ function TableRow({
 }) {
   const riskColors: Record<string, string> = {
     High: 'bg-accent-red/10 text-accent-red',
-    Medium: 'bg-accent-gold/10 text-accent-gold',
+    Medium: 'bg-card-elevated text-text-secondary',
     Low: 'bg-text-muted/10 text-text-muted',
   };
 
@@ -287,7 +287,7 @@ function ApprovalRateChart() {
           <div className="flex-1 h-6 bg-card-elevated rounded overflow-hidden">
             <div
               className={`h-full rounded transition-all duration-1000 ease-out ${
-                item.rate < 65 ? 'bg-accent-gold' : 'bg-accent-blue/60'
+                item.rate < 65 ? 'bg-text-secondary/70' : 'bg-accent-blue/60'
               }`}
               style={{ width: `${(item.rate / maxRate) * 100}%` }}
             />
@@ -303,7 +303,7 @@ function ApprovalRateChart() {
           <span className="font-sans text-caption text-text-muted">Within threshold</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-accent-gold" />
+          <div className="w-3 h-3 rounded bg-text-secondary/70" />
           <span className="font-sans text-caption text-text-muted">Review recommended</span>
         </div>
       </div>

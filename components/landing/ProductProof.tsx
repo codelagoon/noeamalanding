@@ -188,7 +188,7 @@ function DetailedDashboard() {
           <span className="px-3 py-1.5 rounded bg-accent-red/10 text-accent-red text-caption font-medium">
             2 Critical Findings
           </span>
-          <span className="px-3 py-1.5 rounded bg-accent-gold/10 text-accent-gold text-caption font-medium">
+          <span className="px-3 py-1.5 rounded bg-text-primary/10 text-text-secondary text-caption font-medium">
             5 Warnings
           </span>
           <span className="px-3 py-1.5 rounded bg-text-muted/10 text-text-muted text-caption">
@@ -300,7 +300,7 @@ function FairnessMetricRow({
   const statusStyles = {
     pass: 'bg-text-muted/10 text-text-secondary',
     fail: 'bg-accent-red/10 text-accent-red',
-    warning: 'bg-accent-gold/10 text-accent-gold',
+    warning: 'bg-text-primary/10 text-text-secondary',
   };
 
   return (
@@ -318,7 +318,7 @@ function FairnessMetricRow({
         <div className="flex-1 h-1.5 bg-card-elevated rounded-full overflow-hidden">
           <div
             className={`h-full rounded-full ${
-              status === 'pass' ? 'bg-text-muted' : status === 'fail' ? 'bg-accent-red' : 'bg-accent-gold'
+              status === 'pass' ? 'bg-text-muted' : status === 'fail' ? 'bg-accent-red' : 'bg-text-secondary'
             }`}
             style={{ width: `${value * 100}%` }}
           />
@@ -350,7 +350,7 @@ function DetailedBarChart() {
           <span className="font-sans text-body-sm text-text-muted w-20">{item.group}</span>
           <div className="flex-1 flex h-8 rounded overflow-hidden bg-card-elevated">
             <div
-              className={`h-full ${item.approved < 60 ? 'bg-accent-gold' : 'bg-accent-blue/60'}`}
+              className={`h-full ${item.approved < 60 ? 'bg-text-secondary' : 'bg-accent-blue/60'}`}
               style={{ width: `${item.approved}%` }}
             />
             <div
@@ -374,7 +374,7 @@ function DetailedBarChart() {
           <span className="text-caption text-text-muted">Approved (threshold met)</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-accent-gold" />
+          <div className="w-3 h-3 rounded bg-text-secondary" />
           <span className="text-caption text-text-muted">Approved (below threshold)</span>
         </div>
         <div className="flex items-center gap-2">
@@ -400,7 +400,7 @@ function ProxyFinding({
   const severity = correlation > 0.7 ? 'high' : correlation > 0.5 ? 'medium' : 'low';
   const severityStyles = {
     high: 'bg-accent-red/10 text-accent-red',
-    medium: 'bg-accent-gold/10 text-accent-gold',
+    medium: 'bg-text-primary/10 text-text-secondary',
     low: 'bg-text-muted/10 text-text-muted',
   };
 

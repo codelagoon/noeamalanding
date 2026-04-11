@@ -50,13 +50,13 @@ export default function FinalCTA() {
   return (
     <section id="contact" className="py-section bg-section-bg relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-accent-gold/[0.02] blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-text-primary/[0.02] blur-3xl" />
       </div>
 
       <div className="max-w-content mx-auto px-6 lg:px-8 relative z-10">
         <AnimatedSection>
           <div className="max-w-3xl mx-auto text-center">
-            <p className="font-mono text-eyebrow uppercase text-accent-gold tracking-widest mb-6">
+            <p className="font-mono text-eyebrow uppercase text-text-secondary tracking-widest mb-6">
               Get Started
             </p>
             

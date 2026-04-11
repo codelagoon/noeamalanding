@@ -112,7 +112,7 @@ export default function Outcomes() {
       <div className="max-w-content mx-auto px-6 lg:px-8">
         <AnimatedSection>
           <div className="max-w-2xl mb-16">
-            <p className="font-mono text-eyebrow uppercase text-accent-gold tracking-widest mb-4">
+            <p className="font-mono text-eyebrow uppercase text-text-secondary tracking-widest mb-4">
               Business Impact
             </p>
             <h2 className="font-serif text-headline text-text-primary mb-6">
@@ -196,7 +196,7 @@ export default function Outcomes() {
 
             <div className="bg-card-bg border border-divider rounded-lg p-8">
               <div className="flex items-center gap-2 mb-6">
-                <span className="px-2 py-1 rounded bg-accent-gold/10 text-accent-gold text-caption font-medium">
+                <span className="px-2 py-1 rounded bg-text-primary/10 text-text-secondary text-caption font-medium">
                   Industry Context
                 </span>
               </div>
@@ -256,7 +256,7 @@ function ImpactCard({
       <div className="p-2 rounded bg-card-elevated text-text-muted w-fit mb-4">
         {icon}
       </div>
-      <div className="font-serif text-stat text-accent-gold mb-2">{value}</div>
+      <div className="font-serif text-stat text-text-primary mb-2">{value}</div>
       <p className="font-sans text-body font-medium text-text-primary mb-2">{label}</p>
       <p className="font-sans text-body-sm text-text-muted leading-relaxed">{description}</p>
     </div>

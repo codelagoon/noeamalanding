@@ -51,7 +51,7 @@ export default function Governance() {
       <div className="max-w-content mx-auto px-6 lg:px-8">
         <AnimatedSection>
           <div className="max-w-2xl mb-16">
-            <p className="font-mono text-eyebrow uppercase text-accent-gold tracking-widest mb-4">
+            <p className="font-mono text-eyebrow uppercase text-text-secondary tracking-widest mb-4">
               Governance Infrastructure
             </p>
             <h2 className="font-serif text-headline text-text-primary mb-6">
@@ -154,7 +154,7 @@ function AuditTrailPreview() {
           <div key={i} className="px-4 py-3 flex items-start gap-3">
             <div className={`mt-1 w-2 h-2 rounded-full flex-shrink-0 ${
               event.status === 'success' ? 'bg-text-muted' :
-              event.status === 'warning' ? 'bg-accent-gold' : 'bg-accent-blue'
+              event.status === 'warning' ? 'bg-text-secondary' : 'bg-accent-blue'
             }`} />
             <div className="flex-1 min-w-0">
               <p className="font-sans text-body-sm text-text-primary truncate">{event.action}</p>
@@ -212,7 +212,7 @@ function DocumentType({ icon, name, description, format }: { icon: React.ReactNo
 function RegulatoryItem({ label, description }: { label: string; description: string }) {
   return (
     <div>
-      <p className="font-mono text-body-sm text-accent-gold mb-1">{label}</p>
+      <p className="font-mono text-body-sm text-text-secondary mb-1">{label}</p>
       <p className="font-sans text-body-sm text-text-muted">{description}</p>
     </div>
   );

@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-start gap-2">
             <a 
               href="/" 
-              className="font-serif text-xl tracking-wide text-text-primary hover:text-accent-gold transition-colors duration-200"
+              className="font-serif text-xl tracking-wide text-text-primary hover:text-text-secondary transition-colors duration-200"
             >
               NOEMA
             </a>

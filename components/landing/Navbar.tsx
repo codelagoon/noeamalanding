@@ -26,7 +26,7 @@ export default function Navbar() {
         <div className="h-16 lg:h-20 flex items-center justify-between">
           <a 
             href="/" 
-            className="font-serif text-xl lg:text-2xl tracking-wide text-text-primary hover:text-accent-gold transition-colors duration-200"
+            className="font-serif text-xl lg:text-2xl tracking-wide text-text-primary hover:text-text-secondary transition-colors duration-200"
           >
             NOEMA
           </a>

@@ -51,7 +51,7 @@ export default function Trust() {
       <div className="max-w-content mx-auto px-6 lg:px-8">
         <AnimatedSection>
           <div className="max-w-2xl mb-16">
-            <p className="font-mono text-eyebrow uppercase text-accent-gold tracking-widest mb-4">
+            <p className="font-mono text-eyebrow uppercase text-text-secondary tracking-widest mb-4">
               Security and Privacy
             </p>
             <h2 className="font-serif text-headline text-text-primary mb-6">
@@ -127,7 +127,7 @@ export default function Trust() {
 function SecurityFeature({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
     <div className="bg-card-bg border border-divider rounded-lg p-6 group hover:border-text-muted/30 transition-all duration-300">
-      <div className="p-2 rounded bg-card-elevated text-text-muted group-hover:text-accent-gold transition-colors duration-300 w-fit mb-4">
+      <div className="p-2 rounded bg-card-elevated text-text-muted group-hover:text-text-primary transition-colors duration-300 w-fit mb-4">
         {icon}
       </div>
       <h3 className="font-sans text-body font-medium text-text-primary mb-2">{title}</h3>
@@ -140,7 +140,7 @@ function DeploymentOption({ name, description, features, recommended }: { name: 
   return (
     <div className={`p-6 lg:p-8 relative ${recommended ? 'bg-card-elevated/50' : ''}`}>
       {recommended && (
-        <span className="absolute top-4 right-4 px-2 py-0.5 rounded bg-accent-gold/10 text-accent-gold text-caption">
+        <span className="absolute top-4 right-4 px-2 py-0.5 rounded bg-text-primary/10 text-text-secondary text-caption">
           Popular
         </span>
       )}
@@ -149,7 +149,7 @@ function DeploymentOption({ name, description, features, recommended }: { name: 
       <ul className="space-y-2">
         {features.map((feature, i) => (
           <li key={i} className="font-sans text-body-sm text-text-muted flex items-center gap-2">
-            <span className="w-1 h-1 rounded-full bg-accent-gold flex-shrink-0" />
+            <span className="w-1 h-1 rounded-full bg-text-secondary flex-shrink-0" />
             {feature}
           </li>
         ))}

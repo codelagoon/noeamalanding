@@ -116,7 +116,7 @@ export default function Workflow() {
                       <div className={`flex items-start gap-4 mb-4 ${index % 2 === 0 ? 'lg:flex-row-reverse lg:text-right' : ''}`}>
                         <div className="p-3 rounded-lg bg-card-elevated text-text-secondary">{step.icon}</div>
                         <div className={index % 2 === 0 ? 'lg:text-right' : ''}>
-                          <span className="font-mono text-caption text-accent-gold block mb-1">Step {step.number}</span>
+                          <span className="font-mono text-caption text-text-secondary block mb-1">Step {step.number}</span>
                           <h3 className="font-sans text-title font-medium text-text-primary">{step.title}</h3>
                         </div>
                       </div>
@@ -137,7 +137,7 @@ export default function Workflow() {
                   </div>
 
                   <div className="hidden lg:flex absolute left-1/2 top-8 -translate-x-1/2 items-center justify-center">
-                    <div className="w-4 h-4 rounded-full bg-card-bg border-2 border-accent-gold" />
+                    <div className="w-4 h-4 rounded-full bg-card-bg border-2 border-text-secondary/50" />
                   </div>
                 </div>
               </AnimatedSection>

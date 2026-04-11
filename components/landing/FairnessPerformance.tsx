@@ -49,7 +49,7 @@ function AnimatedSection({
 export default function FairnessPerformance() {
   return (
     <section className="py-section bg-section-bg relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-accent-gold/30 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-text-primary/20 to-transparent" />
 
       <div className="max-w-content mx-auto px-6 lg:px-8">
         <AnimatedSection>
@@ -237,7 +237,7 @@ function ParetoChart() {
 
       <div className="flex items-center justify-center gap-6 mt-4">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-accent-gold" />
+          <div className="w-3 h-3 rounded-full bg-text-secondary" />
           <span className="font-sans text-caption text-text-muted">Efficient frontier</span>
         </div>
         <div className="flex items-center gap-2">
@@ -261,7 +261,7 @@ function InterventionTable() {
   const statusLabels: Record<string, { label: string; style: string }> = {
     baseline: { label: 'Current', style: 'bg-text-muted/10 text-text-muted' },
     recommended: { label: 'Recommended', style: 'bg-accent-blue/10 text-accent-blue' },
-    optimal: { label: 'Optimal', style: 'bg-accent-gold/10 text-accent-gold' },
+    optimal: { label: 'Optimal', style: 'bg-text-primary/10 text-text-primary' },
     aggressive: { label: 'Aggressive', style: 'bg-accent-red/10 text-accent-red' },
   };
 
@@ -311,7 +311,7 @@ function InterventionTable() {
 function InsightCard({ number, title, description }: { number: string; title: string; description: string }) {
   return (
     <div className="bg-card-bg border border-divider rounded-lg p-6">
-      <span className="font-mono text-caption text-accent-gold mb-3 block">{number}</span>
+      <span className="font-mono text-caption text-text-secondary mb-3 block">{number}</span>
       <h3 className="font-sans text-body font-medium text-text-primary mb-2">{title}</h3>
       <p className="font-sans text-body-sm text-text-muted leading-relaxed">{description}</p>
     </div>
